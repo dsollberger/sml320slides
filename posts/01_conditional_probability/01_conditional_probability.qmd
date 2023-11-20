@@ -1,0 +1,12 @@
+---
+title: "1: Conditional Probability"
+author: "Derek Sollberger"
+date: "2024-01-30"
+format: 
+  html:
+    toc: true
+---
+
+objectives
+
+goals
