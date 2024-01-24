@@ -7,5 +7,8 @@
   },
   "index.qmd": {
     "index.html": "f1193be0"
+  },
+  "posts/02_bayes_rule/02_bayes_rule.qmd": {
+    "02_bayes_rule.html": "159ece8a"
   }
 }
