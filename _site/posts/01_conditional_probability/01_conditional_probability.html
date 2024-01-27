@@ -9,7 +9,7 @@
 <meta name="author" content="Derek Sollberger">
 <meta name="dcterms.date" content="2024-01-30">
 
-<title>1: Conditional Probability</title>
+<title>sml320draft - 1: Conditional Probability</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,28 +59,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="01_conditional_probability_files/libs/clipboard/clipboard.min.js"></script>
-<script src="01_conditional_probability_files/libs/quarto-html/quarto.js"></script>
-<script src="01_conditional_probability_files/libs/quarto-html/popper.min.js"></script>
-<script src="01_conditional_probability_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="01_conditional_probability_files/libs/quarto-html/anchor.min.js"></script>
-<link href="01_conditional_probability_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="01_conditional_probability_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="01_conditional_probability_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="01_conditional_probability_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="01_conditional_probability_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body>
+<body class="nav-fixed">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">sml320draft</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">1: Conditional Probability</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Derek Sollberger </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 30, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#sml-320" id="toc-sml-320" class="nav-link active" data-scroll-target="#sml-320">SML 320</a>
@@ -120,37 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul>
 </nav>
-</div>
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">1: Conditional Probability</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Derek Sollberger </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 30, 2024</p>
     </div>
-  </div>
-  
-    
-  </div>
-  
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-</header>
+
+
 
 <section id="sml-320" class="level1">
 <h1>SML 320</h1>
@@ -187,7 +256,7 @@ Course Description
 <h2 class="anchored" data-anchor-id="current-research-in-pedagogy">Current Research in Pedagogy</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img src="MBVP%20SABER%20poster.png" class="img-fluid"></p>
+<p><img src="MBVP SABER poster.png" class="img-fluid"></p>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>active learning</li>
@@ -621,29 +690,29 @@ Unicode Characters
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Contingency Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Code</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Contingency Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Code</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ebjndsdkuo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ebjndsdkuo table {
+<div id="jbnkmdpltg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jbnkmdpltg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ebjndsdkuo thead, #ebjndsdkuo tbody, #ebjndsdkuo tfoot, #ebjndsdkuo tr, #ebjndsdkuo td, #ebjndsdkuo th {
+#jbnkmdpltg thead, #jbnkmdpltg tbody, #jbnkmdpltg tfoot, #jbnkmdpltg tr, #jbnkmdpltg td, #jbnkmdpltg th {
   border-style: none;
 }
 
-#ebjndsdkuo p {
+#jbnkmdpltg p {
   margin: 0;
   padding: 0;
 }
 
-#ebjndsdkuo .gt_table {
+#jbnkmdpltg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -669,12 +738,12 @@ Unicode Characters
   border-left-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_caption {
+#jbnkmdpltg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ebjndsdkuo .gt_title {
+#jbnkmdpltg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -686,7 +755,7 @@ Unicode Characters
   border-bottom-width: 0;
 }
 
-#ebjndsdkuo .gt_subtitle {
+#jbnkmdpltg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -698,7 +767,7 @@ Unicode Characters
   border-top-width: 0;
 }
 
-#ebjndsdkuo .gt_heading {
+#jbnkmdpltg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -710,13 +779,13 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_bottom_border {
+#jbnkmdpltg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_col_headings {
+#jbnkmdpltg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -731,7 +800,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_col_heading {
+#jbnkmdpltg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -751,7 +820,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#ebjndsdkuo .gt_column_spanner_outer {
+#jbnkmdpltg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -763,15 +832,15 @@ Unicode Characters
   padding-right: 4px;
 }
 
-#ebjndsdkuo .gt_column_spanner_outer:first-child {
+#jbnkmdpltg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ebjndsdkuo .gt_column_spanner_outer:last-child {
+#jbnkmdpltg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ebjndsdkuo .gt_column_spanner {
+#jbnkmdpltg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -783,11 +852,11 @@ Unicode Characters
   width: 100%;
 }
 
-#ebjndsdkuo .gt_spanner_row {
+#jbnkmdpltg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ebjndsdkuo .gt_group_heading {
+#jbnkmdpltg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -813,7 +882,7 @@ Unicode Characters
   text-align: left;
 }
 
-#ebjndsdkuo .gt_empty_group_heading {
+#jbnkmdpltg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -828,15 +897,15 @@ Unicode Characters
   vertical-align: middle;
 }
 
-#ebjndsdkuo .gt_from_md > :first-child {
+#jbnkmdpltg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ebjndsdkuo .gt_from_md > :last-child {
+#jbnkmdpltg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ebjndsdkuo .gt_row {
+#jbnkmdpltg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -855,7 +924,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#ebjndsdkuo .gt_stub {
+#jbnkmdpltg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -868,7 +937,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#ebjndsdkuo .gt_stub_row_group {
+#jbnkmdpltg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -882,15 +951,15 @@ Unicode Characters
   vertical-align: top;
 }
 
-#ebjndsdkuo .gt_row_group_first td {
+#jbnkmdpltg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ebjndsdkuo .gt_row_group_first th {
+#jbnkmdpltg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ebjndsdkuo .gt_summary_row {
+#jbnkmdpltg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -900,16 +969,16 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#ebjndsdkuo .gt_first_summary_row {
+#jbnkmdpltg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_first_summary_row.thick {
+#jbnkmdpltg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ebjndsdkuo .gt_last_summary_row {
+#jbnkmdpltg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -919,7 +988,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_grand_summary_row {
+#jbnkmdpltg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -929,7 +998,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#ebjndsdkuo .gt_first_grand_summary_row {
+#jbnkmdpltg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -939,7 +1008,7 @@ Unicode Characters
   border-top-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_last_grand_summary_row_top {
+#jbnkmdpltg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -949,11 +1018,11 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_striped {
+#jbnkmdpltg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ebjndsdkuo .gt_table_body {
+#jbnkmdpltg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -962,7 +1031,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_footnotes {
+#jbnkmdpltg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -976,7 +1045,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_footnote {
+#jbnkmdpltg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -985,7 +1054,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#ebjndsdkuo .gt_sourcenotes {
+#jbnkmdpltg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -999,7 +1068,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#ebjndsdkuo .gt_sourcenote {
+#jbnkmdpltg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1007,63 +1076,63 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#ebjndsdkuo .gt_left {
+#jbnkmdpltg .gt_left {
   text-align: left;
 }
 
-#ebjndsdkuo .gt_center {
+#jbnkmdpltg .gt_center {
   text-align: center;
 }
 
-#ebjndsdkuo .gt_right {
+#jbnkmdpltg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ebjndsdkuo .gt_font_normal {
+#jbnkmdpltg .gt_font_normal {
   font-weight: normal;
 }
 
-#ebjndsdkuo .gt_font_bold {
+#jbnkmdpltg .gt_font_bold {
   font-weight: bold;
 }
 
-#ebjndsdkuo .gt_font_italic {
+#jbnkmdpltg .gt_font_italic {
   font-style: italic;
 }
 
-#ebjndsdkuo .gt_super {
+#jbnkmdpltg .gt_super {
   font-size: 65%;
 }
 
-#ebjndsdkuo .gt_footnote_marks {
+#jbnkmdpltg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ebjndsdkuo .gt_asterisk {
+#jbnkmdpltg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ebjndsdkuo .gt_indent_1 {
+#jbnkmdpltg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ebjndsdkuo .gt_indent_2 {
+#jbnkmdpltg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ebjndsdkuo .gt_indent_3 {
+#jbnkmdpltg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ebjndsdkuo .gt_indent_4 {
+#jbnkmdpltg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ebjndsdkuo .gt_indent_5 {
+#jbnkmdpltg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1118,23 +1187,23 @@ Unicode Characters
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="fkrdfrojra" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fkrdfrojra table {
+<div id="mwlycfbshy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlycfbshy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fkrdfrojra thead, #fkrdfrojra tbody, #fkrdfrojra tfoot, #fkrdfrojra tr, #fkrdfrojra td, #fkrdfrojra th {
+#mwlycfbshy thead, #mwlycfbshy tbody, #mwlycfbshy tfoot, #mwlycfbshy tr, #mwlycfbshy td, #mwlycfbshy th {
   border-style: none;
 }
 
-#fkrdfrojra p {
+#mwlycfbshy p {
   margin: 0;
   padding: 0;
 }
 
-#fkrdfrojra .gt_table {
+#mwlycfbshy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1160,12 +1229,12 @@ Unicode Characters
   border-left-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_caption {
+#mwlycfbshy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fkrdfrojra .gt_title {
+#mwlycfbshy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1177,7 +1246,7 @@ Unicode Characters
   border-bottom-width: 0;
 }
 
-#fkrdfrojra .gt_subtitle {
+#mwlycfbshy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1189,7 +1258,7 @@ Unicode Characters
   border-top-width: 0;
 }
 
-#fkrdfrojra .gt_heading {
+#mwlycfbshy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1201,13 +1270,13 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_bottom_border {
+#mwlycfbshy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_col_headings {
+#mwlycfbshy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1222,7 +1291,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_col_heading {
+#mwlycfbshy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1242,7 +1311,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#fkrdfrojra .gt_column_spanner_outer {
+#mwlycfbshy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1254,15 +1323,15 @@ Unicode Characters
   padding-right: 4px;
 }
 
-#fkrdfrojra .gt_column_spanner_outer:first-child {
+#mwlycfbshy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fkrdfrojra .gt_column_spanner_outer:last-child {
+#mwlycfbshy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fkrdfrojra .gt_column_spanner {
+#mwlycfbshy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1274,11 +1343,11 @@ Unicode Characters
   width: 100%;
 }
 
-#fkrdfrojra .gt_spanner_row {
+#mwlycfbshy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fkrdfrojra .gt_group_heading {
+#mwlycfbshy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1304,7 +1373,7 @@ Unicode Characters
   text-align: left;
 }
 
-#fkrdfrojra .gt_empty_group_heading {
+#mwlycfbshy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1319,15 +1388,15 @@ Unicode Characters
   vertical-align: middle;
 }
 
-#fkrdfrojra .gt_from_md > :first-child {
+#mwlycfbshy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fkrdfrojra .gt_from_md > :last-child {
+#mwlycfbshy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fkrdfrojra .gt_row {
+#mwlycfbshy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1346,7 +1415,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#fkrdfrojra .gt_stub {
+#mwlycfbshy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1359,7 +1428,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#fkrdfrojra .gt_stub_row_group {
+#mwlycfbshy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1373,15 +1442,15 @@ Unicode Characters
   vertical-align: top;
 }
 
-#fkrdfrojra .gt_row_group_first td {
+#mwlycfbshy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fkrdfrojra .gt_row_group_first th {
+#mwlycfbshy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fkrdfrojra .gt_summary_row {
+#mwlycfbshy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1391,16 +1460,16 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#fkrdfrojra .gt_first_summary_row {
+#mwlycfbshy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_first_summary_row.thick {
+#mwlycfbshy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fkrdfrojra .gt_last_summary_row {
+#mwlycfbshy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1410,7 +1479,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_grand_summary_row {
+#mwlycfbshy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1420,7 +1489,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#fkrdfrojra .gt_first_grand_summary_row {
+#mwlycfbshy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1430,7 +1499,7 @@ Unicode Characters
   border-top-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_last_grand_summary_row_top {
+#mwlycfbshy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1440,11 +1509,11 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_striped {
+#mwlycfbshy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fkrdfrojra .gt_table_body {
+#mwlycfbshy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1453,7 +1522,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_footnotes {
+#mwlycfbshy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1467,7 +1536,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_footnote {
+#mwlycfbshy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1476,7 +1545,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#fkrdfrojra .gt_sourcenotes {
+#mwlycfbshy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1490,7 +1559,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#fkrdfrojra .gt_sourcenote {
+#mwlycfbshy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1498,63 +1567,63 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#fkrdfrojra .gt_left {
+#mwlycfbshy .gt_left {
   text-align: left;
 }
 
-#fkrdfrojra .gt_center {
+#mwlycfbshy .gt_center {
   text-align: center;
 }
 
-#fkrdfrojra .gt_right {
+#mwlycfbshy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fkrdfrojra .gt_font_normal {
+#mwlycfbshy .gt_font_normal {
   font-weight: normal;
 }
 
-#fkrdfrojra .gt_font_bold {
+#mwlycfbshy .gt_font_bold {
   font-weight: bold;
 }
 
-#fkrdfrojra .gt_font_italic {
+#mwlycfbshy .gt_font_italic {
   font-style: italic;
 }
 
-#fkrdfrojra .gt_super {
+#mwlycfbshy .gt_super {
   font-size: 65%;
 }
 
-#fkrdfrojra .gt_footnote_marks {
+#mwlycfbshy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fkrdfrojra .gt_asterisk {
+#mwlycfbshy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fkrdfrojra .gt_indent_1 {
+#mwlycfbshy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fkrdfrojra .gt_indent_2 {
+#mwlycfbshy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fkrdfrojra .gt_indent_3 {
+#mwlycfbshy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fkrdfrojra .gt_indent_4 {
+#mwlycfbshy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fkrdfrojra .gt_indent_5 {
+#mwlycfbshy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1601,30 +1670,30 @@ Unicode Characters
 <section id="example-1" class="level2">
 <h2 class="anchored" data-anchor-id="example-1">Example</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Confusion Matrix</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Metrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Formulas</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Confusion Matrix</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Metrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Formulas</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>Suppose that a team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.</p>
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="wurcqtoart" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wurcqtoart table {
+<div id="yseobuevbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yseobuevbu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wurcqtoart thead, #wurcqtoart tbody, #wurcqtoart tfoot, #wurcqtoart tr, #wurcqtoart td, #wurcqtoart th {
+#yseobuevbu thead, #yseobuevbu tbody, #yseobuevbu tfoot, #yseobuevbu tr, #yseobuevbu td, #yseobuevbu th {
   border-style: none;
 }
 
-#wurcqtoart p {
+#yseobuevbu p {
   margin: 0;
   padding: 0;
 }
 
-#wurcqtoart .gt_table {
+#yseobuevbu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1650,12 +1719,12 @@ Unicode Characters
   border-left-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_caption {
+#yseobuevbu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wurcqtoart .gt_title {
+#yseobuevbu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1667,7 +1736,7 @@ Unicode Characters
   border-bottom-width: 0;
 }
 
-#wurcqtoart .gt_subtitle {
+#yseobuevbu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1679,7 +1748,7 @@ Unicode Characters
   border-top-width: 0;
 }
 
-#wurcqtoart .gt_heading {
+#yseobuevbu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1691,13 +1760,13 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_bottom_border {
+#yseobuevbu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_col_headings {
+#yseobuevbu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1712,7 +1781,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_col_heading {
+#yseobuevbu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1732,7 +1801,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#wurcqtoart .gt_column_spanner_outer {
+#yseobuevbu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1744,15 +1813,15 @@ Unicode Characters
   padding-right: 4px;
 }
 
-#wurcqtoart .gt_column_spanner_outer:first-child {
+#yseobuevbu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wurcqtoart .gt_column_spanner_outer:last-child {
+#yseobuevbu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wurcqtoart .gt_column_spanner {
+#yseobuevbu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1764,11 +1833,11 @@ Unicode Characters
   width: 100%;
 }
 
-#wurcqtoart .gt_spanner_row {
+#yseobuevbu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wurcqtoart .gt_group_heading {
+#yseobuevbu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1794,7 +1863,7 @@ Unicode Characters
   text-align: left;
 }
 
-#wurcqtoart .gt_empty_group_heading {
+#yseobuevbu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1809,15 +1878,15 @@ Unicode Characters
   vertical-align: middle;
 }
 
-#wurcqtoart .gt_from_md > :first-child {
+#yseobuevbu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wurcqtoart .gt_from_md > :last-child {
+#yseobuevbu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wurcqtoart .gt_row {
+#yseobuevbu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1836,7 +1905,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#wurcqtoart .gt_stub {
+#yseobuevbu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1849,7 +1918,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#wurcqtoart .gt_stub_row_group {
+#yseobuevbu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1863,15 +1932,15 @@ Unicode Characters
   vertical-align: top;
 }
 
-#wurcqtoart .gt_row_group_first td {
+#yseobuevbu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wurcqtoart .gt_row_group_first th {
+#yseobuevbu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wurcqtoart .gt_summary_row {
+#yseobuevbu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1881,16 +1950,16 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#wurcqtoart .gt_first_summary_row {
+#yseobuevbu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_first_summary_row.thick {
+#yseobuevbu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wurcqtoart .gt_last_summary_row {
+#yseobuevbu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1900,7 +1969,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_grand_summary_row {
+#yseobuevbu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1910,7 +1979,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#wurcqtoart .gt_first_grand_summary_row {
+#yseobuevbu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1920,7 +1989,7 @@ Unicode Characters
   border-top-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_last_grand_summary_row_top {
+#yseobuevbu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1930,11 +1999,11 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_striped {
+#yseobuevbu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wurcqtoart .gt_table_body {
+#yseobuevbu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1943,7 +2012,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_footnotes {
+#yseobuevbu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1957,7 +2026,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_footnote {
+#yseobuevbu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1966,7 +2035,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#wurcqtoart .gt_sourcenotes {
+#yseobuevbu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1980,7 +2049,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#wurcqtoart .gt_sourcenote {
+#yseobuevbu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1988,63 +2057,63 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#wurcqtoart .gt_left {
+#yseobuevbu .gt_left {
   text-align: left;
 }
 
-#wurcqtoart .gt_center {
+#yseobuevbu .gt_center {
   text-align: center;
 }
 
-#wurcqtoart .gt_right {
+#yseobuevbu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wurcqtoart .gt_font_normal {
+#yseobuevbu .gt_font_normal {
   font-weight: normal;
 }
 
-#wurcqtoart .gt_font_bold {
+#yseobuevbu .gt_font_bold {
   font-weight: bold;
 }
 
-#wurcqtoart .gt_font_italic {
+#yseobuevbu .gt_font_italic {
   font-style: italic;
 }
 
-#wurcqtoart .gt_super {
+#yseobuevbu .gt_super {
   font-size: 65%;
 }
 
-#wurcqtoart .gt_footnote_marks {
+#yseobuevbu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wurcqtoart .gt_asterisk {
+#yseobuevbu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wurcqtoart .gt_indent_1 {
+#yseobuevbu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wurcqtoart .gt_indent_2 {
+#yseobuevbu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wurcqtoart .gt_indent_3 {
+#yseobuevbu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wurcqtoart .gt_indent_4 {
+#yseobuevbu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wurcqtoart .gt_indent_5 {
+#yseobuevbu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2114,23 +2183,23 @@ Unicode Characters
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="roygpporhx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#roygpporhx table {
+<div id="cqcnhfcvpi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cqcnhfcvpi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#roygpporhx thead, #roygpporhx tbody, #roygpporhx tfoot, #roygpporhx tr, #roygpporhx td, #roygpporhx th {
+#cqcnhfcvpi thead, #cqcnhfcvpi tbody, #cqcnhfcvpi tfoot, #cqcnhfcvpi tr, #cqcnhfcvpi td, #cqcnhfcvpi th {
   border-style: none;
 }
 
-#roygpporhx p {
+#cqcnhfcvpi p {
   margin: 0;
   padding: 0;
 }
 
-#roygpporhx .gt_table {
+#cqcnhfcvpi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2156,12 +2225,12 @@ Unicode Characters
   border-left-color: #D3D3D3;
 }
 
-#roygpporhx .gt_caption {
+#cqcnhfcvpi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#roygpporhx .gt_title {
+#cqcnhfcvpi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2173,7 +2242,7 @@ Unicode Characters
   border-bottom-width: 0;
 }
 
-#roygpporhx .gt_subtitle {
+#cqcnhfcvpi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2185,7 +2254,7 @@ Unicode Characters
   border-top-width: 0;
 }
 
-#roygpporhx .gt_heading {
+#cqcnhfcvpi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2197,13 +2266,13 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#roygpporhx .gt_bottom_border {
+#cqcnhfcvpi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#roygpporhx .gt_col_headings {
+#cqcnhfcvpi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2218,7 +2287,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#roygpporhx .gt_col_heading {
+#cqcnhfcvpi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2238,7 +2307,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#roygpporhx .gt_column_spanner_outer {
+#cqcnhfcvpi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2250,15 +2319,15 @@ Unicode Characters
   padding-right: 4px;
 }
 
-#roygpporhx .gt_column_spanner_outer:first-child {
+#cqcnhfcvpi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#roygpporhx .gt_column_spanner_outer:last-child {
+#cqcnhfcvpi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#roygpporhx .gt_column_spanner {
+#cqcnhfcvpi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2270,11 +2339,11 @@ Unicode Characters
   width: 100%;
 }
 
-#roygpporhx .gt_spanner_row {
+#cqcnhfcvpi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#roygpporhx .gt_group_heading {
+#cqcnhfcvpi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2300,7 +2369,7 @@ Unicode Characters
   text-align: left;
 }
 
-#roygpporhx .gt_empty_group_heading {
+#cqcnhfcvpi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2315,15 +2384,15 @@ Unicode Characters
   vertical-align: middle;
 }
 
-#roygpporhx .gt_from_md > :first-child {
+#cqcnhfcvpi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#roygpporhx .gt_from_md > :last-child {
+#cqcnhfcvpi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#roygpporhx .gt_row {
+#cqcnhfcvpi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2342,7 +2411,7 @@ Unicode Characters
   overflow-x: hidden;
 }
 
-#roygpporhx .gt_stub {
+#cqcnhfcvpi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2355,7 +2424,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#roygpporhx .gt_stub_row_group {
+#cqcnhfcvpi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2369,15 +2438,15 @@ Unicode Characters
   vertical-align: top;
 }
 
-#roygpporhx .gt_row_group_first td {
+#cqcnhfcvpi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#roygpporhx .gt_row_group_first th {
+#cqcnhfcvpi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#roygpporhx .gt_summary_row {
+#cqcnhfcvpi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2387,16 +2456,16 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#roygpporhx .gt_first_summary_row {
+#cqcnhfcvpi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#roygpporhx .gt_first_summary_row.thick {
+#cqcnhfcvpi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#roygpporhx .gt_last_summary_row {
+#cqcnhfcvpi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2406,7 +2475,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#roygpporhx .gt_grand_summary_row {
+#cqcnhfcvpi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2416,7 +2485,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#roygpporhx .gt_first_grand_summary_row {
+#cqcnhfcvpi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2426,7 +2495,7 @@ Unicode Characters
   border-top-color: #D3D3D3;
 }
 
-#roygpporhx .gt_last_grand_summary_row_top {
+#cqcnhfcvpi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2436,11 +2505,11 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#roygpporhx .gt_striped {
+#cqcnhfcvpi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#roygpporhx .gt_table_body {
+#cqcnhfcvpi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2449,7 +2518,7 @@ Unicode Characters
   border-bottom-color: #D3D3D3;
 }
 
-#roygpporhx .gt_footnotes {
+#cqcnhfcvpi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2463,7 +2532,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#roygpporhx .gt_footnote {
+#cqcnhfcvpi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2472,7 +2541,7 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#roygpporhx .gt_sourcenotes {
+#cqcnhfcvpi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2486,7 +2555,7 @@ Unicode Characters
   border-right-color: #D3D3D3;
 }
 
-#roygpporhx .gt_sourcenote {
+#cqcnhfcvpi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2494,63 +2563,63 @@ Unicode Characters
   padding-right: 5px;
 }
 
-#roygpporhx .gt_left {
+#cqcnhfcvpi .gt_left {
   text-align: left;
 }
 
-#roygpporhx .gt_center {
+#cqcnhfcvpi .gt_center {
   text-align: center;
 }
 
-#roygpporhx .gt_right {
+#cqcnhfcvpi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#roygpporhx .gt_font_normal {
+#cqcnhfcvpi .gt_font_normal {
   font-weight: normal;
 }
 
-#roygpporhx .gt_font_bold {
+#cqcnhfcvpi .gt_font_bold {
   font-weight: bold;
 }
 
-#roygpporhx .gt_font_italic {
+#cqcnhfcvpi .gt_font_italic {
   font-style: italic;
 }
 
-#roygpporhx .gt_super {
+#cqcnhfcvpi .gt_super {
   font-size: 65%;
 }
 
-#roygpporhx .gt_footnote_marks {
+#cqcnhfcvpi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#roygpporhx .gt_asterisk {
+#cqcnhfcvpi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#roygpporhx .gt_indent_1 {
+#cqcnhfcvpi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#roygpporhx .gt_indent_2 {
+#cqcnhfcvpi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#roygpporhx .gt_indent_3 {
+#cqcnhfcvpi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#roygpporhx .gt_indent_4 {
+#cqcnhfcvpi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#roygpporhx .gt_indent_5 {
+#cqcnhfcvpi .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2612,23 +2681,23 @@ Row Span
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="ajfmgnuvfs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ajfmgnuvfs table {
+<div id="jtjcpghqxr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jtjcpghqxr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ajfmgnuvfs thead, #ajfmgnuvfs tbody, #ajfmgnuvfs tfoot, #ajfmgnuvfs tr, #ajfmgnuvfs td, #ajfmgnuvfs th {
+#jtjcpghqxr thead, #jtjcpghqxr tbody, #jtjcpghqxr tfoot, #jtjcpghqxr tr, #jtjcpghqxr td, #jtjcpghqxr th {
   border-style: none;
 }
 
-#ajfmgnuvfs p {
+#jtjcpghqxr p {
   margin: 0;
   padding: 0;
 }
 
-#ajfmgnuvfs .gt_table {
+#jtjcpghqxr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2654,12 +2723,12 @@ Row Span
   border-left-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_caption {
+#jtjcpghqxr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ajfmgnuvfs .gt_title {
+#jtjcpghqxr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2671,7 +2740,7 @@ Row Span
   border-bottom-width: 0;
 }
 
-#ajfmgnuvfs .gt_subtitle {
+#jtjcpghqxr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2683,7 +2752,7 @@ Row Span
   border-top-width: 0;
 }
 
-#ajfmgnuvfs .gt_heading {
+#jtjcpghqxr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2695,13 +2764,13 @@ Row Span
   border-right-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_bottom_border {
+#jtjcpghqxr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_col_headings {
+#jtjcpghqxr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2716,7 +2785,7 @@ Row Span
   border-right-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_col_heading {
+#jtjcpghqxr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2736,7 +2805,7 @@ Row Span
   overflow-x: hidden;
 }
 
-#ajfmgnuvfs .gt_column_spanner_outer {
+#jtjcpghqxr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2748,15 +2817,15 @@ Row Span
   padding-right: 4px;
 }
 
-#ajfmgnuvfs .gt_column_spanner_outer:first-child {
+#jtjcpghqxr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ajfmgnuvfs .gt_column_spanner_outer:last-child {
+#jtjcpghqxr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ajfmgnuvfs .gt_column_spanner {
+#jtjcpghqxr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2768,11 +2837,11 @@ Row Span
   width: 100%;
 }
 
-#ajfmgnuvfs .gt_spanner_row {
+#jtjcpghqxr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ajfmgnuvfs .gt_group_heading {
+#jtjcpghqxr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2798,7 +2867,7 @@ Row Span
   text-align: left;
 }
 
-#ajfmgnuvfs .gt_empty_group_heading {
+#jtjcpghqxr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2813,15 +2882,15 @@ Row Span
   vertical-align: middle;
 }
 
-#ajfmgnuvfs .gt_from_md > :first-child {
+#jtjcpghqxr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ajfmgnuvfs .gt_from_md > :last-child {
+#jtjcpghqxr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ajfmgnuvfs .gt_row {
+#jtjcpghqxr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2840,7 +2909,7 @@ Row Span
   overflow-x: hidden;
 }
 
-#ajfmgnuvfs .gt_stub {
+#jtjcpghqxr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2853,7 +2922,7 @@ Row Span
   padding-right: 5px;
 }
 
-#ajfmgnuvfs .gt_stub_row_group {
+#jtjcpghqxr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2867,15 +2936,15 @@ Row Span
   vertical-align: top;
 }
 
-#ajfmgnuvfs .gt_row_group_first td {
+#jtjcpghqxr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ajfmgnuvfs .gt_row_group_first th {
+#jtjcpghqxr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ajfmgnuvfs .gt_summary_row {
+#jtjcpghqxr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2885,16 +2954,16 @@ Row Span
   padding-right: 5px;
 }
 
-#ajfmgnuvfs .gt_first_summary_row {
+#jtjcpghqxr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_first_summary_row.thick {
+#jtjcpghqxr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ajfmgnuvfs .gt_last_summary_row {
+#jtjcpghqxr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2904,7 +2973,7 @@ Row Span
   border-bottom-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_grand_summary_row {
+#jtjcpghqxr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2914,7 +2983,7 @@ Row Span
   padding-right: 5px;
 }
 
-#ajfmgnuvfs .gt_first_grand_summary_row {
+#jtjcpghqxr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2924,7 +2993,7 @@ Row Span
   border-top-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_last_grand_summary_row_top {
+#jtjcpghqxr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2934,11 +3003,11 @@ Row Span
   border-bottom-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_striped {
+#jtjcpghqxr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ajfmgnuvfs .gt_table_body {
+#jtjcpghqxr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2947,7 +3016,7 @@ Row Span
   border-bottom-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_footnotes {
+#jtjcpghqxr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2961,7 +3030,7 @@ Row Span
   border-right-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_footnote {
+#jtjcpghqxr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2970,7 +3039,7 @@ Row Span
   padding-right: 5px;
 }
 
-#ajfmgnuvfs .gt_sourcenotes {
+#jtjcpghqxr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2984,7 +3053,7 @@ Row Span
   border-right-color: #D3D3D3;
 }
 
-#ajfmgnuvfs .gt_sourcenote {
+#jtjcpghqxr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2992,63 +3061,63 @@ Row Span
   padding-right: 5px;
 }
 
-#ajfmgnuvfs .gt_left {
+#jtjcpghqxr .gt_left {
   text-align: left;
 }
 
-#ajfmgnuvfs .gt_center {
+#jtjcpghqxr .gt_center {
   text-align: center;
 }
 
-#ajfmgnuvfs .gt_right {
+#jtjcpghqxr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ajfmgnuvfs .gt_font_normal {
+#jtjcpghqxr .gt_font_normal {
   font-weight: normal;
 }
 
-#ajfmgnuvfs .gt_font_bold {
+#jtjcpghqxr .gt_font_bold {
   font-weight: bold;
 }
 
-#ajfmgnuvfs .gt_font_italic {
+#jtjcpghqxr .gt_font_italic {
   font-style: italic;
 }
 
-#ajfmgnuvfs .gt_super {
+#jtjcpghqxr .gt_super {
   font-size: 65%;
 }
 
-#ajfmgnuvfs .gt_footnote_marks {
+#jtjcpghqxr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ajfmgnuvfs .gt_asterisk {
+#jtjcpghqxr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ajfmgnuvfs .gt_indent_1 {
+#jtjcpghqxr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ajfmgnuvfs .gt_indent_2 {
+#jtjcpghqxr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ajfmgnuvfs .gt_indent_3 {
+#jtjcpghqxr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ajfmgnuvfs .gt_indent_4 {
+#jtjcpghqxr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ajfmgnuvfs .gt_indent_5 {
+#jtjcpghqxr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -3098,11 +3167,12 @@ Prosecutor’s Fallacy
 </div>
 </div>
 </div>
+
+
 </section>
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
