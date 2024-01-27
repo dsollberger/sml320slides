@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Derek Sollberger">
 <meta name="dcterms.date" content="2023-02-01">
 
-<title>sml320draft - 2: Bayes Rule (Part 1)</title>
+<title>sml320draft - 2: Bayes’ Rule</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -62,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -108,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">2: Bayes Rule (Part 1)</h1>
+      <h1 class="title">2: Bayes’ Rule</h1>
                       </div>
   </div>
     
@@ -137,7 +139,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bayes-rule" id="toc-bayes-rule" class="nav-link active" data-scroll-target="#bayes-rule">Bayes’ Rule</a></li>
+  <li><a href="#a-deep-dive" id="toc-a-deep-dive" class="nav-link" data-scroll-target="#a-deep-dive">A Deep Dive</a></li>
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More Practice</a></li>
+  <li><a href="#example-spam-filtering" id="toc-example-spam-filtering" class="nav-link" data-scroll-target="#example-spam-filtering">Example: Spam Filtering</a></li>
+  <li><a href="#example-quality-control" id="toc-example-quality-control" class="nav-link" data-scroll-target="#example-quality-control">Example: Quality Control</a></li>
+  <li><a href="#example-dui-checkpoint" id="toc-example-dui-checkpoint" class="nav-link" data-scroll-target="#example-dui-checkpoint">Example: DUI Checkpoint</a></li>
+  <li><a href="#example-monty-hall-problem" id="toc-example-monty-hall-problem" class="nav-link" data-scroll-target="#example-monty-hall-problem">Example: Monty Hall Problem</a></li>
+  <li><a href="#generalized-bayes-rule" id="toc-generalized-bayes-rule" class="nav-link" data-scroll-target="#generalized-bayes-rule">Generalized Bayes’ Rule</a></li>
+  <li><a href="#bayesian-odds" id="toc-bayesian-odds" class="nav-link" data-scroll-target="#bayesian-odds">Bayesian Odds</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -145,10 +161,210 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>objectives</p>
-<p>goals</p>
+<section id="bayes-rule" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-rule">Bayes’ Rule</h2>
+<p>In the previous section, we studied conditional probability <span class="math display">\[P(B|A) = \displaystyle\frac{P(A \text{ and } B)}{P(A)}\]</span> and we talked about how the inverse probabilities <span class="math inline">\(P(A|B)\)</span> and <span class="math inline">\(P(B|A)\)</span> are almost never equal. In this section, we discuss how to properly think and calculate that inverse probability.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Another look at conditional probability is <span class="math display">\[P(A \text{ and } B) = P(B|A) \cdot P(A)\]</span> This is read as “The probability of the intersection <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is the probability of event <span class="math inline">\(B\)</span> <em>conditioned</em> on event <span class="math inline">\(A\)</span>.”</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Moreover, if we consider how if event <span class="math inline">\(B\)</span> is dependent on event <span class="math inline">\(A\)</span>, then sometimes <span class="math inline">\(B\)</span> happens when <span class="math inline">\(A\)</span> happens and sometimes when <span class="math inline">\(A\)</span> does not occur. More succinctly, the <em>total probability</em> of event <span class="math inline">\(B\)</span> is <span class="math display">\[P(B) = P(B|A) \cdot P(A) + P(B|A^{c}) \cdot P(A^{c})\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Staring with the conditional probability formula <span class="math display">\[P(B|A) = \displaystyle\frac{P(A \text{ and } B)}{P(A)}\]</span> <em>Bayes’ Rule</em> combines the ideas of conditioned probability and total probability as <span class="math display">\[P(A|B) = \displaystyle\frac{P(A \text{ and } B)}{P(B)} = \displaystyle\frac{P(B|A) \cdot P(A)}{P(B|A) \cdot P(A) + P(B|A^{c}) \cdot P(A^{c})}\]</span></p>
+</div>
+</div>
+</section>
+<section id="a-deep-dive" class="level2">
+<h2 class="anchored" data-anchor-id="a-deep-dive">A Deep Dive</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Tree Diagram</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Numerator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Denominator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Bayes’ Rule</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>An executive has their blood tested for boneitis. Let <span class="math inline">\(B\)</span> be the event that an executive has the disease, and let <span class="math inline">\(T\)</span> be the event that the test returns positive. Laboratory trials yielded the following information:</p>
+<p><span class="math display">\[P(T|B) = 0.70 \quad\text{and}\quad P(T|B^{c}) = 0.10\]</span></p>
+<p>Assume a prior probability of <span class="math inline">\(P(B) = 0.0032\)</span>. Compute <span class="math inline">\(P(B|T)\)</span></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p><img src="deepdive1.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="more-practice" class="level2">
+<h2 class="anchored" data-anchor-id="more-practice">More Practice</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Tree Diagram</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Numerator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Denominator</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Bayes’ Rule</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>An executive has their blood tested for boneitis. Let <span class="math inline">\(B\)</span> be the event that an executive has the disease, and let <span class="math inline">\(T\)</span> be the event that the test returns positive. Laboratory trials yielded the following information:</p>
+<p><span class="math display">\[P(T|B) = 0.70 \quad\text{and}\quad P(T|B^{c}) = 0.10\]</span></p>
+<p>Assume a prior probability of <span class="math inline">\(P(B) = 0.0032\)</span>. Compute <span class="math inline">\(P(B|T^{c})\)</span></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis4.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="boneitis5.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">tree diagram</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<p><img src="deepdive2.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="example-spam-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="example-spam-filtering">Example: Spam Filtering</h2>
+<p>In 2002, Paul Graham used Bayes’ Rule as part of his algorithms to greatly decrease false positive rates of unwanted e-mails (“spam”). Let <span class="math inline">\(H^{c}\)</span> be the event that an e-mail is “spam”. Let <span class="math inline">\(W\)</span> be the event that an e-mail contains a trigger word such as “watches”. Suppose that</p>
+<ul>
+<li>the probability that an e-mail contains that word given that it is spam is 17%</li>
+<li>the probability that an e-mail contains that word given that it is not spam is 9%</li>
+<li>the probability that a randomly selected e-mail message is spam is 80%</li>
+</ul>
+<p>Find the probability that an e-mail message is spam, given that the trigger word appears.</p>
+</section>
+<section id="example-quality-control" class="level2">
+<h2 class="anchored" data-anchor-id="example-quality-control">Example: Quality Control</h2>
+<p>A manufacturing process produces integrated circuit chips. Over the long run the fraction of bad chips produced by the process is around 20%. Thoroughly testing a chip to determine whether it is good or bad is rather expensive, so a cheap test is tried. All good chips will pass the cheap test, but so will 10% of the bad chips. Given that a chip passes the test, what is the probability that the chip was defective?</p>
+</section>
+<section id="example-dui-checkpoint" class="level2">
+<h2 class="anchored" data-anchor-id="example-dui-checkpoint">Example: DUI Checkpoint</h2>
+<p>A breath analyzer, used by the police to test whether drivers exceed the legal limit set for the blood alcohol percentage while driving, is known to satisfy</p>
+<p><span class="math display">\[P(A|B) = P(A^{c}|B^{c}) = x\]</span></p>
+<p>where <span class="math inline">\(A\)</span> is the event “breath analyzer indicates that legal limit is exceeded” and <span class="math inline">\(B\)</span> “driver’s blood alcohol percentage exceeds legal limit.” On Saturday nights, about 4% of the drivers are known to exceed the limit.</p>
+<ul>
+<li>Describe in words the meaning of <span class="math inline">\(P(B|A)\)</span></li>
+<li>Determine <span class="math inline">\(P(B|A)\)</span> if <span class="math inline">\(x = 0.90\)</span></li>
+<li>How big should <span class="math inline">\(x\)</span> be so that <span class="math inline">\(P(B|A) \geq 0.95\)</span>?</li>
+</ul>
+</section>
+<section id="example-monty-hall-problem" class="level2">
+<h2 class="anchored" data-anchor-id="example-monty-hall-problem">Example: Monty Hall Problem</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><img src="Monty_open_door.png" class="img-fluid"></p>
+</div><div class="column" style="width:67%;">
+<p>Monty Hall asks you to choose one of three doors. One of the doors hides a prize and the other two doors have no prize. You state out loud which door you pick, but you don’t open it right away.</p>
+“Monty opens one of the other two doors, and there is no prize behind it.
+<p>“At this moment, there are two closed doors, one of which you picked. The prize is behind one of the closed doors, but you don’t know which one. Monty asks you, ‘Do you want to switch doors?’”</p>
+<ul>
+<li>switch doors</li>
+<li>do not switch doors</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="generalized-bayes-rule" class="level2">
+<h2 class="anchored" data-anchor-id="generalized-bayes-rule">Generalized Bayes’ Rule</h2>
+<p>If we are conditioning <span class="math inline">\(B\)</span> on an event <span class="math inline">\(A\)</span>, where the latter can be partitioned into several subsets,</p>
+<p><span class="math display">\[A = \{ A_{1}, A_{2}, ..., A_{j} \}\]</span></p>
+<p>then the total probability is</p>
+<p><span class="math display">\[P(B) = P(B|A_{1}) \cdot P(A_{1}) + P(B|A_{2}) \cdot P(A_{2}) + ... + P(B|A_{n}) \cdot P(A_{n})\]</span></p>
+<p>and Bayes Rule for computing the probability of <span class="math inline">\(A_{i}\)</span> given <span class="math inline">\(B\)</span> becomes</p>
+<p><span class="math display">\[P(A_{i}|B) = \displaystyle\frac{ P(B|A_{i}) \cdot P(A_{i}) }{ P(B|A_{1}) \cdot P(A_{1}) + P(B|A_{2}) \cdot P(A_{2}) + ... + P(B|A_{n}) \cdot P(A_{n}) }\]</span></p>
+</section>
+<section id="bayesian-odds" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-odds">Bayesian Odds</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>Bayesian odds</strong> of event <span class="math inline">\(A\)</span> to event <span class="math inline">\(B\)</span> given that event <span class="math inline">\(C\)</span> has already taken place is <span class="math display">\[\displaystyle\frac{ P(A|C) }{ P(B|C) }\]</span></p>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+
+</div><div class="column" style="width:50%;">
+
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"></ul>
+<div class="tab-content">
+
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
