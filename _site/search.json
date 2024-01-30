@@ -4,7 +4,7 @@
     "href": "posts/01_conditional_probability/01_conditional_probability.html",
     "title": "1: Conditional Probability",
     "section": "",
-    "text": "Spring 2024\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
+    "text": "Spring 2024\nTuTh, 11 AM to 1220 PM\nBendheim House 103\nLecturer: Derek\n\nI go by “Derek” or “teacher”\n\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
   },
   {
     "objectID": "about.html",
@@ -95,7 +95,7 @@
     "href": "posts/01_conditional_probability/01_conditional_probability.html#bayesian-analysis",
     "title": "1: Conditional Probability",
     "section": "",
-    "text": "Spring 2024\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
+    "text": "Spring 2024\nTuTh, 11 AM to 1220 PM\nBendheim House 103\nLecturer: Derek\n\nI go by “Derek” or “teacher”\n\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
   },
   {
     "objectID": "posts/01_conditional_probability/01_conditional_probability.html#lecturer",
@@ -193,6 +193,41 @@
     "href": "posts/01_conditional_probability/01_conditional_probability.html#practice-1",
     "title": "1: Conditional Probability",
     "section": "Practice",
-    "text": "Practice\nSuppose that another team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n94\n80\n    low\n23\n939\n  \n  \n  \n\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\nProsecutor’s Fallacy\n\n\n\n\n\nFor events \\(A\\) and \\(B\\), the inverse conditional probabilities are almost never equal to each other\n\\[P(A|B) \\neq P(B|A)\\]"
+    "text": "Practice\nSuppose that another team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n94\n80\n    low\n23\n939\n  \n  \n  \n\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\nProsecutor’s Fallacy\n\n\n\n\n\nFor events \\(A\\) and \\(B\\), the inverse conditional probabilities are almost never equal to each other\n\\[P(A|B) \\neq P(B|A)\\]\n\n\n\n\n\n\n\n\n\n(optional) Additional Resources\n\n\n\n\n\n\nClassical vs Frequentist vs Bayesian Probability by Trefor Bazett"
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#classical-probability",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#classical-probability",
+    "title": "1: Conditional Probability",
+    "section": "Classical Probability",
+    "text": "Classical Probability\n\nDefinitionExample\n\n\n\\[P(A) = \\frac{\\text{number of outcomes that are } A}{\\text{number of outcomes total}}\\]\n\n\nOverly simplistic example\nIt snowed during 2 of the 30 days of January in 2024. We can claim that it snows \\(\\frac{2}{30}\\) of the days in Princeton."
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#frequentist-probablity",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#frequentist-probablity",
+    "title": "1: Conditional Probability",
+    "section": "Frequentist Probablity",
+    "text": "Frequentist Probablity\n\nDefinitionExample\n\n\n\\[P(A) = \\lim_{n \\to \\infty} \\frac{\\text{number of outcomes that are } A}{\\text{number of outcomes total}}\\]\n\n\nOverly simplistic example\nIf we can model many months of weather in Princeton, we expect it to snow in about 3 percent of the days."
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#bayesian-probability",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#bayesian-probability",
+    "title": "1: Conditional Probability",
+    "section": "Bayesian Probability",
+    "text": "Bayesian Probability\n\nDefinitionExample\n\n\n\nprior belief: \\(P(A)\\)\nupdated belief: \\(P(A|B)\\)\n\n\n\nOverly simplistic example\nIt snowed during 2 of the 30 days of January in 2024. Could we update our probability calculations for snow?"
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#example-3",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#example-3",
+    "title": "1: Conditional Probability",
+    "section": "Example",
+    "text": "Example\n\nContingency TableCode\n\n\n\n\n\n\n\n\n  \n    \n    \n      \n      human\n      non_human\n    \n  \n  \n    evil\n24\n88\n    not evil\n30\n178\n  \n  \n  \n\n\n\n\nCompute \\(P(E^{c}|H)\\) and \\(P(H^{c}|E)\\)\n\n\n\nalignment &lt;- c(\"evil\", \"not evil\")\nhuman &lt;- c(\"24\", \"30\")\nnon_human &lt;- c(\"88\", \"178\")\n\nbg3_df &lt;- data.frame(alignment, human, non_human)\n\nbg3_gt_table &lt;- bg3_df |&gt;\n  gt(rowname_col = \"alignment\") |&gt;\n  cols_align(align = \"right\", columns = alignment) |&gt;\n  cols_align(align = \"center\",  columns = c(human, non_human)) |&gt;\n  tab_style(locations = cells_body(columns = c(human, non_human)),\n            style = list(cell_fill(color = \"yellow\")))\n\nbg3_gt_table #display table"
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#example-4",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#example-4",
+    "title": "1: Conditional Probability",
+    "section": "Example",
+    "text": "Example\n\nConfusion MatrixCodeMetricsFormulas\n\n\nSuppose that a team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n59\n28\n    low\n14\n97\n  \n  \n  \n\n\n\n\n\ntrue positives: 59\ntrue negatives: 97\nfalse positives: 14\nfalse negatives: 28\n\n\n\n\nenergy_levels &lt;- c(\"high\", \"low\")\nhigh &lt;- c(59, 14)\nlow &lt;- c(28, 97)\n\nenefit_df &lt;- data.frame(energy_levels, high, low)\n\nenefit_gt &lt;- enefit_df |&gt;\n  gt(rowname_col = \"energy_levels\") |&gt;\n  cols_align(align = \"right\", columns = energy_levels) |&gt;\n  cols_align(align = \"center\",  columns = c(high, low)) |&gt;\n  tab_spanner(columns = c(high, low),\n              label = \"model predictions\") |&gt;\n  tab_style(locations = cells_body(columns = high, rows = 1),\n            style = list(cell_fill(color = \"lightgreen\"))) |&gt;\n  tab_style(locations = cells_body(columns = low, rows = 2),\n            style = list(cell_fill(color = \"lightgreen\"))) |&gt;\n  tab_style(locations = cells_body(columns = high, rows = 2),\n            style = list(cell_fill(color = \"#FFB3B2\"))) |&gt;\n  tab_style(locations = cells_body(columns = low, rows = 1),\n            style = list(cell_fill(color = \"#FFB3B2\")))\n\nenefit_gt #display table\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n59\n28\n    low\n14\n97\n  \n  \n  \n\n\n\n\n\n\n\\[\\text{accuracy } = \\frac{TP + TN}{TP + FN + FP + TN}\\] \\[\\text{sensitivity } = \\frac{TP}{TP + FN}\\] \\[\\text{specificity } = \\frac{TN}{FP + TN}\\] \\[\\text{F-score } = \\frac{2*TP}{2*TP + FN + FP}\\]\nSource: Wikipedia page on sensitivity and specificity\n\n\n\n\n\n\n\n\n\nRow Span\n\n\n\n\n\nWhen these lecture notes were written, there might not have been a function to have a label span multiple rows in the gt package. The left side of the confusion matrix should say “ground truth”"
   }
 ]
