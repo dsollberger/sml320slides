@@ -2,8 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/01_conditional_probability/01_conditional_probability.html",
-      "/posts/02_bayes_rule/02_bayes_rule.html"
+      "/posts/02_bayes_rule/02_bayes_rule.html",
+      "/posts/01_conditional_probability/01_conditional_probability.html"
     ]
   }
 ]
