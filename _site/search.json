@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -229,5 +229,138 @@
     "title": "1: Conditional Probability",
     "section": "Example",
     "text": "Example\n\nConfusion MatrixCodeMetricsFormulas\n\n\nSuppose that a team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n59\n28\n    low\n14\n97\n  \n  \n  \n\n\n\n\n\ntrue positives: 59\ntrue negatives: 97\nfalse positives: 14\nfalse negatives: 28\n\n\n\n\nenergy_levels &lt;- c(\"high\", \"low\")\nhigh &lt;- c(59, 14)\nlow &lt;- c(28, 97)\n\nenefit_df &lt;- data.frame(energy_levels, high, low)\n\nenefit_gt &lt;- enefit_df |&gt;\n  gt(rowname_col = \"energy_levels\") |&gt;\n  cols_align(align = \"right\", columns = energy_levels) |&gt;\n  cols_align(align = \"center\",  columns = c(high, low)) |&gt;\n  tab_spanner(columns = c(high, low),\n              label = \"model predictions\") |&gt;\n  tab_style(locations = cells_body(columns = high, rows = 1),\n            style = list(cell_fill(color = \"lightgreen\"))) |&gt;\n  tab_style(locations = cells_body(columns = low, rows = 2),\n            style = list(cell_fill(color = \"lightgreen\"))) |&gt;\n  tab_style(locations = cells_body(columns = high, rows = 2),\n            style = list(cell_fill(color = \"#FFB3B2\"))) |&gt;\n  tab_style(locations = cells_body(columns = low, rows = 1),\n            style = list(cell_fill(color = \"#FFB3B2\")))\n\nenefit_gt #display table\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n59\n28\n    low\n14\n97\n  \n  \n  \n\n\n\n\n\n\n\\[\\text{accuracy } = \\frac{TP + TN}{TP + FN + FP + TN}\\] \\[\\text{sensitivity } = \\frac{TP}{TP + FN}\\] \\[\\text{specificity } = \\frac{TN}{FP + TN}\\] \\[\\text{F-score } = \\frac{2*TP}{2*TP + FN + FP}\\]\nSource: Wikipedia page on sensitivity and specificity\n\n\n\n\n\n\n\n\n\nRow Span\n\n\n\n\n\nWhen these lecture notes were written, there might not have been a function to have a label span multiple rows in the gt package. The left side of the confusion matrix should say “ground truth”"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html",
+    "title": "3: Beta-Binomial Models",
+    "section": "",
+    "text": "library(\"bayesrules\")\nlibrary(\"gt\")\nlibrary(\"janitor\")\nlibrary(\"patchwork\")\nlibrary(\"skimr\")\nlibrary(\"tidyverse\")\n\ntips_df &lt;- readr::read_csv(\"tips.csv\")"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#tips-data-set",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#tips-data-set",
+    "title": "3: Beta-Binomial Models",
+    "section": "Tips Data Set",
+    "text": "Tips Data Set\n\nDescriptionGlanceStructureSkim\n\n\n\nsource: Kaggle\n\n“The data was reported in a collection of case studies for business statistics. Bryant, P. G. and Smith, M (1995) Practical Data Analysis: Case Studies in Business Statistics. Homewood, IL: Richard D. Irwin Publishing\n\ncontext: “One waiter recorded information about each tip he received over a period of a few months working in one restaurant. In all he recorded 244 tips.”\n\n\n\n\nhead(tips_df)\n\n# A tibble: 6 × 7\n  total_bill   tip sex    smoker day   time    size\n       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;\n1       17.0  1.01 Female No     Sun   Dinner     2\n2       10.3  1.66 Male   No     Sun   Dinner     3\n3       21.0  3.5  Male   No     Sun   Dinner     3\n4       23.7  3.31 Male   No     Sun   Dinner     2\n5       24.6  3.61 Female No     Sun   Dinner     4\n6       25.3  4.71 Male   No     Sun   Dinner     4\n\n\n\n\n\nstr(tips_df, give.attr = FALSE)\n\nspc_tbl_ [244 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ total_bill: num [1:244] 17 10.3 21 23.7 24.6 ...\n $ tip       : num [1:244] 1.01 1.66 3.5 3.31 3.61 4.71 2 3.12 1.96 3.23 ...\n $ sex       : chr [1:244] \"Female\" \"Male\" \"Male\" \"Male\" ...\n $ smoker    : chr [1:244] \"No\" \"No\" \"No\" \"No\" ...\n $ day       : chr [1:244] \"Sun\" \"Sun\" \"Sun\" \"Sun\" ...\n $ time      : chr [1:244] \"Dinner\" \"Dinner\" \"Dinner\" \"Dinner\" ...\n $ size      : num [1:244] 2 3 3 2 4 4 2 4 2 2 ...\n\n\n\n\n\nskimr::skim(tips_df)\n\n\nData summary\n\n\nName\ntips_df\n\n\nNumber of rows\n244\n\n\nNumber of columns\n7\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n4\n\n\nnumeric\n3\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nsex\n0\n1\n4\n6\n0\n2\n0\n\n\nsmoker\n0\n1\n2\n3\n0\n2\n0\n\n\nday\n0\n1\n3\n4\n0\n4\n0\n\n\ntime\n0\n1\n5\n6\n0\n2\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ntotal_bill\n0\n1\n19.79\n8.90\n3.07\n13.35\n17.8\n24.13\n50.81\n▃▇▃▁▁\n\n\ntip\n0\n1\n3.00\n1.38\n1.00\n2.00\n2.9\n3.56\n10.00\n▇▆▂▁▁\n\n\nsize\n0\n1\n2.57\n0.95\n1.00\n2.00\n2.0\n3.00\n6.00\n▇▂▂▁▁"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#prior-model",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#prior-model",
+    "title": "3: Beta-Binomial Models",
+    "section": "Prior Model",
+    "text": "Prior Model\n\n\n\n\\(\\pi\\)\n0.25\n0.50\n0.75\ntotal\n\n\n\n\n\\(f(\\pi)\\)\n1/3\n1/3\n1/3\n1\n\n\n\n\nuniform prior\ne.g. guessing the probability that the percentage of customers that smoked was 75% was \\(\\frac{1}{3}\\)\n\n\n\n\n\n\n\nDiscrete Probability Model\n\n\n\n\n\nLet \\(Y\\) be a discrete random variable. The probability model of \\(Y\\) is specified by a probability mass function (pmf) \\(f(y)\\). This pmf defines the probability of any given outcome \\(y\\),\n\\[f(y) = P(Y = y)\\]\n\n\\(0 \\leq f(y) \\leq 1\\)\n\\(\\sum f(y) = 1\\)"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#observed-data",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#observed-data",
+    "title": "3: Beta-Binomial Models",
+    "section": "Observed Data",
+    "text": "Observed Data\n\nObserved SampleCode\n\n\nLooking at the last 9 observations in the data set, 4 of the customers were smokers.\n\n\n\n\n\n\n  \n    \n    \n      total_bill\n      tip\n      sex\n      smoker\n      day\n      time\n      size\n    \n  \n  \n    10.07\n1.25\nMale\nNo\nSat\nDinner\n2\n    12.60\n1.00\nMale\nYes\nSat\nDinner\n2\n    32.83\n1.17\nMale\nYes\nSat\nDinner\n2\n    35.83\n4.67\nFemale\nNo\nSat\nDinner\n3\n    29.03\n5.92\nMale\nNo\nSat\nDinner\n3\n    27.18\n2.00\nFemale\nYes\nSat\nDinner\n2\n    22.67\n2.00\nMale\nYes\nSat\nDinner\n2\n    17.82\n1.75\nMale\nNo\nSat\nDinner\n2\n    18.78\n3.00\nFemale\nNo\nThur\nDinner\n2\n  \n  \n  \n\n\n\n\n\n\n\ntail(tips_df, 9) |&gt;\n  gt() |&gt;\n  tab_style(locations = cells_body(columns = smoker),\n            style = list(cell_fill(color = \"gray80\"))) |&gt;\n  tab_style(locations = cells_body(columns = smoker,\n                                   rows = smoker == \"Yes\"),\n            style = list(cell_text(color = \"red\")))"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#binomial-distribution",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#binomial-distribution",
+    "title": "3: Beta-Binomial Models",
+    "section": "Binomial Distribution",
+    "text": "Binomial Distribution\n\n\n\n\n\n\nBinomial Distribution\n\n\n\n\n\nLet random variable \\(Y\\) be the number of successes in a fixed number of trials \\(n\\). Assume that the trials are independent and that the probability of success in each trial is \\(\\pi\\). Then the conditional dependence of \\(Y\\) on \\(\\pi\\) can be modeled by the Binomial model with parameters \\(n\\) and \\(\\pi\\). In mathematical notation:\n\\[Y|\\pi \\sim \\text{Bin}(n,\\pi)\\] where \\(\\sim\\) can be read as “modeled by”. Correspondingly, the binomial model is specified by the conditional pmf\n\\[f(y|\\pi) = \\binom{n}{y}\\pi^{y}(1-\\pi)^{n-y} \\text{ for } y \\in \\{0, 1, 2, ..., n\\}\\] where \\(\\binom{n}{y} = \\displaystyle\\frac{n!}{y!(n-y)!}\\)\n\n\n\nIn this example of \\(Y\\) smokers in \\(n=9\\) customers with probability \\(\\pi\\) of smokers,\n\\[Y|\\pi \\sim \\text{Bin}(9,\\pi)\\] \\[f(y|\\pi) = \\binom{9}{y}\\pi^{y}(1-\\pi)^{9-y} \\text{ for } y \\in \\{0, 1, 2, ..., 9\\}\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#conditional-pmfs",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#conditional-pmfs",
+    "title": "3: Beta-Binomial Models",
+    "section": "Conditional PMFs",
+    "text": "Conditional PMFs\n\nBased on Observed DataCode\n\n\n\n\n\n\n\n\n\n\nhighlight_col &lt;- 0:9 == 4\ndf_25 &lt;- data.frame(k = 0:9, f_y_pi = dbinom(0:9, 9, 0.25), highlight_col)\ndf_50 &lt;- data.frame(k = 0:9, f_y_pi = dbinom(0:9, 9, 0.50), highlight_col)\ndf_75 &lt;- data.frame(k = 0:9, f_y_pi = dbinom(0:9, 9, 0.75), highlight_col)\n\nplot_25 &lt;- df_25 |&gt;\n  ggplot(aes(x = k, y = f_y_pi, fill = highlight_col)) +\n  geom_col(show.legend = FALSE) +\n  labs(title = \"Bin(9,0.25)\") +\n  scale_x_continuous(name = \"customers\", \n                   breaks = 0:9, \n                   labels = as.character(0:9)) +\n  theme_minimal()\n\nplot_50 &lt;- df_50 |&gt;\n  ggplot(aes(x = k, y = f_y_pi, fill = highlight_col)) +\n  geom_col(show.legend = FALSE) +\n  labs(title = \"Bin(9,0.50)\") +\n  scale_x_continuous(name = \"customers\", \n                   breaks = 0:9, \n                   labels = as.character(0:9)) +\n  theme_minimal()\n\nplot_75 &lt;- df_75 |&gt;\n  ggplot(aes(x = k, y = f_y_pi, fill = highlight_col)) +\n  geom_col(show.legend = FALSE) +\n  labs(title = \"Bin(9,0.75)\") +\n  scale_x_continuous(name = \"customers\", \n                   breaks = 0:9, \n                   labels = as.character(0:9)) +\n  theme_minimal()\n\n# patchwork\nplot_25 + plot_50 + plot_75"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#likelihoods",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#likelihoods",
+    "title": "3: Beta-Binomial Models",
+    "section": "Likelihoods",
+    "text": "Likelihoods\nWith the observed data \\(Y = 4\\) out of \\(n = 9\\) customers, for \\(\\pi = \\{0.25, 0.50, 0.75\\}\\), \\[L(\\pi|y = 4) = f(y = 4|\\pi) = \\binom{9}{4}\\pi^{4}(1-\\pi)^{5}\\]\n\\[L(\\pi = 0.25|y = 4) = \\binom{9}{4}(0.25)^{4}(1-0.25)^{5} \\approx 0.1168\\] \\[L(\\pi = 0.50|y = 4) = \\binom{9}{4}(0.50)^{4}(1-0.50)^{5} \\approx 0.2461\\] \\[L(\\pi = 0.75|y = 4) = \\binom{9}{4}(0.75)^{4}(1-0.75)^{5} \\approx 0.0389\\]\n\n\n\n\\(\\pi\\)\n0.25\n0.50\n0.75\ntotal\n\n\n\n\n\\(f(\\pi)\\)\n1/3\n1/3\n1/3\n1\n\n\n\\(L(\\pi|y=4)\\)\n0.1168\n0.2461\n0.0389\n0.4018"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#bayesian-concepts",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#bayesian-concepts",
+    "title": "3: Beta-Binomial Models",
+    "section": "Bayesian Concepts",
+    "text": "Bayesian Concepts\n\\[\\text{posterior} = \\frac{\\text{prior} * \\text{likelihood}}{\\text{normalizing constant}}\\]\nFor observations \\(\\vec{y}\\) and probabilities \\(\\vec{\\pi}\\),\n\\[f(\\pi|y) = \\frac{f(\\pi)L(\\pi|y)}{f(y)} \\propto f(\\pi)L(\\pi|y)\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#normalizing-constant",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#normalizing-constant",
+    "title": "3: Beta-Binomial Models",
+    "section": "Normalizing Constant",
+    "text": "Normalizing Constant\n\\[f(y = 4) = \\displaystyle\\sum_{\\pi\\in\\{0.25, 0.50, 0.75\\}} L(\\pi|y=4) \\cdot f(\\pi)\\]\n\\[f(y = 4) = \\displaystyle\\frac{0.1168}{3} + \\displaystyle\\frac{0.2461}{3} + \\displaystyle\\frac{0.0389}{3} \\approx 0.1339\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#posterior-distribution",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#posterior-distribution",
+    "title": "3: Beta-Binomial Models",
+    "section": "Posterior Distribution",
+    "text": "Posterior Distribution\n\\[f(\\pi|y=4) = \\displaystyle\\frac{f(\\pi)L(\\pi|y=4)}{f(y=4)} \\text{ for } \\pi \\in \\{0.25, 0.50, 0.75 \\}\\] \\[f(\\pi=0.25|y=4) = \\displaystyle\\frac{(1/3)(0.1168)}{0.1339} \\approx 0.2907\\] \\[f(\\pi=0.50|y=4) = \\displaystyle\\frac{(1/3)(0.2461)}{0.1339} \\approx 0.6126\\] \\[f(\\pi=0.75|y=4) = \\displaystyle\\frac{(1/3)(0.0389)}{0.1339} \\approx 0.0968\\]\n\n\n\n\\(\\pi\\)\n0.25\n0.50\n0.75\ntotal\n\n\n\n\n\\(f(\\pi)\\)\n1/3\n1/3\n1/3\n1\n\n\n\\(L(\\pi|y=4)\\)\n0.1168\n0.2461\n0.0389\n0.4018\n\n\n\\(f(\\pi|y=4)\\)\n0.2907\n0.6126\n0.0968\n1"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#computer-simulation",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#computer-simulation",
+    "title": "3: Beta-Binomial Models",
+    "section": "Computer Simulation",
+    "text": "Computer Simulation\n\nSimulation SamplesVerify PriorPMFsPosterior Distribution\n\n\n\n# define possible smoker proportions\nsmokers &lt;- data.frame(pi = c(0.25, 0.50, 0.75))\n\n# define prior model\nprior &lt;- c(1/3, 1/3, 1/3)\n\n# simulate 10000 values of pi from the prior\nset.seed(320)\nsmoker_sim &lt;- sample_n(smokers, size = 10000, weight = prior, replace = TRUE)\n\n# simulate 10000 samples of customers\nsmoker_sim &lt;- smoker_sim |&gt;\n  mutate(y = rbinom(10000, size = 9, prob = pi))\n\nSo far, the simulation yields a data frame that looks like\n\nhead(smoker_sim)\n\n    pi y\n1 0.50 5\n2 0.25 2\n3 0.50 6\n4 0.25 3\n5 0.50 4\n6 0.50 4\n\n\n\n\n\n# summarize the prior\nsmoker_sim |&gt;\n  tabyl(pi) |&gt;\n  adorn_totals(\"row\")\n\n    pi     n percent\n  0.25  3283  0.3283\n   0.5  3345  0.3345\n  0.75  3372  0.3372\n Total 10000  1.0000\n\n\n\n\n\n# plot y by pi\nggplot(smoker_sim, aes(x = y)) + \n  stat_count(aes(y = after_stat(prop))) + \n  facet_wrap(~ pi)\n\n\n\n\n\n\n\n# focus on simulations with y = 4\nfour_smokers &lt;- smoker_sim %&gt;% \n  filter(y == 4)\n\n# summarize the posterior approximation\nfour_smokers %&gt;% \n  tabyl(pi) %&gt;% \n  adorn_totals(\"row\")\n\n    pi    n   percent\n  0.25  408 0.3000000\n   0.5  813 0.5977941\n  0.75  139 0.1022059\n Total 1360 1.0000000\n\n\n\n# plot the posterior approximation\nggplot(four_smokers, aes(x = pi)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#beta-distribution",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#beta-distribution",
+    "title": "3: Beta-Binomial Models",
+    "section": "Beta Distribution",
+    "text": "Beta Distribution\n\n\n\n\n\n\nBeta Distribution\n\n\n\n\n\nLet \\(\\pi \\in [0,1]\\), then the variability in \\(\\pi\\) may be modeled by a Beta distribution with shape hyperparameters \\(\\alpha &gt; 0\\) and \\(\\beta &gt; 0\\)\n\\[\\pi \\sim \\text{Beta}(\\alpha, \\beta)\\] with probability density function\n\\[f(\\pi) = \\displaystyle\\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)}\\pi^{\\alpha-1}(1-\\pi)^{\\beta-1}\\]\nwhere the gamma function\n\n\\(\\Gamma(z) = \\displaystyle\\int_{0}^{\\infty} \\! x^{z-1}e^{-x} \\, dx\\)\n\\(\\Gamma(z + 1) = z\\Gamma(z)\\)\n\n\n\n\n\n\n\n\n\n\nCorollary\n\n\n\n\n\nWhen \\(z\\) is a positive integer, then \\[\\Gamma(z) = (z-1)!\\] That is, the gamma function is a generalization of the factorial.\n\n\n\n\n\n\n\n\n\nHyperparameters\n\n\n\n\n\nA hyperparameter is a parameter used in a prior model.\n\n\n\nExplore! Matt Bognar at the University of Iowa created this great webapp to explore the beta distribution.\n\n\n\n\n\n\nUniform Distribution\n\n\n\n\n\nWhen it is equally plausible for \\(\\pi\\) to take on any value between zero and one, we can model \\(\\pi\\) by the standard uniform distribution\n\\[\\pi \\sim \\text{Unif}(0,1)\\]\nwith pdf \\(f(\\pi) = 1\\) for \\(\\pi \\in [0,1]\\). The \\(\\text{Unif}(0,1)\\) distribution is a special case of the beta distribution when \\(\\alpha = 1\\) and \\(\\beta = 1\\)\n\\[\\text{Unif}(0,1) = \\text{Beta}(1,1)\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#sample-statistics",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#sample-statistics",
+    "title": "3: Beta-Binomial Models",
+    "section": "Sample Statistics",
+    "text": "Sample Statistics\nFor a beta distribution, \\(\\pi \\sim \\text{Beta}(\\alpha, \\beta)\\)\n\nexpected value: \\(\\text{E}(\\pi) = \\displaystyle\\frac{\\alpha}{\\alpha + \\beta}\\)\nvariance: \\(\\text{Var}(\\pi) = \\displaystyle\\frac{\\alpha\\beta}{(\\alpha + \\beta)^{2}(\\alpha + \\beta + 1)}\\)"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#tuning-the-beta-prior",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#tuning-the-beta-prior",
+    "title": "3: Beta-Binomial Models",
+    "section": "Tuning the Beta Prior",
+    "text": "Tuning the Beta Prior\nHere, let us use that sample of observations where 4 out of the 9 customers where smokers. We might then try to align this sample proportion \\(\\frac{4}{9}\\) with the expected value\n\\[\\displaystyle\\frac{\\alpha}{\\alpha + \\beta} = \\displaystyle\\frac{4}{9} \\quad\\rightarrow\\quad \\alpha = 4, \\quad \\beta = 5\\]\nto create a beta model \\(\\pi \\sim \\text{Beta}(4, 5)\\)\n\nbayesrules::plot_beta(4,5)\n\n\n\n\nWe can compute the variance\n\\[\\text{Var}(\\pi) = \\displaystyle\\frac{\\alpha\\beta}{(\\alpha + \\beta)^{2}(\\alpha + \\beta + 1)} = \\displaystyle\\frac{4 \\cdot 5}{(4 + 5)^{2}(4 + 5 + 1)} \\approx 0.0247\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#binomial-data-model",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#binomial-data-model",
+    "title": "3: Beta-Binomial Models",
+    "section": "Binomial Data Model",
+    "text": "Binomial Data Model\nSuppose that we obtain a larger sample of observations with \\(n = 25\\) customers. The number of smokers, denoted by random variable \\(Y\\), may have a binomial model conditional on probability \\(\\pi\\),\n\\[Y|\\pi \\sim \\text{Bin}(25, \\pi)\\]\nwith conditional pmf over \\(y \\in \\{0, 1, ..., 25\\}\\), \\[f(y|\\pi) = P(Y = y|\\pi) = \\binom{25}{y}\\pi^{y}(1-\\pi)^{25-y}\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#likelihood",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#likelihood",
+    "title": "3: Beta-Binomial Models",
+    "section": "Likelihood",
+    "text": "Likelihood\n\nFunctionPlotCode\n\n\nSuppose that in that sample of \\(n = 25\\) customers, we observe that \\(y = 7\\) of those customers were smokers. Our likelihood function is then\n\\[L(\\pi|y = 7) = \\binom{25}{7}\\pi^{7}(1-\\pi)^{18}\\]\n\n\n\n\n\n\n\n\n\n\npi &lt;- seq(0, 1, 0.01)\nL_pi_y &lt;- dbinom(7, 25, pi)\n\ndf_for_graph &lt;- data.frame(pi, L_pi_y)\n\ndf_for_graph |&gt;\n  ggplot(aes(x = pi, y = L_pi_y)) +\n  geom_line() +\n  labs(title = \"Likelihood function\",\n       subtitle = \"y = 7, n = 25\",\n       caption = \"SML 320\")"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#beta-binomial-model",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#beta-binomial-model",
+    "title": "3: Beta-Binomial Models",
+    "section": "Beta-Binomial Model",
+    "text": "Beta-Binomial Model\nClaim: With probability \\(\\pi \\in [0,1]\\) and random variable \\(Y\\) representing the number of “successes” in \\(n\\) trials, if the behavior is modeled with prior distribution and likelihood\n\\[\\begin{array}{rcl}\n  \\pi & \\sim & \\text{Beta}(\\alpha, \\beta) \\\\\n  Y|\\pi & \\sim & \\text{Bin}(n,\\pi) \\\\\n\\end{array}\\]\nthen the posterior distribution can be modeled with an updated beta distribution\n\\[\\pi|(Y=y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y)\\]\nwith sample statistics\n\\[\\begin{array}{rcl}\n  \\text{E}(\\pi|Y=y) & = & \\displaystyle\\frac{\\alpha + y}{\\alpha + \\beta + n} \\\\\n  \\text{Var}(\\pi|Y=y) & = & \\displaystyle\\frac{(\\alpha  +y)(\\beta + n - y)}{(\\alpha + \\beta + n)^{2}(\\alpha + \\beta + n + 1)} \\\\\n\\end{array}\\]\n\n\n\n\n\n\nPartial Proof\n\n\n\n\n\nWith the conditional pmf\n\\[f(\\pi) = \\displaystyle\\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)}\\pi^{\\alpha-1}(1-\\pi)^{\\beta-1}\\] and likelihood function\n\\[L(\\pi|y) = \\binom{n}{y}\\pi^{y}(1-\\pi)^{n-y}\\]\nit follows from Bayes’ Rule that the posterior distribution\n\\[\\begin{array}{rcl}\n  f(\\pi|y) & \\propto & f(\\pi)L(\\pi|y) \\\\\n  ~ & = & \\displaystyle\\frac{\\Gamma(\\alpha + \\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)}\\pi^{\\alpha-1}(1-\\pi)^{\\beta-1} \\cdot \\binom{n}{y}\\pi^{y}(1-\\pi)^{n-y} \\\\\n  ~ & \\propto & \\pi^{(\\alpha + y)-1}(1-\\pi)^{(\\beta+n-y)-1} \\\\\n\\end{array}\\]\nwhere that last expression is the unnormalized posterior pdf. We observe that it has the same structure of the normalized \\(\\text{Beta}(\\alpha + y, \\beta + n - y)\\) pdf\n\\[f(\\pi|y) = \\displaystyle\\frac{\\Gamma(\\alpha+\\beta+n)}{\\Gamma(\\alpha+y)\\Gamma(\\beta+n-y)} \\pi^{(\\alpha + y)-1}(1-\\pi)^{(\\beta+n-y)-1}\\]"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#beta-posterior",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#beta-posterior",
+    "title": "3: Beta-Binomial Models",
+    "section": "Beta Posterior",
+    "text": "Beta Posterior\n\nUpdated DistributionPlotBoth\n\n\nBy the above theory, having started with a \\(\\text{Beta}{(4,5)}\\) prior, and then observing \\(y = 7\\) smokers among \\(n = 25\\) customers\n\\[\\alpha = 4, \\quad \\beta = 5, \\quad y = 7, \\quad n = 25\\]\nour posterior distribution can be modeled with\n\\[\\pi|(Y=y) \\sim \\text{Beta}(\\alpha + y, \\beta + n - y) = \\text{Beta}(11, 23)\\]\n\n\n\nbayesrules::plot_beta(11,23)"
+  },
+  {
+    "objectID": "posts/03_beta_binomial/03_beta_binomial.html#putting-it-all-together",
+    "href": "posts/03_beta_binomial/03_beta_binomial.html#putting-it-all-together",
+    "title": "3: Beta-Binomial Models",
+    "section": "Putting it All Together",
+    "text": "Putting it All Together\n\nHelper FunctionsTablePlot\n\n\nThe bayesrules package (from the textbook authors) provide additonal helper functions for this procedure of modeling with a beta-binomial model.\nbayesrules::summarize_beta_binomial(alpha, beta, y, n)\nbayesrules::plot_beta_binomial(alpha, beta, y, n)\n\n\n\nsummarize_beta_binomial(alpha = 4, beta = 5, y = 7, n = 25) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     4    5 0.4444 0.4286 0.0247 0.1571\n2 posterior    11   23 0.3235 0.3125 0.0063 0.0791\n\n\n\n\n\nplot_beta_binomial(alpha = 4, beta = 5, y = 7, n = 25) +\n  theme_minimal()"
   }
 ]

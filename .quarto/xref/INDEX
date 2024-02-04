@@ -10,5 +10,8 @@
   },
   "posts/02_bayes_rule/02_bayes_rule.qmd": {
     "02_bayes_rule.html": "159ece8a"
+  },
+  "posts/03_beta_binomial/03_beta_binomial.qmd": {
+    "03_beta_binomial.html": "84fb6929"
   }
 }
