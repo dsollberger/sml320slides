@@ -13,5 +13,8 @@
   },
   "posts/03_beta_binomial/03_beta_binomial.qmd": {
     "03_beta_binomial.html": "84fb6929"
+  },
+  "posts/03_beta_binomial/03_beta_binomial_template.qmd": {
+    "03_beta_binomial_template.html": "c0621790"
   }
 }

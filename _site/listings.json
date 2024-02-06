@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/03_beta_binomial/03_beta_binomial.html",
       "/posts/02_bayes_rule/02_bayes_rule.html",
-      "/posts/01_conditional_probability/01_conditional_probability.html"
+      "/posts/01_conditional_probability/01_conditional_probability.html",
+      "/posts/03_beta_binomial/03_beta_binomial.html"
     ]
   }
 ]
