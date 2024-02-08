@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "sml320draft"
+  title: "SML 320 Bayesian Analysis"
   navbar:
     right:
       - about.qmd

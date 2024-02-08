@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2023\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -404,5 +404,152 @@
     "title": "3: Beta-Binomial Models",
     "section": "Plot",
     "text": "Plot\n\nplot_beta_binomial(alpha = 4, beta = 5, y = 7, n = 25) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html",
+    "title": "4: Balance and Sequentiality",
+    "section": "",
+    "text": "library(\"bayesrules\")\nlibrary(\"patchwork\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\ntips_df &lt;- readr::read_csv(\"tips.csv\")"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#journey-so-far",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#journey-so-far",
+    "title": "4: Balance and Sequentiality",
+    "section": "Journey so far",
+    "text": "Journey so far\nWith hopes of learning more about a target probability \\[\\pi \\in [0,1]\\] we have been applying beta-binomial models\n\\[\\begin{array}{rrcl}\n  \\text{prior: } & \\pi & \\sim & \\text{Beta}(\\alpha, \\beta) \\\\\n  \\text{likelihood: } & Y|\\pi & \\sim & \\text{Bin}(y, \\pi) \\\\\n  \\text{posterior: } & \\pi|(Y = y) & \\sim & \\text{Beta}(\\alpha + y, \\beta + n - y) \\\\\n\\end{array}\\]"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#using-plot_beta",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#using-plot_beta",
+    "title": "4: Balance and Sequentiality",
+    "section": "Using plot_beta",
+    "text": "Using plot_beta\n\nInclinationsCode\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesrules::plot_beta(4,8) +\n  labs(title = \"Beta(4,8), E(pi) = 1/3\")\np2 &lt;- bayesrules::plot_beta(6,6) +\n  labs(title = \"Beta(6,6), E(pi) = 1/2\")\np3 &lt;- bayesrules::plot_beta(8,4) +\n  labs(title = \"Beta(8,4), E(pi) = 2/3\")\n\n# patchwork\np1 / p2 / p3"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-thursday-customers",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-thursday-customers",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subset: Thursday Customers",
+    "text": "Subset: Thursday Customers\n\nThursday &lt;- tips_df |&gt;\n  filter(day == \"Thur\")\n\nn_Thursday &lt;- nrow(Thursday)\ny_Thursday &lt;- Thursday |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#using-plot_beta_binomial",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#using-plot_beta_binomial",
+    "title": "4: Balance and Sequentiality",
+    "section": "Using plot_beta_binomial",
+    "text": "Using plot_beta_binomial\n\nCodePlotsStatistics\n\n\n\np1 &lt;- bayesrules::plot_beta_binomial(4, 8, y_Thursday, n_Thursday) +\n  labs(title = \"Beta(4,8) prior\")\np2 &lt;- bayesrules::plot_beta_binomial(6, 6, y_Thursday, n_Thursday) +\n  labs(title = \"Beta(6,6) prior\")\np3 &lt;- bayesrules::plot_beta_binomial(8, 4, y_Thursday, n_Thursday) +\n  labs(title = \"Beta(8,4) prior\")\n\n# patchwork\np1 / p2 / p3\n\n\n\n\n\n\n\n\n\n\n\nbayesrules::summarize_beta_binomial(4, 8, y_Thursday, n_Thursday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     4    8 0.3333 0.3000 0.0171 0.1307\n2 posterior    21   53 0.2838 0.2778 0.0027 0.0521\n\n\n\nbayesrules::summarize_beta_binomial(6, 6, y_Thursday, n_Thursday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     6    6 0.5000 0.5000 0.0192 0.1387\n2 posterior    23   51 0.3108 0.3056 0.0029 0.0534\n\n\n\nbayesrules::summarize_beta_binomial(8, 4, y_Thursday, n_Thursday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     8    4 0.6667 0.7000 0.0171 0.1307\n2 posterior    25   49 0.3378 0.3333 0.0030 0.0546"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#certainty",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#certainty",
+    "title": "4: Balance and Sequentiality",
+    "section": "Certainty",
+    "text": "Certainty\n\nInclinationsCode\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesrules::plot_beta(1,1) +\n  labs(title = \"Uniform Prior: Beta(1,1), var(pi) = 0.0833\")\np2 &lt;- bayesrules::plot_beta(4,4) +\n  labs(title = \"Vague Prior: Beta(4,4), var(pi) = 0.0278\")\np3 &lt;- bayesrules::plot_beta(16,16) +\n  labs(title = \"Informative Prior: Beta(16,16), var(pi) = 0.0076\")\n\n# patchwork\np1 / p2 / p3"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-friday-customers",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-friday-customers",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subset: Friday Customers",
+    "text": "Subset: Friday Customers\n\nFriday &lt;- tips_df |&gt;\n  filter(day == \"Fri\")\n\nn_Friday &lt;- nrow(Friday)\ny_Friday &lt;- Friday |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#applying-the-friday-crowd",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#applying-the-friday-crowd",
+    "title": "4: Balance and Sequentiality",
+    "section": "Applying the Friday Crowd",
+    "text": "Applying the Friday Crowd\n\nCodePlotsStatistics\n\n\n\np1 &lt;- bayesrules::plot_beta_binomial(1, 1, y_Friday, n_Friday) +\n  labs(title = \"Uniform Prior: Beta(1,1)\")\np2 &lt;- bayesrules::plot_beta_binomial(4, 4, y_Friday, n_Friday) +\n  labs(title = \"Vague Prior: Beta(4,4)\")\np3 &lt;- bayesrules::plot_beta_binomial(16, 16, y_Friday, n_Friday) +\n  labs(title = \"Informative Prior: Beta(16,16)\")\n\n# patchwork\np1 / p2 / p3\n\n\n\n\n\n\n\n\n\n\n\nbayesrules::summarize_beta_binomial(1, 1, y_Friday, n_Friday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     1    1 0.5000    NaN 0.0833 0.2887\n2 posterior    16    5 0.7619 0.7895 0.0082 0.0908\n\n\n\nbayesrules::summarize_beta_binomial(4, 4, y_Friday, n_Friday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean mode    var     sd\n1     prior     4    4 0.5000 0.50 0.0278 0.1667\n2 posterior    19    8 0.7037 0.72 0.0074 0.0863\n\n\n\nbayesrules::summarize_beta_binomial(16, 16, y_Friday, n_Friday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior    16   16 0.5000 0.5000 0.0076 0.0870\n2 posterior    31   20 0.6078 0.6122 0.0046 0.0677"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#skewed-prior",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#skewed-prior",
+    "title": "4: Balance and Sequentiality",
+    "section": "Skewed Prior",
+    "text": "Skewed Prior\n\nFixed PriorCode\n\n\n\n\n\n\n\n\n\n\nbayesrules::plot_beta(1,32) +\n  labs(title = \"Skewed Prior: Beta(1,32), var(pi) = 0.0009\")"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-saturday-customers",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-saturday-customers",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subset: Saturday Customers",
+    "text": "Subset: Saturday Customers\n\nSaturday &lt;- tips_df |&gt;\n  filter(day == \"Sat\")\n\nn_Saturday &lt;- nrow(Saturday)\ny_Saturday &lt;- Saturday |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#friday-versus-saturday",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#friday-versus-saturday",
+    "title": "4: Balance and Sequentiality",
+    "section": "Friday versus Saturday",
+    "text": "Friday versus Saturday\n\nCodePlotsStatistics\n\n\n\np1 &lt;- bayesrules::plot_beta_binomial(1, 32, y_Friday, n_Friday) +\n  labs(title = \"Friday Customers\")\np2 &lt;- bayesrules::plot_beta_binomial(1, 32, y_Saturday, n_Saturday) +\n  labs(title = \"Saturday Customers\")\n\n# patchwork\np1 / p2\n\n\n\n\n\n\n\n\n\n\n\nbayesrules::summarize_beta_binomial(1, 32, y_Friday, n_Friday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean mode   var     sd\n1     prior     1   32 0.0303  0.0 9e-04 0.0294\n2 posterior    16   36 0.3077  0.3 4e-03 0.0634\n\n\n\nbayesrules::summarize_beta_binomial(1, 32, y_Saturday, n_Saturday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     1   32 0.0303 0.0000 0.0009 0.0294\n2 posterior    43   77 0.3583 0.3559 0.0019 0.0436"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#vague-prior-revisited",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#vague-prior-revisited",
+    "title": "4: Balance and Sequentiality",
+    "section": "Vague Prior Revisited",
+    "text": "Vague Prior Revisited\n\nVague PriorCode\n\n\n\n\n\n\n\n\n\n\nbayesrules::plot_beta(4,4) +\n  labs(title = \"Vague Prior: Beta(4,4), var(pi) = 0.0278\")"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subsets-lunch-and-dinner",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subsets-lunch-and-dinner",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subsets: Lunch and Dinner",
+    "text": "Subsets: Lunch and Dinner\n\n\n\nLunch &lt;- tips_df |&gt;\n  filter(time == \"Lunch\")\n\nn_Lunch &lt;- nrow(Lunch)\ny_Lunch &lt;- Lunch |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()\n\n\n\nDinner &lt;- tips_df |&gt;\n  filter(time == \"Dinner\")\n\nn_Dinner &lt;- nrow(Dinner)\ny_Dinner &lt;- Dinner |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#lunch-first-then-dinner",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#lunch-first-then-dinner",
+    "title": "4: Balance and Sequentiality",
+    "section": "Lunch First, then Dinner",
+    "text": "Lunch First, then Dinner\n\nCodePlotsStatistics\n\n\n\nalpha_1 &lt;- 4\nbeta_1  &lt;- 4\np1 &lt;- bayesrules::plot_beta_binomial(alpha_1, beta_1, y_Lunch, n_Lunch) +\n  labs(title = \"Lunch First\")\n\nalpha_2 &lt;- alpha_1 + y_Lunch\nbeta_2  &lt;- beta_1 + n_Lunch - y_Lunch\np2 &lt;- bayesrules::plot_beta_binomial(alpha_2, beta_2, y_Dinner, n_Dinner) +\n  labs(title = \"then Dinner\")\n\n# patchwork\np1 / p2\n\n\n\n\n\n\n\n\n\n\n\nLunch First\n\nbayesrules::summarize_beta_binomial(alpha_1, beta_1, y_Lunch, n_Lunch) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     4    4 0.5000 0.5000 0.0278 0.1667\n2 posterior    27   49 0.3553 0.3514 0.0030 0.0545\n\n\n\n\nthen Dinner\n\nbayesrules::summarize_beta_binomial(alpha_2, beta_2, y_Dinner, n_Dinner) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode   var     sd\n1     prior    27   49 0.3553 0.3514 3e-03 0.0545\n2 posterior    97  155 0.3849 0.3840 9e-04 0.0306"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#dinner-first-then-lunch",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#dinner-first-then-lunch",
+    "title": "4: Balance and Sequentiality",
+    "section": "Dinner First, then Lunch",
+    "text": "Dinner First, then Lunch\n\nCodePlotsStatistics\n\n\n\nalpha_1 &lt;- 4\nbeta_1  &lt;- 4\np1 &lt;- bayesrules::plot_beta_binomial(alpha_1, beta_1, y_Dinner, n_Dinner) +\n  labs(title = \"Dinner First\")\n\nalpha_2 &lt;- alpha_1 + y_Dinner\nbeta_2  &lt;- beta_1 + n_Dinner - y_Dinner\np2 &lt;- bayesrules::plot_beta_binomial(alpha_2, beta_2, y_Lunch, n_Lunch) +\n  labs(title = \"then Lunch\")\n\n# patchwork\np1 / p2\n\n\n\n\n\n\n\n\n\n\n\nDinner First\n\nbayesrules::summarize_beta_binomial(alpha_1, beta_1, y_Dinner, n_Dinner) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     4    4 0.5000 0.5000 0.0278 0.1667\n2 posterior    74  110 0.4022 0.4011 0.0013 0.0361\n\n\n\n\nthen Lunch\n\nbayesrules::summarize_beta_binomial(alpha_2, beta_2, y_Lunch, n_Lunch) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior    74  110 0.4022 0.4011 0.0013 0.0361\n2 posterior    97  155 0.3849 0.3840 0.0009 0.0306"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#data-invariance",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#data-invariance",
+    "title": "4: Balance and Sequentiality",
+    "section": "Data Invariance",
+    "text": "Data Invariance\nLet \\(\\theta\\) be any parameter of interest with prior pdf \\(f(\\theta)\\). Then a sequential analysis in which we first observe a data point \\(y_{1}\\) and then a second data point \\(y_{2}\\) will produce the same posterior model of \\(\\theta\\) as if we first observe \\(y_{2}\\) and then \\(y_{1}\\):\n\\[f(\\theta|y1,y2)=f(\\theta|y2,y1)\\]\nSimilarly, the posterior model is invariant to whether we observe the data all at once or sequentially.\n\n\n\n\n\n\nproof\n\n\n\n\n\n[Please refer to section 4.5 of the textbook]"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#uniform-prior-revisited",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#uniform-prior-revisited",
+    "title": "4: Balance and Sequentiality",
+    "section": "Uniform Prior Revisited",
+    "text": "Uniform Prior Revisited\n\nUniform PriorCode\n\n\n\n\n\n\n\n\n\n\nbayesrules::plot_beta(1,1) +\n  labs(title = \"Uniform Prior: Beta(1,1), var(pi) = 0.0833\")"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-sunday-customers",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-sunday-customers",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subset: Sunday Customers",
+    "text": "Subset: Sunday Customers\n\nSunday &lt;- tips_df |&gt;\n  filter(day == \"Sun\")\n\nn_Sunday &lt;- nrow(Sunday)\ny_Sunday &lt;- Sunday |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#one-day-at-a-time",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#one-day-at-a-time",
+    "title": "4: Balance and Sequentiality",
+    "section": "One Day at a Time",
+    "text": "One Day at a Time\n\nCodePlotsStatistics\n\n\n\nalpha &lt;- 1\nbeta  &lt;- 1\np1 &lt;- bayesrules::plot_beta_binomial(alpha, beta, y_Thursday, n_Thursday) +\n  labs(title = \"Thursday First\")\n\nalpha &lt;- alpha + y_Thursday\nbeta  &lt;- beta + n_Thursday - y_Thursday\np2 &lt;- bayesrules::plot_beta_binomial(alpha, beta, y_Friday, n_Friday) +\n  labs(title = \"then Friday\")\n\nalpha &lt;- alpha + y_Friday\nbeta  &lt;- beta + n_Friday - y_Friday\np3 &lt;- bayesrules::plot_beta_binomial(alpha, beta, y_Saturday, n_Saturday) +\n  labs(title = \"then Saturday\")\n\nalpha &lt;- alpha + y_Saturday\nbeta  &lt;- beta + n_Saturday - y_Saturday\np4 &lt;- bayesrules::plot_beta_binomial(alpha, beta, y_Sunday, n_Sunday) +\n  labs(title = \"then Sunday\")\n\n# patchwork\np1 / p2 / p3 / p4\n\n\n\n\n\n\n\n\n\n\n\nThursday First\n\nalpha &lt;- 1\nbeta  &lt;- 1\nbayesrules::summarize_beta_binomial(alpha, beta, y_Thursday, n_Thursday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     1    1 0.5000    NaN 0.0833 0.2887\n2 posterior    18   46 0.2812 0.2742 0.0031 0.0558\n\n\n\n\nthen Friday\n\nalpha &lt;- alpha + y_Thursday\nbeta  &lt;- beta + n_Thursday - y_Thursday\nbayesrules::summarize_beta_binomial(alpha, beta, y_Friday, n_Friday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior    18   46 0.2812 0.2742 0.0031 0.0558\n2 posterior    33   50 0.3976 0.3951 0.0029 0.0534\n\n\n\n\nthen Saturday\n\nalpha &lt;- alpha + y_Friday\nbeta  &lt;- beta + n_Friday - y_Friday\nbayesrules::summarize_beta_binomial(alpha, beta, y_Saturday, n_Saturday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior    33   50 0.3976 0.3951 0.0029 0.0534\n2 posterior    75   95 0.4412 0.4405 0.0014 0.0380\n\n\n\n\nthen Sunday\n\nalpha &lt;- alpha + y_Saturday\nbeta  &lt;- beta + n_Saturday - y_Saturday\nbayesrules::summarize_beta_binomial(alpha, beta, y_Sunday, n_Sunday) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior    75   95 0.4412 0.4405 0.0014 0.0380\n2 posterior    94  152 0.3821 0.3811 0.0010 0.0309"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-all-customers",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#subset-all-customers",
+    "title": "4: Balance and Sequentiality",
+    "section": "Subset: All Customers",
+    "text": "Subset: All Customers\n\nn_all &lt;- nrow(tips_df)\ny_all &lt;- tips_df |&gt; \n  filter(smoker == \"Yes\") |&gt; \n  nrow()"
+  },
+  {
+    "objectID": "posts/04_balance_sequentiality/04_balance_sequentiality.html#all-at-once",
+    "href": "posts/04_balance_sequentiality/04_balance_sequentiality.html#all-at-once",
+    "title": "4: Balance and Sequentiality",
+    "section": "All at Once",
+    "text": "All at Once\n\nCodePlotStatistics\n\n\n\nalpha &lt;- 1\nbeta  &lt;- 1\nbayesrules::plot_beta_binomial(alpha, beta, y_all, n_all) +\n  labs(title = \"All at Once\")\n\n\n\n\n\n\n\n\n\n\n\nalpha &lt;- 1\nbeta  &lt;- 1\nbayesrules::summarize_beta_binomial(alpha, beta, y_all, n_all) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model alpha beta   mean   mode    var     sd\n1     prior     1    1 0.5000    NaN 0.0833 0.2887\n2 posterior    94  152 0.3821 0.3811 0.0010 0.0309\n\n\n\n\n\n\nsessionInfo()\n\nR version 4.3.0 (2023-04-21 ucrt)\nPlatform: x86_64-w64-mingw32/x64 (64-bit)\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] lubridate_1.9.2  forcats_1.0.0    stringr_1.5.0    dplyr_1.1.3     \n [5] purrr_1.0.2      readr_2.1.4      tidyr_1.3.0      tibble_3.2.1    \n [9] ggplot2_3.4.3    tidyverse_2.0.0  patchwork_1.1.2  bayesrules_0.0.2\n\nloaded via a namespace (and not attached):\n  [1] gridExtra_2.3       inline_0.3.19       rlang_1.1.1        \n  [4] magrittr_2.0.3      snakecase_0.11.0    matrixStats_1.0.0  \n  [7] e1071_1.7-13        compiler_4.3.0      loo_2.6.0          \n [10] callr_3.7.3         vctrs_0.6.3         reshape2_1.4.4     \n [13] pkgconfig_2.0.3     crayon_1.5.2        fastmap_1.1.1      \n [16] ellipsis_0.3.2      labeling_0.4.3      utf8_1.2.3         \n [19] threejs_0.3.3       promises_1.2.1      rmarkdown_2.24     \n [22] tzdb_0.4.0          markdown_1.8        ps_1.7.5           \n [25] nloptr_2.0.3        bit_4.0.5           xfun_0.40          \n [28] jsonlite_1.8.7      later_1.3.1         parallel_4.3.0     \n [31] prettyunits_1.1.1   R6_2.5.1            dygraphs_1.1.1.6   \n [34] stringi_1.7.12      StanHeaders_2.26.26 boot_1.3-28.1      \n [37] Rcpp_1.0.11         rstan_2.21.8        knitr_1.43         \n [40] zoo_1.8-12          base64enc_0.1-3     bayesplot_1.10.0   \n [43] httpuv_1.6.11       Matrix_1.5-4        splines_4.3.0      \n [46] igraph_1.4.3        timechange_0.2.0    tidyselect_1.2.0   \n [49] rstudioapi_0.15.0   yaml_2.3.7          codetools_0.2-19   \n [52] miniUI_0.1.1.1      processx_3.8.1      pkgbuild_1.4.0     \n [55] lattice_0.21-8      plyr_1.8.8          shiny_1.7.5        \n [58] withr_2.5.2         groupdata2_2.0.2    evaluate_0.21      \n [61] survival_3.5-5      proxy_0.4-27        RcppParallel_5.1.7 \n [64] xts_0.13.1          pillar_1.9.0        DT_0.28            \n [67] stats4_4.3.0        shinyjs_2.1.0       generics_0.1.3     \n [70] vroom_1.6.3         hms_1.1.3           rstantools_2.3.1   \n [73] munsell_0.5.0       scales_1.2.1        minqa_1.2.5        \n [76] gtools_3.9.4        xtable_1.8-4        class_7.3-21       \n [79] glue_1.6.2          janitor_2.2.0       tools_4.3.0        \n [82] shinystan_2.6.0     lme4_1.1-33         colourpicker_1.2.0 \n [85] grid_4.3.0          crosstalk_1.2.0     colorspace_2.1-0   \n [88] nlme_3.1-162        cli_3.6.1           fansi_1.0.4        \n [91] gtable_0.3.4        digest_0.6.33       farver_2.1.1       \n [94] htmlwidgets_1.6.2   htmltools_0.5.6     lifecycle_1.0.4    \n [97] mime_0.12           rstanarm_2.21.4     bit64_4.0.5        \n[100] shinythemes_1.2.0   MASS_7.3-58.4"
   }
 ]
