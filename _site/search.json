@@ -669,7 +669,7 @@
     "href": "posts/05_conjugate_families/05_conjugate_families.html#tuning-the-prior",
     "title": "5: Conjugate Families",
     "section": "Tuning the Prior",
-    "text": "Tuning the Prior\n\nExample: Campus SafetyStatisticsPlotCode\n\n\nSuppose that a parent of an university applicant feels that the university has arrests for drug law violations with counts between 10 and 30 per year. Matching some statistics formulas\n\\[[\\mu - 2\\sigma, \\mu + 2\\sigma] = [10, 30] \\quad\\rightarrow\\quad \\mu = 20, \\quad \\sigma = 5\\]\n\n\n\\[\\text{E}(\\lambda) = \\displaystyle\\frac{s}{r} = 20 \\text{ and } \\text{Var}(\\lambda) = \\displaystyle\\frac{s}{r^{2}} = 5^{2}\\]"
+    "text": "Tuning the Prior\n\nExample: Campus SafetyStatisticsPlotCode\n\n\nSuppose that a parent of an university applicant feels that the university has arrests for drug law violations with counts between 10 and 30 per year. Matching some statistics formulas\n\\[[\\mu - 2\\sigma, \\mu + 2\\sigma] = [10, 30] \\quad\\rightarrow\\quad \\mu = 20, \\quad \\sigma = 5\\]\n\n\n\\[\\text{E}(\\lambda) = \\displaystyle\\frac{s}{r} = 20 \\text{ and } \\text{Var}(\\lambda) = \\displaystyle\\frac{s}{r^{2}} = 5^{2}\\]\n\n\n\n\n\n\n\n\n\n\nbayesrules::plot_gamma(16, 0.8, mean = TRUE) +\n  labs(title = \"Gamma(16, 0.8) Prior\",\n       subtitle = \"mean = 20, sd = 5\",\n       caption = \"SML 320\") +\n  theme_minimal()"
   },
   {
     "objectID": "posts/05_conjugate_families/05_conjugate_families.html#gamma-poisson-bayesian-model",
@@ -718,7 +718,7 @@
     "href": "posts/05_conjugate_families/05_conjugate_families.html#mles",
     "title": "5: Conjugate Families",
     "section": "MLEs",
-    "text": "MLEs\nThe likelihood can also be expressed in terms of the sample mean \\(\\bar{y}\\) and the sample size \\(n\\)\n\\[L(\\mu, \\sigma|\\vec{y}) \\propto \\text{exp}\\left[-\\displaystyle\\frac{ (\\bar{y}-\\mu)^{2}}{\\frac{2\\sigma^{2}}{n}}\\right]\\]\nIt follows that the maximum likelihood estimates for the parameters are (source)\n\\[\\begin{array}{rcl}\n  \\mu^{*} & = & \\displaystyle\\frac{1}{n}\\displaystyle\\sum_{i=1}^{n} y_{i} \\\\\n  \\sigma^{*} & = & \\sqrt{\\displaystyle\\frac{1}{n}\\displaystyle\\sum_{i=1}^{n} (y_{i} - \\mu^{2})^{2}} \\\\\n\\end{array}\\]\nwhich are the sample mean and from the not-corrected population variance."
+    "text": "MLEs\nThe likelihood can also be expressed in terms of the sample mean \\(\\bar{y}\\) and the sample size \\(n\\)\n\\[L(\\mu, \\sigma|\\vec{y}) \\propto \\text{exp}\\left[-\\displaystyle\\frac{ (\\bar{y}-\\mu)^{2}}{\\frac{2\\sigma^{2}}{n}}\\right]\\]\nIt follows that the maximum likelihood estimates for the parameters are\n\\[\\begin{array}{rcl}\n  \\mu^{*} & = & \\displaystyle\\frac{1}{n}\\displaystyle\\sum_{i=1}^{n} y_{i} \\\\\n  \\sigma^{*} & = & \\sqrt{\\displaystyle\\frac{1}{n}\\displaystyle\\sum_{i=1}^{n} (y_{i} - \\mu^{2})^{2}} \\\\\n\\end{array}\\]\nwhich are the sample mean and from the not-corrected population variance (source)."
   },
   {
     "objectID": "posts/05_conjugate_families/05_conjugate_families.html#dplyr",
@@ -760,6 +760,6 @@
     "href": "posts/05_conjugate_families/05_conjugate_families.html#model-selection",
     "title": "5: Conjugate Families",
     "section": "Model Selection",
-    "text": "Model Selection\nWe looked at 3 conjugate families.\n\nBeta-BinomialGamma-PoissonNormal-Normal\n\n\n\nestimate \\(\\pi \\in [0,1]\\)\npro: good for interpretability\ncon: computationally expensive for large \\(n\\)\n\n\n\n\nestimate \\(\\lambda &gt; 0\\)\npro: models rare events and skewed data well\ncon: discussion of rates instead of counts\n\n\n\n\nestimate mean \\(\\mu\\) and variance \\(\\sigma\\)\npro: ubiquitous in scientific communities\ncon: infinite support may lead to suboptimal results in larger networks"
+    "text": "Model Selection\nWe looked at 3 conjugate families.\n\nBeta-BinomialGamma-PoissonNormal-Normal\n\n\n\nestimate \\(\\pi \\in [0,1]\\)\npro: good for interpretability\ncon: computationally expensive for large \\(n\\)\n\n\n\n\nestimate \\(\\lambda &gt; 0\\)\npro: models rare events and skewed data well\ncon: discussion of rates instead of counts\n\n\n\n\nestimate mean \\(\\mu\\) and variance \\(\\sigma\\)\npro: ubiquitous in scientific communities\ncons:\n\ninfinite support may lead to suboptimal results in larger networks\nwas the data symmetric?"
   }
 ]
