@@ -22,5 +22,8 @@
   },
   "posts/05_conjugate_families/05_conjugate_families.qmd": {
     "05_conjugate_families.html": "770f0227"
+  },
+  "posts/06_approx_posterior/06_approx_posterior.qmd": {
+    "06_approx_posterior.html": "677e0eb0"
   }
 }
