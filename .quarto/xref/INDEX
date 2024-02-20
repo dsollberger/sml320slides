@@ -25,5 +25,8 @@
   },
   "posts/06_approx_posterior/06_approx_posterior.qmd": {
     "06_approx_posterior.html": "677e0eb0"
+  },
+  "posts/07_mcmc_1/07_mcmc_1.qmd": {
+    "07_mcmc_1.html": "3c51c0c1"
   }
 }

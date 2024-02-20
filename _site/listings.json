@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/07_mcmc_1/07_mcmc_1.html",
       "/posts/06_approx_posterior/06_approx_posterior.html",
       "/posts/05_conjugate_families/05_conjugate_families.html",
       "/posts/04_balance_sequentiality/04_balance_sequentiality.html",

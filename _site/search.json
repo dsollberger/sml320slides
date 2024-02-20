@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -901,5 +901,173 @@
     "title": "6: Approximating the Posterior",
     "section": "Example: Gamma-Poisson",
     "text": "Example: Gamma-Poisson\n\nScenario: Drug Law Violations\nLet us start with a vague Gamma prior, use a binomial model to get the likelihood of \\(\\sum y = 119\\) drug law violations over \\(n = 9\\) years, and then get a Gamma posterior.\n\\[\\begin{array}{rrcl}\n  \\text{prior: } & \\pi & \\sim & \\text{Gamma}(16, 0.8) \\\\\n  \\text{likelihood: } & Y|\\pi & \\sim & \\text{Pois}(119/9) \\\\\n  \\text{posterior: } & \\pi|Y & \\sim & \\text{Gamma}(135, 9.8) \\\\\n\\end{array}\\]\n\nDefine ModelSimulate PosteriorHistogramDensity\n\n\n\n# STEP 1: DEFINE the model\ngp_model &lt;- \"\n  data {\n    int&lt;lower = 0&gt; Y[9];\n  }\n  parameters {\n    real&lt;lower = 0&gt; lambda;\n  }\n  model {\n    Y ~ poisson(lambda);\n    lambda ~ gamma(16, 0.8);\n  }\n\"\n\n\n\n\nstart_time &lt;- Sys.time()\n\n# STEP 2: SIMULATE the posterior\nobs_counts &lt;- c(18, 14, 23, 22, 12, 22, 7, 0, 1)\ngp_sim &lt;- stan(model_code = gp_model, \n               data = list(Y = obs_counts), \n               chains = 4, iter = 5000*2, seed = 84735)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 1.6e-05 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 1: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 1: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 1: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 1: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 1: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 1: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 1: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 1: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 1: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0.031 seconds (Warm-up)\nChain 1:                0.032 seconds (Sampling)\nChain 1:                0.063 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 3e-06 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 2: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 2: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 2: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 2: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 2: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 2: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 2: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 2: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 2: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0.038 seconds (Warm-up)\nChain 2:                0.028 seconds (Sampling)\nChain 2:                0.066 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 2e-06 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 3: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 3: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 3: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 3: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 3: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 3: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 3: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 3: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 3: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 3: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0.032 seconds (Warm-up)\nChain 3:                0.034 seconds (Sampling)\nChain 3:                0.066 seconds (Total)\nChain 3: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).\nChain 4: \nChain 4: Gradient evaluation took 3e-06 seconds\nChain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.\nChain 4: Adjust your expectations accordingly!\nChain 4: \nChain 4: \nChain 4: Iteration:    1 / 10000 [  0%]  (Warmup)\nChain 4: Iteration: 1000 / 10000 [ 10%]  (Warmup)\nChain 4: Iteration: 2000 / 10000 [ 20%]  (Warmup)\nChain 4: Iteration: 3000 / 10000 [ 30%]  (Warmup)\nChain 4: Iteration: 4000 / 10000 [ 40%]  (Warmup)\nChain 4: Iteration: 5000 / 10000 [ 50%]  (Warmup)\nChain 4: Iteration: 5001 / 10000 [ 50%]  (Sampling)\nChain 4: Iteration: 6000 / 10000 [ 60%]  (Sampling)\nChain 4: Iteration: 7000 / 10000 [ 70%]  (Sampling)\nChain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)\nChain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)\nChain 4: Iteration: 10000 / 10000 [100%]  (Sampling)\nChain 4: \nChain 4:  Elapsed Time: 0.034 seconds (Warm-up)\nChain 4:                0.028 seconds (Sampling)\nChain 4:                0.062 seconds (Total)\nChain 4: \n\nend_time &lt;- Sys.time()\nprint(round(end_time- start_time))\n\nTime difference of 38 secs\n\n\n\n\n\nbayesplot::mcmc_hist(gp_sim, pars = \"lambda\")\n\n\n\n\n\n\n\nbayesplot::mcmc_dens(gp_sim, pars = \"lambda\") + \n  stat_function(fun = dgamma, args = list(135, 9.8),\n                color = \"#E77500\", linewidth = 3) + \n  labs(title = \"MCMC: &lt;span style='color:#619CFF'&gt;simulation&lt;/span&gt; versus &lt;span style='color:#E77500'&gt;theoretical&lt;/span&gt;\",\n         subtitle = \"Gamma-Poisson Example\",\n         caption = \"SML 320\") +\n  theme_minimal() +\n  theme(plot.title = element_markdown())"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html",
+    "title": "7: MCMC",
+    "section": "",
+    "text": "library(\"bayesplot\")\nlibrary(\"ggtext\")\nlibrary(\"rstan\")\nlibrary(\"patchwork\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\n# tips_df &lt;- readr::read_csv(\"tips.csv\")"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#metropolis-hastings",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#metropolis-hastings",
+    "title": "7: MCMC",
+    "section": "Metropolis-Hastings",
+    "text": "Metropolis-Hastings\nUsing the analogy from the Bayes Rules! textbook, “As tour manager, you can automate the tour route using the Metropolis-Hastings algorithm. This algorithm iterates through a two-step process. Assuming the Markov chain is at location \\(\\mu(i)=\\mu\\) at iteration or “tour stop” \\(i\\), the next tour stop \\(\\mu(i+1)\\) is selected as follows:\n\nStep 1: Propose a random location, \\(\\mu^{′}\\), for the next tour stop.\nStep 2: Decide whether to\n\nto to the proposed location \\[\\mu(i+1)=\\mu^{′}\\]\nor to stay at the current location for another iteration \\[\\mu(i+1)=\\mu\\]"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#monte-carlo",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#monte-carlo",
+    "title": "7: MCMC",
+    "section": "Monte Carlo",
+    "text": "Monte Carlo\nIf we know the posterior distribution, this special case of the Metropolis-Hastings algorithm has a special name\n\n\n\n\n\n\nMonte Carlo algorithm\n\n\n\n\n\nTo construct an independent Monte Carlo sample directly from posterior pdf \\(f(\\mu|y)\\), \\[\\{\\mu^{(1)},\\mu^{(2)},...,\\mu^{(N)}\\}\\]\nselect each tour stop \\(\\mu^{(i)}=\\mu\\)\nas follows:\n\nStep 1: Propose a location. Draw a location μ from the posterior model with pdf \\(f(\\mu|y)\\)\nStep 2: Go there."
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#generalizing",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#generalizing",
+    "title": "7: MCMC",
+    "section": "Generalizing",
+    "text": "Generalizing\n\nwe only need MCMC to approximate a Bayesian posterior when that posterior is too complicated to specify\nif a posterior is too complicated to specify, it’s typically too complicated to directly sample or draw from as we did in our Monte Carlo tour above\nMetropolis-Hastings relies on the fact that, even if we don’t know the posterior model, we do know that the posterior pdf is proportional to the product of the known prior pdf and likelihood function\n\n\\[f(\\mu|y) \\propto f(\\mu) \\cdot L(\\mu|y)\\]"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#nicholas-metropolis",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#nicholas-metropolis",
+    "title": "7: MCMC",
+    "section": "Nicholas Metropolis",
+    "text": "Nicholas Metropolis\n\n\n\nPhD: University of Chicago\nRecruited by Oppenheimer\nTeam included von Neumann and Ulam\n\n\n\n\n\nNicholas Metropolis\n\n\nImage Source: Nuclear Museum"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#wilfred-hastings",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#wilfred-hastings",
+    "title": "7: MCMC",
+    "section": "Wilfred Hastings",
+    "text": "Wilfred Hastings\n\n\nPhD: University of Toronto\nBell Labs (New Jersey)\ngeneralized Metropolis algorithm and MCMC\n\n\n\n\n\n\nWilfred Hastings\n\n\nImage Source: McCall Gardens"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#rosenbluths",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#rosenbluths",
+    "title": "7: MCMC",
+    "section": "Rosenbluths",
+    "text": "Rosenbluths\n\n\nArianna Rosenbluth\n\nPhD: Harvard University\nqualified for Olympics (fencing)\nwrote first MCMC algorithm\n\n\n\nMarshall Rosenbluth\n\nPhD: University of Chicago\nWWII veteran (navy)\n\n\n\n\n\n\n\nMarshall and Arianna Rosenbluth\n\n\nImage Source: Los Alamos National Laboratories"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#uniform-proposal-model",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#uniform-proposal-model",
+    "title": "7: MCMC",
+    "section": "Uniform proposal model",
+    "text": "Uniform proposal model\nLet \\(\\mu^{(i)} = \\mu\\) denote the current tour location with \\(w\\) being a half-width distance:\n\nrandom draw: \\(\\mu^{'}|\\mu \\sim \\text{Unif}(\\mu - w, \\mu + w)\\)\npdf: \\(q(\\mu^{'}|\\mu) = \\displaystyle\\frac{1}{2w} \\text{ for } \\mu^{'} \\in [(\\mu - w, \\mu + w]\\)"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#rejected-ideas",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#rejected-ideas",
+    "title": "7: MCMC",
+    "section": "Rejected Ideas",
+    "text": "Rejected Ideas\n\nNever accept the proposed location.\nAlways accept the proposed location.\nOnly accept the proposed location if its (unnormalized) posterior plausibility is greater than that of the current location."
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#main-idea",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#main-idea",
+    "title": "7: MCMC",
+    "section": "Main Idea",
+    "text": "Main Idea\n\nStep 1: Propose a location, \\(\\mu^{'}\\), for the next tour stop by taking a draw from a proposal model.\nStep 2: Decide whether to go to the proposed location (\\(μ^{(i+1)}=\\mu^{'}\\)) or to stay at the current location for another iteration (\\(μ^{(i+1)}=\\mu\\)) as follows.\n\nIf the (unnormalized) posterior plausibility of the proposed location \\(\\mu^{'}\\) is greater than that of the current location \\(\\mu\\), \\[f(\\mu^{'})L(\\mu^{'}|y)&gt;f(\\mu)L(\\mu|y)\\] definitely go there.\nOtherwise, maybe go there."
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#definition-1",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#definition-1",
+    "title": "7: MCMC",
+    "section": "Definition",
+    "text": "Definition\n\n\n\n\n\n\nMetropolis-Hastings algorithm\n\n\n\n\n\nConditioned on data \\(y\\), let parameter \\(\\mu\\) have posterior pdf \\[f(\\mu|y)\\propto f(\\mu) \\cdot L(\\mu|y)\\] A Metropolis-Hastings Markov chain for \\(f(\\mu|y)\\), \\(\\{\\mu^{(1)},\\mu^{(2)},...,\\mu^{(N)}\\}\\), evolves as follows. Let \\(\\mu^{(i)}=\\mu\\) be the chain’s location at iteration \\(i\\in\\{1,2,...,N−1\\}\\) and identify the next location \\(\\mu^{(i+1)}\\) through a two-step process:\n\nStep 1: Propose a new location. Conditioned on the current location \\(\\mu\\), draw a location \\(\\mu^{′}\\) from a proposal model with pdf \\(q(\\mu^{′}|\\mu)\\).\nStep 2: Decide whether or not to go there.\n\nCalculate the acceptance probability (i.e., the probability of accepting the proposal \\(\\mu^{′}\\)): \\[\\alpha = \\text{min}\\left\\{1, \\displaystyle\\frac{f(\\mu^{′}) \\cdot L(\\mu^{′}|y)}{f(\\mu) \\cdot L(\\mu|y)} \\cdot \\displaystyle\\frac{q(\\mu^{′}|\\mu)}{q(\\mu|\\mu^{′})} \\right\\}\\]\nFiguratively, flip a weighted coin. If it’s Heads, with probability \\(\\alpha\\), go to the proposed location \\(\\mu^{′}\\). If it’s Tails, with probability \\(1−\\alpha\\), stay at \\(\\mu\\): \\[\\mu^{(i+1)} = \\begin{cases}\n\\mu^{'} & \\text{with probability } \\alpha \\\\\n\\mu & \\text{with probability } 1-\\alpha \\\\\n  \\end{cases}\\]"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#symmetric-proposal",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#symmetric-proposal",
+    "title": "7: MCMC",
+    "section": "Symmetric Proposal",
+    "text": "Symmetric Proposal\nWhat happens if we have a symmetric proposal model? For instance,\n\\[\\mu^{'}|\\mu \\sim \\text{Unif}(\\mu - w, \\mu + w)\\]\nleads to the probability density function\n\\[q(\\mu^{′}|\\mu) = q(\\mu|\\mu^{′}) = \\begin{cases}\n  \\frac{1}{2w}, & |\\mu - \\mu^{'}| &lt; w \\\\\n  0, & \\text{otherwise} \\\\\n\\end{cases}\\]"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#metropolis-algorithm",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#metropolis-algorithm",
+    "title": "7: MCMC",
+    "section": "Metropolis Algorithm",
+    "text": "Metropolis Algorithm\n\n\n\n\n\n\nMetropolis Algorithm\n\n\n\n\n\nThe Metropolis algorithm is a special case of the Metropolis-Hastings in which the proposal model is symmetric. That is, the chance of proposing a move to \\(\\mu^{′}\\) from \\(\\mu\\) is equal to that of proposing a move to \\(\\mu\\) from \\(\\mu^{′}\\): \\[q(\\mu^{′}|\\mu) = q(\\mu|\\mu^{′})\\]\nThe acceptance probability simplifies to \\[\\alpha = \\text{min}\\left\\{1, \\displaystyle\\frac{f(\\mu^{′}) \\cdot L(\\mu^{′}|y)}{f(\\mu) \\cdot L(\\mu|y)} \\right\\}\\]"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#bayesian-ratio",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#bayesian-ratio",
+    "title": "7: MCMC",
+    "section": "Bayesian Ratio",
+    "text": "Bayesian Ratio\nBy dividing both the numerator and denominator by \\(f(y)\\)\n\\[\\alpha = \\text{min}\\left\\{1, \\displaystyle\\frac{f(\\mu^{′}) \\cdot L(\\mu^{′}|y) / f(y)}{f(\\mu)  \\cdot L(\\mu|y) / f(y)} \\right\\} = \\text{min}\\left\\{1, \\displaystyle\\frac{f(\\mu^{'}|y)}{f(\\mu|y)} \\right\\}\\]\nThis rewrite emphasizes that, though we can’t calculate the posterior pdfs of \\(\\mu^{′}\\) and \\(\\mu\\), \\(f(\\mu^{'}|y)\\) and \\(f(\\mu|y)\\), their ratio is equivalent to that of the unnormalized posterior pdfs (which we can calculate)"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#tour-decisions",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#tour-decisions",
+    "title": "7: MCMC",
+    "section": "Tour Decisions",
+    "text": "Tour Decisions\nThus, the probability of accepting a move from a current location \\(\\mu\\) to a proposed location \\(\\mu^{′}\\) comes down to a comparison of their posterior plausibility: \\(f(\\mu^{'}|y)\\) versus \\(f(\\mu|y)\\). There are two possible scenarios here:\n\nScenario 1: \\(f(\\mu^{'}|y) \\geq f(\\mu|y)\\). When the posterior plausibility of \\(\\mu^{′}\\) is at least as great as that of \\(\\mu\\), \\(\\alpha=1\\). Thus, we’ll definitely move there.\nScenario 2: \\(f(\\mu^{'}|y) &lt; f(\\mu|y)\\). If the posterior plausibility of \\(\\mu^{′}\\) is less than that of \\(\\mu\\), then\n\n\\[α=\\displaystyle\\frac{f(\\mu^{′}|y)}{f(\\mu|y)}&lt;1\\]\nThus, we might move there.\n\n\n\n\n\n\nNear\n\n\n\n\n\nFurther, \\(\\alpha\\) approaches 1 as \\(f(\\mu^{'}|y)\\) nears \\(f(\\mu|y)\\). That is, the probability of accepting the proposal increases with the plausibility of \\(\\mu^{′}\\) relative to \\(\\mu\\)."
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#detailed-account",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#detailed-account",
+    "title": "7: MCMC",
+    "section": "Detailed Account",
+    "text": "Detailed Account\n\nstart location: \\(\\mu^{(0)} = 3\\)\nhalf-width: \\(w = 0.5\\)\nnormal-normal model:\n\nprior: \\(\\mu \\sim \\text{N}(3, 0.50^2)\\)\nlikelihood: \\(Y|\\mu \\sim \\text{N}(\\mu, 0.75^2)\\)\n\nobserved value: \\(y = 3.20\\)\n\n\nset.seed(20240220)\ncurrent  &lt;- 3\nproposal &lt;- runif(1, min = current - 1, max = current + 1)\nprint(paste0(\"The proposed value is: \", proposal))\n\n[1] \"The proposed value is: 2.8043764475733\"\n\nproposal_plausibility &lt;- dnorm(proposal, 3, 0.5) * dnorm(3.20, proposal, 0.75)\nprint(paste0(\"The proposed plausibility is: \", proposal_plausibility))\n\n[1] \"The proposed plausibility is: 0.342079515048734\"\n\ncurrent_plausibility &lt;- dnorm(current, 3, 0.5) * dnorm(3.20, current, 0.75)\nprint(paste0(\"The current plausibility is: \", current_plausibility))\n\n[1] \"The current plausibility is: 0.409588054724166\"\n\nalpha &lt;- min(1, proposal_plausibility / current_plausibility)\nprint(paste0(\"The acceptance probability is: \", alpha))\n\n[1] \"The acceptance probability is: 0.835179422600849\""
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#helper-function",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#helper-function",
+    "title": "7: MCMC",
+    "section": "Helper Function",
+    "text": "Helper Function\n\none_mh_iteration &lt;- function(current, w, obs_value, tau, sigma){\n  # Step 1: propose next location in chain\n  proposal &lt;- runif(1, min = current - w, current + w)\n  \n  # Step 2: decide whether or not to go there\n  proposal_plausibility &lt;- dnorm(proposal, 3, tau) * dnorm(obs_value, proposal, sigma)\n  current_plausibility &lt;- dnorm(current, 3, tau) * dnorm(obs_value, current, sigma)\n  alpha &lt;- min(1, proposal_plausibility / current_plausibility)\n  next_stop &lt;- sample(c(proposal, current), \n                      size = 1, prob = c(alpha, 1 - alpha))\n  \n  # Return the results as a data frame\n  return(data.frame(proposal, alpha, next_stop))\n}\n\n\nset.seed(1)\none_mh_iteration(current = 3, w = 0.5, \n                 obs_value = 3.20, tau = 0.75, sigma = 0.50)\n\n  proposal     alpha next_stop\n1 2.765509 0.7071998  2.765509\n\n\n\nset.seed(4)\none_mh_iteration(current = 3, w = 0.5, \n                 obs_value = 3.20, tau = 0.75, sigma = 0.50)\n\n  proposal alpha next_stop\n1   3.0858     1    3.0858\n\n\n\nset.seed(5)\none_mh_iteration(current = 3, w = 0.5, \n                 obs_value = 3.20, tau = 0.75, sigma = 0.50)\n\n  proposal     alpha next_stop\n1 2.700214 0.6068602         3"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#for-loop",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#for-loop",
+    "title": "7: MCMC",
+    "section": "For Loop",
+    "text": "For Loop\n\nmh_tour &lt;- function(N, current, w, obs_value, tau, sigma){\n  # N: chain length\n  # initialize vector\n  mu &lt;- rep(0, N)\n  \n  # simulate N Markov chain stops\n  for(i in 1:N){\n    # simulate one iteration\n    this_iteration &lt;- one_mh_iteration(current, w, obs_value, tau, sigma)\n    \n    # record next location\n    mu[i] &lt;- this_iteration$next_stop\n    \n    # update current location\n    current &lt;- this_iteration$next_stop\n  }\n  \n  # return the chain locations\n  return(data.frame(iteration = c(1:N), mu))\n}"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#go-on-tour",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#go-on-tour",
+    "title": "7: MCMC",
+    "section": "Go on Tour!",
+    "text": "Go on Tour!\n\nour_mh_tour &lt;- mh_tour(N = 5000, current = 3, w = 1, \n                 obs_value = 3.20, tau = 0.50, sigma = 0.75)"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#traces",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#traces",
+    "title": "7: MCMC",
+    "section": "Traces",
+    "text": "Traces\n\nOur Metropolis-Hastings Tour\nFrom our knowledge of the Normal-Normal model,\n\nbayesrules::summarize_normal_normal(\n  # from prior\n  mean = 3, sd = 0.50,\n  \n  # from observations\n  y_bar = 3.20, sigma = 0.75, n = 1\n) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model   mean   mode    var    sd\n1     prior 3.0000 3.0000 0.2500 0.500\n2 posterior 3.0615 3.0615 0.1731 0.416\n\n\nwe should have a \\(\\text{N}(3.0615, 0.4160^2)\\) posterior distribution\n\np1 &lt;- ggplot(our_mh_tour, aes(x = iteration, y = mu)) + \n  geom_line() +\n  labs(title = \"Our Metropolis-Hastings Tour\",\n       subtitle = \"Posterior: N(3.0615, 0.4160^2)\",\n       caption = \"SML 320\") +\n  theme_minimal()\n\np2 &lt;- ggplot(our_mh_tour, aes(x = mu)) + \n  geom_histogram(aes(y = after_stat(density)), \n                 binwidth = 0.1,\n                 color = \"black\", fill = \"gray50\") + \n  stat_function(fun = dnorm, args = list(3.0615, 0.4160), \n                color = \"#E77500\",\n                linewidth = 2) +\n  theme_minimal()\n\n# patchwork\np1 + p2"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#bad-examples",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#bad-examples",
+    "title": "7: MCMC",
+    "section": "Bad Examples",
+    "text": "Bad Examples\n\n\n\nbad examples\n\n\nImage Source: [Bayes Rules!](https://www.bayesrulesbook.com/chapter-6#diagnostics"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#density-overlay",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#density-overlay",
+    "title": "7: MCMC",
+    "section": "Density Overlay",
+    "text": "Density Overlay\n\nPlotsCode\n\n\n\n\n\n\n\n\n\n\np1 &lt;- mcmc_dens_overlay(bad_simulation, pars = \"pi\") + \n  labs(title = \"Density Overlay\",\n       subtitle = \"bad simulation\",\n       caption = \"SML 320\",\n       y = \"density\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\np2 &lt;- mcmc_dens_overlay(good_simulation, pars = \"pi\") + \n  labs(title = \"Density Overlay\",\n       subtitle = \"good simulation\",\n       caption = \"SML 320\",\n       y = \"density\") +\n  theme_minimal()\n\n# patchwork\np1 + p2"
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#legacy",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#legacy",
+    "title": "7: MCMC",
+    "section": "Legacy",
+    "text": "Legacy\nThe Metropolis-Hastings algorithm appeared in a top-ten list called ““the greatest influence on the development and practice of science and engineering in the 20th century”."
+  },
+  {
+    "objectID": "posts/07_mcmc_1/07_mcmc_1.html#music-recommendation",
+    "href": "posts/07_mcmc_1/07_mcmc_1.html#music-recommendation",
+    "title": "7: MCMC",
+    "section": "Music Recommendation",
+    "text": "Music Recommendation\nShould I Stay or Should I Go by The Clash\n\n\n\n\n\n\nSession Info\n\n\n\n\n\n\nsessionInfo()\n\nR version 4.3.0 (2023-04-21 ucrt)\nPlatform: x86_64-w64-mingw32/x64 (64-bit)\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] lubridate_1.9.2    forcats_1.0.0      stringr_1.5.0      dplyr_1.1.3       \n [5] purrr_1.0.2        readr_2.1.4        tidyr_1.3.0        tibble_3.2.1      \n [9] ggplot2_3.4.3      tidyverse_2.0.0    patchwork_1.1.2    rstan_2.32.5      \n[13] StanHeaders_2.32.5 ggtext_0.1.2       bayesplot_1.10.0  \n\nloaded via a namespace (and not attached):\n  [1] gridExtra_2.3        inline_0.3.19        rlang_1.1.1         \n  [4] magrittr_2.0.3       snakecase_0.11.0     matrixStats_1.0.0   \n  [7] e1071_1.7-13         compiler_4.3.0       loo_2.6.0           \n [10] callr_3.7.3          vctrs_0.6.3          reshape2_1.4.4      \n [13] pkgconfig_2.0.3      crayon_1.5.2         fastmap_1.1.1       \n [16] backports_1.4.1      ellipsis_0.3.2       labeling_0.4.3      \n [19] utf8_1.2.3           threejs_0.3.3        promises_1.2.1      \n [22] rmarkdown_2.24       markdown_1.8         tzdb_0.4.0          \n [25] nloptr_2.0.3         ps_1.7.5             xfun_0.40           \n [28] jsonlite_1.8.7       later_1.3.1          parallel_4.3.0      \n [31] prettyunits_1.1.1    R6_2.5.1             dygraphs_1.1.1.6    \n [34] stringi_1.7.12       boot_1.3-28.1        Rcpp_1.0.11         \n [37] knitr_1.43           zoo_1.8-12           base64enc_0.1-3     \n [40] splines_4.3.0        Matrix_1.5-4         igraph_1.4.3        \n [43] httpuv_1.6.11        timechange_0.2.0     tidyselect_1.2.0    \n [46] rstudioapi_0.15.0    abind_1.4-5          yaml_2.3.7          \n [49] miniUI_0.1.1.1       codetools_0.2-19     curl_5.0.2          \n [52] processx_3.8.1       pkgbuild_1.4.0       lattice_0.21-8      \n [55] plyr_1.8.8           shiny_1.7.5          withr_2.5.2         \n [58] groupdata2_2.0.2     posterior_1.4.1      evaluate_0.21       \n [61] survival_3.5-5       proxy_0.4-27         RcppParallel_5.1.7  \n [64] xts_0.13.1           xml2_1.3.5           pillar_1.9.0        \n [67] tensorA_0.36.2       DT_0.28              checkmate_2.2.0     \n [70] stats4_4.3.0         shinyjs_2.1.0        distributional_0.3.2\n [73] generics_0.1.3       hms_1.1.3            rstantools_2.3.1    \n [76] munsell_0.5.0        commonmark_1.9.0     scales_1.2.1        \n [79] minqa_1.2.5          gtools_3.9.4         xtable_1.8-4        \n [82] class_7.3-21         glue_1.6.2           janitor_2.2.0       \n [85] tools_4.3.0          shinystan_2.6.0      lme4_1.1-33         \n [88] colourpicker_1.2.0   bayesrules_0.0.2     grid_4.3.0          \n [91] crosstalk_1.2.0      QuickJSR_1.1.3       colorspace_2.1-0    \n [94] nlme_3.1-162         cli_3.6.1            fansi_1.0.4         \n [97] V8_4.3.0             gtable_0.3.4         digest_0.6.33       \n[100] htmlwidgets_1.6.2    farver_2.1.1         htmltools_0.5.6     \n[103] lifecycle_1.0.4      mime_0.12            rstanarm_2.21.4     \n[106] MASS_7.3-58.4        shinythemes_1.2.0    gridtext_0.1.5"
   }
 ]
