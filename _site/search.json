@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1069,5 +1069,89 @@
     "title": "7: MCMC",
     "section": "Music Recommendation",
     "text": "Music Recommendation\nShould I Stay or Should I Go by The Clash\n\n\n\n\n\n\nSession Info\n\n\n\n\n\n\nsessionInfo()\n\nR version 4.3.0 (2023-04-21 ucrt)\nPlatform: x86_64-w64-mingw32/x64 (64-bit)\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] lubridate_1.9.2    forcats_1.0.0      stringr_1.5.0      dplyr_1.1.3       \n [5] purrr_1.0.2        readr_2.1.4        tidyr_1.3.0        tibble_3.2.1      \n [9] ggplot2_3.4.3      tidyverse_2.0.0    patchwork_1.1.2    rstan_2.32.5      \n[13] StanHeaders_2.32.5 ggtext_0.1.2       bayesplot_1.10.0  \n\nloaded via a namespace (and not attached):\n  [1] gridExtra_2.3        inline_0.3.19        rlang_1.1.1         \n  [4] magrittr_2.0.3       snakecase_0.11.0     matrixStats_1.0.0   \n  [7] e1071_1.7-13         compiler_4.3.0       loo_2.6.0           \n [10] callr_3.7.3          vctrs_0.6.3          reshape2_1.4.4      \n [13] pkgconfig_2.0.3      crayon_1.5.2         fastmap_1.1.1       \n [16] backports_1.4.1      ellipsis_0.3.2       labeling_0.4.3      \n [19] utf8_1.2.3           threejs_0.3.3        promises_1.2.1      \n [22] rmarkdown_2.24       markdown_1.8         tzdb_0.4.0          \n [25] nloptr_2.0.3         ps_1.7.5             xfun_0.40           \n [28] jsonlite_1.8.7       later_1.3.1          parallel_4.3.0      \n [31] prettyunits_1.1.1    R6_2.5.1             dygraphs_1.1.1.6    \n [34] stringi_1.7.12       boot_1.3-28.1        Rcpp_1.0.11         \n [37] knitr_1.43           zoo_1.8-12           base64enc_0.1-3     \n [40] splines_4.3.0        Matrix_1.5-4         igraph_1.4.3        \n [43] httpuv_1.6.11        timechange_0.2.0     tidyselect_1.2.0    \n [46] rstudioapi_0.15.0    abind_1.4-5          yaml_2.3.7          \n [49] miniUI_0.1.1.1       codetools_0.2-19     curl_5.0.2          \n [52] processx_3.8.1       pkgbuild_1.4.0       lattice_0.21-8      \n [55] plyr_1.8.8           shiny_1.7.5          withr_2.5.2         \n [58] groupdata2_2.0.2     posterior_1.4.1      evaluate_0.21       \n [61] survival_3.5-5       proxy_0.4-27         RcppParallel_5.1.7  \n [64] xts_0.13.1           xml2_1.3.5           pillar_1.9.0        \n [67] tensorA_0.36.2       DT_0.28              checkmate_2.2.0     \n [70] stats4_4.3.0         shinyjs_2.1.0        distributional_0.3.2\n [73] generics_0.1.3       hms_1.1.3            rstantools_2.3.1    \n [76] munsell_0.5.0        commonmark_1.9.0     scales_1.2.1        \n [79] minqa_1.2.5          gtools_3.9.4         xtable_1.8-4        \n [82] class_7.3-21         glue_1.6.2           janitor_2.2.0       \n [85] tools_4.3.0          shinystan_2.6.0      lme4_1.1-33         \n [88] colourpicker_1.2.0   bayesrules_0.0.2     grid_4.3.0          \n [91] crosstalk_1.2.0      QuickJSR_1.1.3       colorspace_2.1-0    \n [94] nlme_3.1-162         cli_3.6.1            fansi_1.0.4         \n [97] V8_4.3.0             gtable_0.3.4         digest_0.6.33       \n[100] htmlwidgets_1.6.2    farver_2.1.1         htmltools_0.5.6     \n[103] lifecycle_1.0.4      mime_0.12            rstanarm_2.21.4     \n[106] MASS_7.3-58.4        shinythemes_1.2.0    gridtext_0.1.5"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html",
+    "title": "8: MCMC",
+    "section": "",
+    "text": "library(\"bayesplot\")\nlibrary(\"ggtext\")\nlibrary(\"rstan\")\nlibrary(\"patchwork\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#autocorrelation",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#autocorrelation",
+    "title": "8: MCMC",
+    "section": "Autocorrelation",
+    "text": "Autocorrelation\n\nMarkov PropertyPlotsCode\n\n\nIf we are assuming the Markov property\n\\[f\\left( \\theta^{(i+1)} \\bigg| \\theta^{(1)}, \\theta^{(2)}, ..., \\theta^{(i)}, y \\right) = f\\left( \\theta^{(i+1)} \\bigg| \\theta^{(i)}, y \\right)\\]\nthen autocorrelation measurements should only be “large” with a lag of one.\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesplot::mcmc_acf(good_simulation, pars = \"pi\") +\n  labs(title = \"Good Simulation\",\n       subtitle = \"10000 iterations\",\n       caption = \"SML 320\")\n\np2 &lt;- bayesplot::mcmc_acf(bad_simulation, pars = \"pi\") +\n  labs(title = \"Bad Simulation\",\n       subtitle = \"100 iterations\",\n       caption = \"SML 320\")\n\np3 &lt;- bayesplot::mcmc_acf(thin_simulation, pars = \"pi\") +\n  labs(title = \"Thinned Simulation\",\n       subtitle = \"Retained every 10 values\",\n       caption = \"SML 320\")\n\n# patchwork\np1 + p2 + p3"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#split-r-metric",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#split-r-metric",
+    "title": "8: MCMC",
+    "section": "Split R Metric",
+    "text": "Split R Metric\n\nAnalysis of VarianceDefinitionGuidanceExamples\n\n\n\n\n\nBayes Rules! Figure 6.19\n\n\n\n\n\n\n\n\n\n\nR-Hat\n\n\n\n\n\nConsider a Markov chain simulation of parameter \\(\\theta\\) which utilizes four parallel chains. Let \\(\\text{Var}_{\\text{combined}}\\) denote the variability in \\(\\theta\\) across all four chains combined and \\(\\text{Var}_{\\text{within}}\\) denote the typical variability within any individual chain. The R-hat metric calculates the ratio between these two sources of variability:\n\\[\\text{R-hat} \\approx \\sqrt{\\displaystyle\\frac{\\text{Var}_{\\text{combined}}}{\\text{Var}_{\\text{within}}}}\\]\n\n\n\n\n\n\nIdeally, \\(\\text{R-hat}\\approx 1\\), reflecting stability across the parallel chains.\nIn contrast, \\(\\text{R-hat} &gt; 1\\) indicates instability, with the variability in the combined chains exceeding that within the chains.\nThough no golden rule exists, an R-hat ratio greater than 1.05 raises some red flags about the stability of the simulation.\n\n\n\n\nbayesplot::rhat(good_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 1.0003\n\n\n\nbayesplot::rhat(bad_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 1.052\n\n\n\nbayesplot::rhat(thin_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 0.9983"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#effective-sample-size",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#effective-sample-size",
+    "title": "8: MCMC",
+    "section": "Effective Sample Size",
+    "text": "Effective Sample Size\n\nMotivationDescriptionGuidanceExamples\n\n\nLoosely speaking, how many independent sample values would it take to produce an equivalently accurate posterior approximation?\n\n\n\n\n\n\n\n\nEffective Sample Size Ratio\n\n\n\n\n\nLet \\(N\\) denote the actual sample size or length of a dependent Markov chain. The effective sample size of this chain, \\(N_{\\text{eff}\\), quantifies the number of independent samples it would take to produce an equivalently accurate posterior approximation. The greater the \\(N_{\\text{eff}\\) the better, yet it’s typically true that the accuracy of a Markov chain approximation is only as good as that of a smaller independent sample. That is, it’s typically true that \\(N_{\\text{eff} &lt; N\\), thus the effective sample size ratio is less than 1: \\[\\displaystyle\\frac{N_{\\text{eff}}{N} &lt; 1 \\quad\\text{(usually)}\\]\n\n\n\n\n\nThere’s no magic rule for interpreting this ratio, and it should be utilized alongside other diagnostics such as the trace plot. That said, we might be suspicious of a Markov chain for which the effective sample size ratio is less than 0.1, i.e., the effective sample size \\(N_{\\text{eff}\\) is less than 10% of the actual sample size N.\n\n\n\nbayesplot::neff_ratio(good_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 0.3873\n\n\n\nbayesplot::neff_ratio(bad_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 0.3434\n\n\n\nbayesplot::neff_ratio(thin_simulation, pars = \"pi\") |&gt; round(digits = 4)\n\n[1] 1.0543"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#metropolis-algorithm",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#metropolis-algorithm",
+    "title": "8: MCMC",
+    "section": "Metropolis Algorithm",
+    "text": "Metropolis Algorithm\nIf we have a symmetric proposal model, the probability of accepting a move from a current location \\(\\mu\\) to a proposed location \\(\\mu^{′}\\) comes down to a comparison of their posterior plausibility: \\(f(\\mu^{'}|y)\\) versus \\(f(\\mu|y)\\). There are two possible scenarios here:\n\nScenario 1: \\(f(\\mu^{'}|y) \\geq f(\\mu|y)\\). When the posterior plausibility of \\(\\mu^{′}\\) is at least as great as that of \\(\\mu\\), \\(\\alpha=1\\). Thus, we’ll definitely move there.\nScenario 2: \\(f(\\mu^{'}|y) &lt; f(\\mu|y)\\). If the posterior plausibility of \\(\\mu^{′}\\) is less than that of \\(\\mu\\), then\n\n\\[α=\\displaystyle\\frac{f(\\mu^{′}|y)}{f(\\mu|y)}&lt;1\\]\nThus, we might move there."
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#metropolis-hastings-algorithm",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#metropolis-hastings-algorithm",
+    "title": "8: MCMC",
+    "section": "Metropolis-Hastings Algorithm",
+    "text": "Metropolis-Hastings Algorithm\nRemoving the assumption of a symmetric proposal model, we have to convey \\(q(\\mu^{'}|\\mu)\\), the probability density function of the proposal model.\nConditioned on data \\(y\\), let parameter \\(\\mu\\) have posterior pdf \\[f(\\mu|y)\\propto f(\\mu) \\cdot L(\\mu|y)\\] A Metropolis-Hastings Markov chain for \\(f(\\mu|y)\\), \\(\\{\\mu^{(1)},\\mu^{(2)},...,\\mu^{(N)}\\}\\), evolves as follows. Let \\(\\mu^{(i)}=\\mu\\) be the chain’s location at iteration \\(i\\in\\{1,2,...,N−1\\}\\) and identify the next location \\(\\mu^{(i+1)}\\) through a two-step process:\n\nStep 1: Propose a new location. Conditioned on the current location \\(\\mu\\), draw a location \\(\\mu^{′}\\) from a proposal model with pdf \\(q(\\mu^{′}|\\mu)\\).\nStep 2: Decide whether or not to go there.\n\nCalculate the acceptance probability (i.e., the probability of accepting the proposal \\(\\mu^{′}\\)): \\[\\alpha = \\text{min}\\left\\{1, \\displaystyle\\frac{f(\\mu^{′}) \\cdot L(\\mu^{′}|y)}{f(\\mu) \\cdot L(\\mu|y)} \\cdot \\displaystyle\\frac{q(\\mu^{′}|\\mu)}{q(\\mu|\\mu^{′})} \\right\\}\\]\nFiguratively, flip a weighted coin. If it’s Heads, with probability \\(\\alpha\\), go to the proposed location \\(\\mu^{′}\\). If it’s Tails, with probability \\(1−\\alpha\\), stay at \\(\\mu\\): \\[\\mu^{(i+1)} = \\begin{cases}\n\\mu^{'} & \\text{with probability } \\alpha \\\\\n\\mu & \\text{with probability } 1-\\alpha \\\\\n  \\end{cases}\\]"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#motivation-1",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#motivation-1",
+    "title": "8: MCMC",
+    "section": "Motivation",
+    "text": "Motivation\nWhy generalize to a non-symmetric proposal model?\n\nflexibility to estimate a variety of parameters, such as standard deviations (or other nonnegative values)\nleads to more clever searches"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#gibbs-sampling",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#gibbs-sampling",
+    "title": "8: MCMC",
+    "section": "Gibbs Sampling",
+    "text": "Gibbs Sampling\n\nadaptive algorithm (especially with conjugate pairs)\ndescribed in 1984 by Stuart Geman and Donald Geman\nnamed after Josiah Willard Gibbs (for Gibbs’ work in statistical physics)\ngood for conditional distributions and marginal distributions"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#interlude-mountains-of-laos",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#interlude-mountains-of-laos",
+    "title": "8: MCMC",
+    "section": "Interlude: Mountains of Laos",
+    "text": "Interlude: Mountains of Laos\n\n\n\nVang Pao"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#hamiltonian-monte-carlo",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#hamiltonian-monte-carlo",
+    "title": "8: MCMC",
+    "section": "Hamiltonian Monte Carlo",
+    "text": "Hamiltonian Monte Carlo\nToward simulating a posterior distribution, Hamiltonian Monte Carlo (HMC) uses the topology by seeking out the gradient of maximum ascent\n\\[\\displaystyle\\text{max}_{\\vec{h}} \\lim_{|h| \\to 0} \\displaystyle\\frac{f(\\vec{x} + \\vec{h}) - f(\\vec{x})}{|h|}\\]\n“Path of least resistance”"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#app",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#app",
+    "title": "8: MCMC",
+    "section": "App",
+    "text": "App\nTry out some MCMC simulations!\n\nlink: MCMC Demo by Chi Feng\nalgorithms:\n\nRandomWalkMH\nGibbsSampling\nHamiltonianMC\nEfficientNUTS\n\nTarget distributions:\n\nstandard\nbanana\ndonut\nmultimodal"
+  },
+  {
+    "objectID": "posts/08_mcmc_2/08_mcmc_2.html#tuning",
+    "href": "posts/08_mcmc_2/08_mcmc_2.html#tuning",
+    "title": "8: MCMC",
+    "section": "Tuning",
+    "text": "Tuning\n\ngood_simulation &lt;- stan(model_code = bb_model, data = list(Y = 4), \n                        chains = 4, iter = 5000*2, seed = 84735)\n\nWhere did the simulation parameters, such as half-width and step-size, go?"
   }
 ]
