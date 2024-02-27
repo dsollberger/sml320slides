@@ -31,5 +31,8 @@
   },
   "posts/08_mcmc_2/08_mcmc_2.qmd": {
     "08_mcmc_2.html": "7db559eb"
+  },
+  "posts/09_posterior_inference/09_posterior_inference.qmd": {
+    "09_posterior_inference.html": "3de2a38e"
   }
 }
