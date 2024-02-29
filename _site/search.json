@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1314,5 +1314,152 @@
     "title": "9: Posterior Inference",
     "section": "Bayes Factor",
     "text": "Bayes Factor\n\nprior_odds &lt;- prior_prob / (1 - prior_prob)\nposterior_odds &lt;- posterior_prob / (1 - posterior_prob)\nBF &lt;- posterior_odds / prior_odds\nBF\n\n[1] 9.747294\n\n\nThe plausibility of observing dissolved oxygen concentration level “near” 10.7 mg/L increased with the inclusion of the year 2024 data."
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html",
+    "title": "10: Posterior Prediction",
+    "section": "",
+    "text": "library(\"bayesrules\")\nlibrary(\"bayesplot\")\nlibrary(\"DiagrammeR\")\nlibrary(\"infer\")\nlibrary(\"janitor\")\nlibrary(\"patchwork\")\nlibrary(\"rstan\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#scenario-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#scenario-1",
+    "title": "10: Posterior Prediction",
+    "section": "Scenario 1",
+    "text": "Scenario 1\nHow many days per year did we observe hypoxic conditions?\n\ny2022_data |&gt; count(hypoxic)\n\n# A tibble: 2 × 2\n  hypoxic     n\n  &lt;lgl&gt;   &lt;int&gt;\n1 FALSE     231\n2 TRUE        3\n\n\nIn the year 2022, there were 3 days with hypoxic conditions."
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#gamma-prior",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#gamma-prior",
+    "title": "10: Posterior Prediction",
+    "section": "Gamma Prior",
+    "text": "Gamma Prior\nWe can tune a vague gamma prior with a mean of 3 days and a variance of 1 day:\n\\[\\text{E}(\\lambda) = \\displaystyle\\frac{s}{r} = 3 \\text{ and } \\text{Var}(\\lambda) = \\displaystyle\\frac{s}{r^{2}} = 1\\]\nand obtain\n\nshape parameter: \\(s = 9\\)\nrate parameter: \\(r = 3\\)"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#observed-data",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#observed-data",
+    "title": "10: Posterior Prediction",
+    "section": "Observed Data",
+    "text": "Observed Data\n\ny2023_data |&gt; count(hypoxic)\n\n# A tibble: 2 × 2\n  hypoxic     n\n  &lt;lgl&gt;   &lt;int&gt;\n1 FALSE     260\n2 TRUE       27\n\n\nIn the year 2022, there were 27 days with hypoxic conditions."
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#stan",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#stan",
+    "title": "10: Posterior Prediction",
+    "section": "Stan",
+    "text": "Stan\n\nModelSimulationMetricsCode\n\n\n\ngp_model &lt;- \"\n  data {\n    int&lt;lower = 0&gt; Y;\n  }\n  parameters {\n    real&lt;lower = 0&gt; lambda;\n  }\n  model {\n    Y ~ poisson(lambda);\n    lambda ~ gamma(9, 3);\n  }\n\"\n\n\n\n\ngp_sim &lt;- stan(model_code = gp_model, \n               data = list(Y = 27), \n               chains = 4, iter = 5000*2, \n               refresh = 0, seed = 320)\n\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesplot::mcmc_trace(gp_sim, pars = \"lambda\", size = 0.1) +\n  labs(title = \"MCMC Trace\")\np2 &lt;- bayesplot::mcmc_dens_overlay(gp_sim, pars = \"lambda\") +\n  labs(title = \"Density Plots\")\np3 &lt;- bayesplot::mcmc_acf(gp_sim, pars = \"lambda\") +\n  labs(title = \"Autocorrelation\")\n\nn_eff &lt;- bayesplot::neff_ratio(gp_sim, pars = \"lambda\")\n\np4 &lt;- data.frame(x = 0, y = n_eff) |&gt;\n  ggplot(aes(x = x, y = y)) +\n  geom_bar(fill = \"#E77500\", stat = \"identity\") +\n  geom_hline(yintercept = 0.10, color = \"red\", \n             linetype = 2, linewidth = 2) +\n  labs(title = \"Effective Sample Size Ratio\") +\n  theme_minimal()\n\n# patchwork\n(p1 + p2) / (p3 + p4)"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#retrieving-posterior",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#retrieving-posterior",
+    "title": "10: Posterior Prediction",
+    "section": "Retrieving Posterior",
+    "text": "Retrieving Posterior\nWe can perform later calculations with the simulated posterior distribution if we first recast the information into an R data frame.\n\ngp_df &lt;- as.data.frame(gp_sim, pars = \"lambda\")\n\nhead(gp_df)\n\n     lambda\n1 11.563530\n2 11.532309\n3 10.145772\n4 12.085536\n5  8.916516\n6  8.598020"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#sample-statistics",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#sample-statistics",
+    "title": "10: Posterior Prediction",
+    "section": "Sample Statistics",
+    "text": "Sample Statistics\n\ngp_df |&gt;\n  summarize(post_mean = round(mean(lambda), 4),\n            post_median = round(median(lambda), 4),\n            post_sd = round(sd(lambda), 4),\n            lower_95 = round(quantile(lambda, 0.025), 2),\n            upper_95 = round(quantile(lambda, 0.975), 2))\n\n  post_mean post_median post_sd lower_95 upper_95\n1    9.0047      8.9052  1.4928     6.33    12.23"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#theoretical-statistics",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#theoretical-statistics",
+    "title": "10: Posterior Prediction",
+    "section": "Theoretical Statistics",
+    "text": "Theoretical Statistics\n\nbayesrules::summarize_gamma_poisson(shape = 9, rate = 3,\n                                    sum_y = 27, n = 1) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      model shape rate mean   mode  var  sd\n1     prior     9    3    3 2.6667 1.00 1.0\n2 posterior    36    4    9 8.7500 2.25 1.5\n\n\n\n# credible interval\nqgamma(c(0.025, 0.975), shape = 36, rate = 4)\n\n[1]  6.303489 12.169132"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#nhst",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#nhst",
+    "title": "10: Posterior Prediction",
+    "section": "NHST",
+    "text": "NHST\nClaim: There are 7 days of hypoxic conditions per year at the ARIK NEON site.\nWe can express this two-sided hypothesis test as\n\\[H_{o}: \\lambda \\in (6,8)\\] \\[H_{a}: \\lambda \\notin (6,8)\\]"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#probabilities",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#probabilities",
+    "title": "10: Posterior Prediction",
+    "section": "Probabilities",
+    "text": "Probabilities\n\nprior_prob &lt;- diff(pgamma(c(6,8), shape = 9, rate = 3))\nposterior_prob &lt;- gp_df |&gt; \n  mutate(in_interval = lambda &gt; 6 & lambda &lt; 8) |&gt; \n  pull(in_interval) |&gt;\n  mean()"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#bayes-factor",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#bayes-factor",
+    "title": "10: Posterior Prediction",
+    "section": "Bayes Factor",
+    "text": "Bayes Factor\n\nprior_odds &lt;- prior_prob / (1 - prior_prob)\nposterior_odds &lt;- posterior_prob / (1 - posterior_prob)\nBF &lt;- posterior_odds / prior_odds\nBF\n\n[1] 46.61742\n\n\nSince the Bayes factor is greater than one, we have found some evidence that it is more plausible that the number of days per year of hypoxic conditions at the ARIK NEON site is between 6 and 8 days."
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#scenario-2",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#scenario-2",
+    "title": "10: Posterior Prediction",
+    "section": "Scenario 2",
+    "text": "Scenario 2\nHow much dissolved oxygen concentration do we find at the ARIK NEON site?\n\ny2022_data |&gt;\n  summarize(prior_mean = round(mean(oxygen), 4),\n            prior_median = round(median(oxygen), 4),\n            prior_sd = round(sd(oxygen), 4),\n            lower_95 = round(quantile(oxygen, 0.025), 2),\n            upper_95 = round(quantile(oxygen, 0.975), 2))\n\n# A tibble: 1 × 5\n  prior_mean prior_median prior_sd lower_95 upper_95\n       &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1       7.73         7.64     2.24     3.47     11.4"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#observed-data-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#observed-data-1",
+    "title": "10: Posterior Prediction",
+    "section": "Observed Data",
+    "text": "Observed Data\n\ny2023_data |&gt;\n  summarize(obs_mean = round(mean(oxygen), 4),\n            obs_median = round(median(oxygen), 4),\n            obs_sd = round(sd(oxygen), 4),\n            lower_95 = round(quantile(oxygen, 0.025), 2),\n            upper_95 = round(quantile(oxygen, 0.975), 2),\n            count = n())\n\n# A tibble: 1 × 6\n  obs_mean obs_median obs_sd lower_95 upper_95 count\n     &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;\n1     6.73       6.71   2.54      2.2     10.2   287"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#stan-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#stan-1",
+    "title": "10: Posterior Prediction",
+    "section": "Stan",
+    "text": "Stan\n\nModelSimulationMetricsCode\n\n\nIn this example, we are estimating the parameter \\(\\mu\\) and assuming a constant standard deviation from the prior.\n\nnn_model &lt;- \"\n  data {\n    real Y[287];\n  }\n  parameters {\n    real mu;\n  }\n  model {\n    Y ~ normal(mu, 2.2375^2);\n    mu ~ normal(7.7274, 2.2375^2);\n  }\n\"\n\n\n\n\nnn_sim &lt;- stan(model_code = nn_model, \n               data = list(Y = y2023_data$oxygen), \n               chains = 4, iter = 5000*2, \n               refresh = 0, seed = 320)\n\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesplot::mcmc_trace(nn_sim, pars = \"mu\", size = 0.1) +\n  labs(title = \"MCMC Trace\")\np2 &lt;- bayesplot::mcmc_dens_overlay(nn_sim, pars = \"mu\") +\n  labs(title = \"Density Plots\")\np3 &lt;- bayesplot::mcmc_acf(nn_sim, pars = \"mu\") +\n  labs(title = \"Autocorrelation\")\n\nn_eff &lt;- bayesplot::neff_ratio(nn_sim, pars = \"mu\")\n\np4 &lt;- data.frame(x = 0, y = n_eff) |&gt;\n  ggplot(aes(x = x, y = y)) +\n  geom_bar(fill = \"#E77500\", stat = \"identity\") +\n  geom_hline(yintercept = 0.10, color = \"red\", \n             linetype = 2, linewidth = 2) +\n  labs(title = \"Effective Sample Size Ratio\") +\n  theme_minimal()\n\n# patchwork\n(p1 + p2) / (p3 + p4)"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#retrieving-posterior-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#retrieving-posterior-1",
+    "title": "10: Posterior Prediction",
+    "section": "Retrieving Posterior",
+    "text": "Retrieving Posterior\nWe can perform later calculations with the simulated posterior distribution if we first recast the information into an R data frame.\n\nnn_df &lt;- as.data.frame(nn_sim, pars = \"mu\")\n\nhead(nn_df)\n\n        mu\n1 6.746397\n2 6.839667\n3 6.901907\n4 7.078138\n5 7.116624\n6 6.511242"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#sample-statistics-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#sample-statistics-1",
+    "title": "10: Posterior Prediction",
+    "section": "Sample Statistics",
+    "text": "Sample Statistics\n\nnn_df |&gt;\n  summarize(post_mean = round(mean(mu), 4),\n            post_median = round(median(mu), 4),\n            post_sd = round(sd(mu), 4),\n            lower_95 = round(quantile(mu, 0.025), 2),\n            upper_95 = round(quantile(mu, 0.975), 2))\n\n  post_mean post_median post_sd lower_95 upper_95\n1    6.7309      6.7322  0.2935     6.15      7.3"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#nhst-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#nhst-1",
+    "title": "10: Posterior Prediction",
+    "section": "NHST",
+    "text": "NHST\nClaim: At the ARIK NEON site, the average dissolved oxygen concentration level is less than 6 mg/L.\nWe can express this one-sided hypothesis test as\n\\[H_{o}: \\mu &lt; 6.0\\] \\[H_{a}: \\mu \\geq 6.0\\]"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#probabilities-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#probabilities-1",
+    "title": "10: Posterior Prediction",
+    "section": "Probabilities",
+    "text": "Probabilities\n\nprior_prob &lt;- pnorm(6, mean = 7.7274, sd = 2.2375)\nposterior_prob &lt;- nn_df |&gt; \n  mutate(in_interval = mu &lt; 6) |&gt; \n  pull(in_interval) |&gt;\n  mean()"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#bayes-factor-1",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#bayes-factor-1",
+    "title": "10: Posterior Prediction",
+    "section": "Bayes Factor",
+    "text": "Bayes Factor\n\nprior_odds &lt;- prior_prob / (1 - prior_prob)\nposterior_odds &lt;- posterior_prob / (1 - posterior_prob)\nBF &lt;- posterior_odds / prior_odds\nBF\n\n[1] 0.02229188\n\n\nSince the Bayes factor is less than one, we have found some evidence that it is less plausible that the average dissolved oxygen concentration level at the ARIK NEON site is less than 6 mg/L."
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#objectives",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#objectives",
+    "title": "10: Posterior Prediction",
+    "section": "Objectives",
+    "text": "Objectives\nIn the second half of the semester, we may revisit this data set to\n\nuse normal regression to predict dissolved oxygen levels\nuse Poisson regression to predict chlorophyll-a levels\nuse logistic regression and Naive Bayes for classification tasks\nuse hierarchical models"
+  },
+  {
+    "objectID": "posts/10_posterior_prediction/10_posterior_prediction.html#pooling",
+    "href": "posts/10_posterior_prediction/10_posterior_prediction.html#pooling",
+    "title": "10: Posterior Prediction",
+    "section": "Pooling",
+    "text": "Pooling\n\nFlowchartMermaid Code\n\n\n\n\n\n\n\n\n\n\n\ntri_state_sites_tree &lt;- DiagrammeR::mermaid(\"\n  graph TD\n  \n  oxygen1[oxygen]\n  oxygen2[oxygen]\n  oxygen3[oxygen]\n  oxygen4[oxygen]\n  oxygen5[oxygen]\n  oxygen6[oxygen]\n  temp1[temperature]\n  temp2[temperature]\n  temp3[temperature]\n  temp4[temperature]\n  temp5[temperature]\n  temp6[temperature]\n  \n  walk[WALK]\n  neco[NECO]\n  lewi[LEWI]\n  serc[SERC]\n  hopb[HOPB]\n  harv[HARV]\n  \n  appalachians[Appalachians]\n  mid_atlantic[Mid-Atlantic]\n  northeast[Northeast]\n  \n  response[Response Variable]\n  \n  oxygen1 --&gt; walk\n  temp1   --&gt; walk\n  oxygen2 --&gt; neco\n  temp2   --&gt; neco\n  oxygen3 --&gt; lewi\n  temp3   --&gt; lewi\n  oxygen4 --&gt; serc\n  temp4   --&gt; serc\n  oxygen5 --&gt; hopb\n  temp5   --&gt; hopb\n  oxygen6 --&gt; harv\n  temp6   --&gt; harv\n  \n  walk --&gt; appalachians\n  neco --&gt; appalachians\n  lewi --&gt; mid_atlantic\n  serc --&gt; mid_atlantic\n  hopb --&gt; northeast\n  harv --&gt; northeast\n  \n  appalachians --&gt; response\n  mid_atlantic --&gt; response\n  northeast    --&gt; response\n\")\n\n# print\ntri_state_sites_tree"
   }
 ]
