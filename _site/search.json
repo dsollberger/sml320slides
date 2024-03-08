@@ -4,7 +4,7 @@
     "href": "posts/01_conditional_probability/01_conditional_probability.html",
     "title": "1: Conditional Probability",
     "section": "",
-    "text": "Spring 2024\nTuTh, 11 AM to 1220 PM\nBendheim House 103\nLecturer: Derek\n\nI go by “Derek” or “teacher”\n\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
+    "text": "Goal: Motivate the Bayesian inversion of events\nObjective: Review conditional probability and metrics\n\n\n\n\n\nBayes Rules\n\n\n\n\n\n\n\n\nSpring 2024\nTuTh, 11 AM to 1220 PM\nBendheim House 103\nLecturer: Derek\n\nI go by “Derek” or “teacher”\n\n\n\n\n\n\n\n\nCourse Description\n\n\n\n\n\nThis course provides an introduction to Bayesian analysis—a powerful statistical framework for making inferences and modeling uncertainty in a wide range of applications. Students will explore the fundamental principles of Bayesian statistics, probability theory, Bayesian inference, and practical applications of Bayesian modeling. The course will cover both the theory and hands-on implementation using data science software and the R programming language."
   },
   {
     "objectID": "about.html",
@@ -193,7 +193,7 @@
     "href": "posts/01_conditional_probability/01_conditional_probability.html#practice-1",
     "title": "1: Conditional Probability",
     "section": "Practice",
-    "text": "Practice\nSuppose that another team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n94\n80\n    low\n23\n939\n  \n  \n  \n\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\nProsecutor’s Fallacy\n\n\n\n\n\nFor events \\(A\\) and \\(B\\), the inverse conditional probabilities are almost never equal to each other\n\\[P(A|B) \\neq P(B|A)\\]\n\n\n\n\n\n\n\n\n\n(optional) Additional Resources\n\n\n\n\n\n\nClassical vs Frequentist vs Bayesian Probability by Trefor Bazett"
+    "text": "Practice\nSuppose that another team of contestants built a machine learning model for this Kaggle competition and achieved the results seen in the confusion matrix below.\n\n\n\n\n\n\n  \n    \n    \n      \n      \n        model predictions\n      \n    \n    \n      high\n      low\n    \n  \n  \n    high\n94\n80\n    low\n23\n939\n  \n  \n  \n\n\n\n\nFor this confusion matrix, compute the accuracy, sensitivity, specificity, and F-score for the results.\n\n\n\n\n\n\nProsecutor’s Fallacy\n\n\n\n\n\nFor events \\(A\\) and \\(B\\), the inverse conditional probabilities are almost never equal to each other\n\\[P(A|B) \\neq P(B|A)\\]"
   },
   {
     "objectID": "posts/01_conditional_probability/01_conditional_probability.html#classical-probability",
@@ -1461,5 +1461,12 @@
     "title": "10: Posterior Prediction",
     "section": "Pooling",
     "text": "Pooling\n\nFlowchartMermaid Code\n\n\n\n\n\n\n\n\n\n\n\ntri_state_sites_tree &lt;- DiagrammeR::mermaid(\"\n  graph TD\n  \n  oxygen1[oxygen]\n  oxygen2[oxygen]\n  oxygen3[oxygen]\n  oxygen4[oxygen]\n  oxygen5[oxygen]\n  oxygen6[oxygen]\n  temp1[temperature]\n  temp2[temperature]\n  temp3[temperature]\n  temp4[temperature]\n  temp5[temperature]\n  temp6[temperature]\n  \n  walk[WALK]\n  neco[NECO]\n  lewi[LEWI]\n  serc[SERC]\n  hopb[HOPB]\n  harv[HARV]\n  \n  appalachians[Appalachians]\n  mid_atlantic[Mid-Atlantic]\n  northeast[Northeast]\n  \n  response[Response Variable]\n  \n  oxygen1 --&gt; walk\n  temp1   --&gt; walk\n  oxygen2 --&gt; neco\n  temp2   --&gt; neco\n  oxygen3 --&gt; lewi\n  temp3   --&gt; lewi\n  oxygen4 --&gt; serc\n  temp4   --&gt; serc\n  oxygen5 --&gt; hopb\n  temp5   --&gt; hopb\n  oxygen6 --&gt; harv\n  temp6   --&gt; harv\n  \n  walk --&gt; appalachians\n  neco --&gt; appalachians\n  lewi --&gt; mid_atlantic\n  serc --&gt; mid_atlantic\n  hopb --&gt; northeast\n  harv --&gt; northeast\n  \n  appalachians --&gt; response\n  mid_atlantic --&gt; response\n  northeast    --&gt; response\n\")\n\n# print\ntri_state_sites_tree"
+  },
+  {
+    "objectID": "posts/01_conditional_probability/01_conditional_probability.html#start",
+    "href": "posts/01_conditional_probability/01_conditional_probability.html#start",
+    "title": "1: Conditional Probability",
+    "section": "",
+    "text": "Goal: Motivate the Bayesian inversion of events\nObjective: Review conditional probability and metrics\n\n\n\n\n\nBayes Rules"
   }
 ]

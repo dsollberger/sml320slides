@@ -270,9 +270,9 @@ Chain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)
 Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.03 seconds (Warm-up)
+Chain 1:  Elapsed Time: 0.029 seconds (Warm-up)
 Chain 1:                0.029 seconds (Sampling)
-Chain 1:                0.059 seconds (Total)
+Chain 1:                0.058 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
@@ -296,14 +296,14 @@ Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0.028 seconds (Warm-up)
-Chain 2:                0.03 seconds (Sampling)
-Chain 2:                0.058 seconds (Total)
+Chain 2:                0.034 seconds (Sampling)
+Chain 2:                0.062 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 2e-06 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 3: Gradient evaluation took 1e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -321,14 +321,14 @@ Chain 3: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 3: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.028 seconds (Warm-up)
-Chain 3:                0.029 seconds (Sampling)
-Chain 3:                0.057 seconds (Total)
+Chain 3:                0.03 seconds (Sampling)
+Chain 3:                0.058 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 2e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 4: Gradient evaluation took 6e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -345,15 +345,15 @@ Chain 4: Iteration: 8000 / 10000 [ 80%]  (Sampling)
 Chain 4: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 4: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.028 seconds (Warm-up)
-Chain 4:                0.029 seconds (Sampling)
-Chain 4:                0.057 seconds (Total)
+Chain 4:  Elapsed Time: 0.03 seconds (Warm-up)
+Chain 4:                0.03 seconds (Sampling)
+Chain 4:                0.06 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(end_time<span class="sc">-</span> start_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 37 secs</code></pre>
+<pre><code>Time difference of 57 secs</code></pre>
 </div>
 </div>
 </div>
@@ -657,9 +657,9 @@ Chain 1: Iteration: 8000 / 10000 [ 80%]  (Sampling)
 Chain 1: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 1: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.023 seconds (Warm-up)
-Chain 1:                0.024 seconds (Sampling)
-Chain 1:                0.047 seconds (Total)
+Chain 1:  Elapsed Time: 0.024 seconds (Warm-up)
+Chain 1:                0.025 seconds (Sampling)
+Chain 1:                0.049 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
@@ -682,9 +682,9 @@ Chain 2: Iteration: 8000 / 10000 [ 80%]  (Sampling)
 Chain 2: Iteration: 9000 / 10000 [ 90%]  (Sampling)
 Chain 2: Iteration: 10000 / 10000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.023 seconds (Warm-up)
+Chain 2:  Elapsed Time: 0.024 seconds (Warm-up)
 Chain 2:                0.026 seconds (Sampling)
-Chain 2:                0.049 seconds (Total)
+Chain 2:                0.05 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
@@ -1055,7 +1055,7 @@ Session Info
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>R version 4.3.0 (2023-04-21 ucrt)
+<pre><code>R version 4.3.2 (2023-10-31 ucrt)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
 Running under: Windows 10 x64 (build 19045)
 
@@ -1076,8 +1076,8 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] lubridate_1.9.2    forcats_1.0.0      stringr_1.5.0      dplyr_1.1.3       
- [5] purrr_1.0.2        readr_2.1.4        tidyr_1.3.0        tibble_3.2.1      
+ [1] lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4       
+ [5] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
  [9] ggplot2_3.4.3      tidyverse_2.0.0    patchwork_1.1.2    rstan_2.32.5      
 [13] StanHeaders_2.32.5 ggtext_0.1.2       bayesplot_1.10.0  
 
@@ -1085,25 +1085,25 @@ loaded via a namespace (and not attached):
  [1] tensorA_0.36.2       gtable_0.3.4         xfun_0.40           
  [4] QuickJSR_1.1.3       htmlwidgets_1.6.2    processx_3.8.1      
  [7] inline_0.3.19        callr_3.7.3          tzdb_0.4.0          
-[10] vctrs_0.6.3          tools_4.3.0          ps_1.7.5            
-[13] generics_0.1.3       stats4_4.3.0         curl_5.0.2          
-[16] parallel_4.3.0       fansi_1.0.4          pkgconfig_2.0.3     
+[10] vctrs_0.6.5          tools_4.3.2          ps_1.7.5            
+[13] generics_0.1.3       stats4_4.3.2         curl_5.0.2          
+[16] parallel_4.3.2       fansi_1.0.6          pkgconfig_2.0.3     
 [19] checkmate_2.2.0      distributional_0.3.2 RcppParallel_5.1.7  
-[22] lifecycle_1.0.4      farver_2.1.1         compiler_4.3.0      
+[22] lifecycle_1.0.4      farver_2.1.1         compiler_4.3.2      
 [25] munsell_0.5.0        codetools_0.2-19     htmltools_0.5.6     
-[28] yaml_2.3.7           pillar_1.9.0         crayon_1.5.2        
+[28] yaml_2.3.8           pillar_1.9.0         crayon_1.5.2        
 [31] abind_1.4-5          posterior_1.4.1      commonmark_1.9.0    
-[34] tidyselect_1.2.0     digest_0.6.33        stringi_1.7.12      
+[34] tidyselect_1.2.0     digest_0.6.33        stringi_1.8.3       
 [37] reshape2_1.4.4       labeling_0.4.3       fastmap_1.1.1       
-[40] grid_4.3.0           colorspace_2.1-0     cli_3.6.1           
+[40] grid_4.3.2           colorspace_2.1-0     cli_3.6.1           
 [43] magrittr_2.0.3       loo_2.6.0            pkgbuild_1.4.0      
-[46] utf8_1.2.3           withr_2.5.2          backports_1.4.1     
-[49] prettyunits_1.1.1    scales_1.2.1         timechange_0.2.0    
+[46] utf8_1.2.4           withr_3.0.0          backports_1.4.1     
+[49] prettyunits_1.2.0    scales_1.2.1         timechange_0.3.0    
 [52] rmarkdown_2.24       matrixStats_1.0.0    gridExtra_2.3       
 [55] hms_1.1.3            evaluate_0.21        knitr_1.43          
 [58] V8_4.3.0             markdown_1.8         rlang_1.1.1         
 [61] gridtext_0.1.5       Rcpp_1.0.11          glue_1.6.2          
-[64] xml2_1.3.5           rstudioapi_0.15.0    jsonlite_1.8.7      
+[64] xml2_1.3.6           rstudioapi_0.15.0    jsonlite_1.8.7      
 [67] plyr_1.8.8           R6_2.5.1            </code></pre>
 </div>
 </div>
