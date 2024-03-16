@@ -37,5 +37,8 @@
   },
   "posts/10_posterior_prediction/10_posterior_prediction.qmd": {
     "10_posterior_prediction.html": "8879c8bc"
+  },
+  "posts/11_normal_regression/11_normal_regression.qmd": {
+    "11_normal_regression.html": "a2322e83"
   }
 }

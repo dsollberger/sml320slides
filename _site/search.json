@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1468,5 +1468,173 @@
     "title": "1: Conditional Probability",
     "section": "",
     "text": "Goal: Motivate the Bayesian inversion of events\nObjective: Review conditional probability and metrics\n\n\n\n\n\nBayes Rules"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html",
+    "href": "posts/11_normal_regression/11_normal_regression.html",
+    "title": "11: Normal Regression",
+    "section": "",
+    "text": "library(\"bayesrules\")\nlibrary(\"bayesplot\")\nlibrary(\"broom.mixed\")\nlibrary(\"patchwork\")\nlibrary(\"rstan\")\nlibrary(\"rstanarm\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#san-francisco-rental-market",
+    "href": "posts/11_normal_regression/11_normal_regression.html#san-francisco-rental-market",
+    "title": "11: Normal Regression",
+    "section": "San Francisco Rental Market",
+    "text": "San Francisco Rental Market\n\n\n\nsource: TidyTuesday\n2022-07-05\nPennington, Kate (2018). Bay Area Craigslist Rental Housing Posts, 2000-2018. Retrieved from https://github.com/katepennington/historic_bay_area_craigslist_housing_posts/blob/master/clean_2000_2018.csv.zip.\n\nCraigslist listings\n\n\n\n\n\n\n\n\nSF Counties"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#sf-rent-dataset",
+    "href": "posts/11_normal_regression/11_normal_regression.html#sf-rent-dataset",
+    "title": "11: Normal Regression",
+    "section": "SF Rent Dataset",
+    "text": "SF Rent Dataset\n\n\n\nResponse Variable\n\nY: price (in US dollars)\n\n\n\n\n\n\nPredictor Variables\nSome possible predictable variables include\n\narea (sq feet of rental)\nnumber of bedrooms\nnumber of bathrooms\ncounty\nyear\nlatitude/longitude"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#loading",
+    "href": "posts/11_normal_regression/11_normal_regression.html#loading",
+    "title": "11: Normal Regression",
+    "section": "Loading",
+    "text": "Loading\n\nrent_raw &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-05/rent.csv')"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#wrangling",
+    "href": "posts/11_normal_regression/11_normal_regression.html#wrangling",
+    "title": "11: Normal Regression",
+    "section": "Wrangling",
+    "text": "Wrangling\n\nfiltered out lowest 5 percent and largest 5 percent of rentals (by price)\nfiltered out lowest 5 percent and largest 5 percent of rentals (by area)\nat least year 2009 (i.e. decade from 2009 to 2018)\n55143 observations\n\n\nrent_df &lt;- rent_raw |&gt;\n  filter(price &gt;= 800 & price &lt;= 5000) |&gt;\n  filter(sqft &gt;= 500 & sqft &lt;= 2500) |&gt;\n  filter(year &gt;= 2009)"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#normal-normal",
+    "href": "posts/11_normal_regression/11_normal_regression.html#normal-normal",
+    "title": "11: Normal Regression",
+    "section": "Normal Normal",
+    "text": "Normal Normal\nAt first\n\\[\\begin{array}{rcl}\n  Y|\\mu & \\sim & N(\\mu, \\sigma^{2}) \\\\\n  \\mu & \\sim & N(\\theta, \\tau^{2}) \\\\\n\\end{array}\\]\nassumed known variability \\(\\sigma^{2}\\)"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#sigma",
+    "href": "posts/11_normal_regression/11_normal_regression.html#sigma",
+    "title": "11: Normal Regression",
+    "section": "Sigma",
+    "text": "Sigma\nStandard deviation \\(\\sigma\\) is another unknown parameter\n\\[\\begin{array}{rcl}\n  Y|\\mu & \\sim & N(\\mu, \\sigma^{2}) \\\\\n  \\mu & \\sim & N(\\theta, \\tau^{2}) \\\\\n  \\sigma & \\sim & \\text{[some other model]}\n\\end{array}\\]"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#local-mean",
+    "href": "posts/11_normal_regression/11_normal_regression.html#local-mean",
+    "title": "11: Normal Regression",
+    "section": "Local Mean",
+    "text": "Local Mean\nInstead of estimating a global mean\n\n\\(\\mu\\): average price across all rental sizes\n\nwe can refine the models with a local mean\n\n\\(\\mu_{i} = \\beta_{0} + \\beta_{1}x_{i}\\)\nspecific to the rental size"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#capturing-variability",
+    "href": "posts/11_normal_regression/11_normal_regression.html#capturing-variability",
+    "title": "11: Normal Regression",
+    "section": "Capturing Variability",
+    "text": "Capturing Variability\n\nVariabilityCodeLocal\n\n\n\n\n\n\n\n\n\n\np1 &lt;- rent_df |&gt;\n  mutate(nearby = abs(price - (1439 + 0.899*sqft)) &lt; 1000) |&gt;\n  filter(nearby) |&gt;\n  ggplot(aes(x = sqft, y = price)) +\n  geom_point(color = \"gray75\") +\n  geom_smooth(method = \"lm\", color = \"red\") +\n  labs(title = \"High Variability\",\n       x = \"area (square feet)\",\n       y = \"price (USD)\") +\n  theme_minimal() +\n  ylim(0, 5000)\n\np2 &lt;- rent_df |&gt;\n  mutate(nearby = abs(price - (1439 + 0.899*sqft)) &lt; 250) |&gt;\n  filter(nearby) |&gt;\n  ggplot(aes(x = sqft, y = price)) +\n  geom_point(color = \"gray75\") +\n  geom_smooth(method = \"lm\", color = \"red\") +\n  labs(title = \"Low Variability\",\n       caption = \"SML 320\",\n       x = \"area (square feet)\",\n       y = \"price (USD)\") +\n  theme_minimal() +\n  ylim(0, 5000)\n\n# patchwork\np1 + p2\n\n\n\nParameter \\(\\sigma\\) now represents variability from the local mean\n\\[\\mu_{i} = \\beta_{0} + \\beta_{1}x_{i}\\]"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#normal-data-model-assumptions",
+    "href": "posts/11_normal_regression/11_normal_regression.html#normal-data-model-assumptions",
+    "title": "11: Normal Regression",
+    "section": "Normal Data Model Assumptions",
+    "text": "Normal Data Model Assumptions\n\\[Y|\\beta_{0}, \\beta_{1}, \\sigma \\sim \\mu_{i} = \\beta_{0} + \\beta_{1}X_{i}\\]\n\nStructure of the data: Accounting for predictor \\(X\\), the observed data \\(Y_i\\) on case \\(i\\) is independent of the observed data on any other case \\(j\\).\nStructure of the relationship: The typical \\(Y\\) outcome can be written as a linear function of predictor \\(X\\), \\(\\mu=\\beta_{0} + \\beta_{1}X\\).\nStructure of the variability: At any value of predictor \\(X\\), the observed values of \\(Y\\) will vary normally around their average \\(\\mu\\) with consistent standard deviation \\(\\sigma\\)."
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#tuning-priors",
+    "href": "posts/11_normal_regression/11_normal_regression.html#tuning-priors",
+    "title": "11: Normal Regression",
+    "section": "Tuning Priors",
+    "text": "Tuning Priors\n\nIntuitionPrior DistsPrior ModelSimulation Space\n\n\nDomain expertise would help an analyst create some informative priors for the parameters. Otherwise, I will temporarily use haphazard code (below) to ascertain that\n\nrental prices tend to be between 900 and 1200 dollars per month\nfor every one square foot increase in area, the rental price tends to increase between -5 and 47 cents\nrental prices tend to vary with a standard deviation of about 90 dollars\n\n\nset.seed(320)\nN &lt;- 1000 # sample size\n\nslopes &lt;- rep(NA, N)\nintercepts &lt;- rep(NA, N)\nranges &lt;- rep(NA, N)\ncenters &lt;- rep(NA,N)\n\nfor(i in 1:N){\n  two_houses &lt;- rent_df |&gt;\n    slice_sample(n = 2) |&gt;\n    select(price, sqft)\n  \n  x1 &lt;- two_houses[1,1] |&gt; unlist()\n  x2 &lt;- two_houses[2,1] |&gt; unlist()\n  y1 &lt;- two_houses[1,2] |&gt; unlist()\n  y2 &lt;- two_houses[2,2] |&gt; unlist()\n  \n  if(x1 == x2){\n    slopes[i] &lt;- NA\n    intercepts[i] &lt;- NA\n  }else{\n    slopes[i] &lt;- (y2 - y1) / (x2 - x1)\n    intercepts[i] &lt;- y1 - slopes[i]*x1\n  }\n  \n  ranges[i] &lt;- abs(y2 - y1)\n  centers[i] &lt;- (y1 + y2) / 2\n}\n\nprint(\"Intercept estimates\")\n\n[1] \"Intercept estimates\"\n\nprint(round(quantile(intercepts, c(0.3, 0.5, 0.7), na.rm = TRUE)))\n\n 30%  50%  70% \n   6  547 1142 \n\nprint(\"Slope estimates\")\n\n[1] \"Slope estimates\"\n\nprint(quantile(slopes, c(0.3, 0.5, 0.7), na.rm = TRUE))\n\n       30%        50%        70% \n-0.0548437  0.1613792  0.4677822 \n\nprint(\"Deviation estimates\")\n\n[1] \"Deviation estimates\"\n\nprint(round(quantile(ranges/4, c(0.3, 0.5, 0.7), na.rm = TRUE)))\n\n30% 50% 70% \n 43  88 142 \n\nprint(\"Centered intercept estimates\")\n\n[1] \"Centered intercept estimates\"\n\nprint(round(quantile(centers, c(0.3, 0.5, 0.7), na.rm = TRUE)))\n\n 30%  50%  70% \n 901 1041 1203 \n\n\n\n\n\np1 &lt;- bayesrules::plot_normal(mean = 547, sd = 1142-547) + \n  labs(title = \"intercept\", x = \"beta_0\", y = \"\") +\n  theme_minimal()\np2 &lt;- bayesrules::plot_normal(mean = 0.16, sd = 0.47-0.16) + \n  labs(title = \"slope\", x = \"beta_1\", y = \"\") +\n  theme_minimal()\np3 &lt;- bayesrules::plot_gamma(shape = 1, rate = 1/88) + \n  labs(title = \"deviation\", x = \"sigma\", y = \"\") +\n  theme_minimal()\n\n# patchwork\np1 + p2 + p3\n\n\n\n\n\n\n\\[\\begin{array}{rcl}\n  Y_{i}|\\beta_{0}, \\beta_{1}, \\sigma & \\sim & N(\\mu_{i}, \\sigma^{2}) \\text{ with } \\mu_{i} = \\beta_{0} + \\beta_{1}X_{1} \\\\\n  \\beta_{0} & \\sim & N(547, 597^{2}) \\\\\n  \\beta_{1} & \\sim & N(0.16, 0.31^{2}) \\\\\n  \\sigma & \\sim & \\text{Exp}(1/88) \\\\\n\\end{array}\\]\n\n\n\nfor(i in 1:25){\n  this_plot &lt;- rent_df |&gt;\n    ggplot(aes(x = sqft, y = price)) +\n    geom_point(color = \"white\") +\n    geom_abline(intercept = rnorm(1, 547, 597),\n                slope = rnorm(1, 0.16, 0.31),\n                color = \"red\") +\n    labs(title = \"Prior Models\",\n         subtitle = \"Simulation Space\",\n         caption = \"SML 320\",\n         x = \"area (square feet)\",\n         y = \"price (USD)\") +\n    theme_minimal()\n  \n  ggsave(filename = paste0(\"for_animations/lin_sim_plot_\", i, \".png\"),\n         plot = this_plot)\n}\n\n# then combined using the website https://ezgif.com/"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#rstan",
+    "href": "posts/11_normal_regression/11_normal_regression.html#rstan",
+    "title": "11: Normal Regression",
+    "section": "rstan",
+    "text": "rstan\n\nDefine ModelSimulationMetricsPosterior Stats\n\n\n\nrent_stan_model &lt;- \"\n  data {\n    int&lt;lower = 0&gt; n;\n    vector[n] Y;\n    vector[n] X;\n  }\n  parameters {\n    real beta0;\n    real beta1;\n    real&lt;lower = 0&gt; sigma;\n  }\n  model {\n    Y ~ normal(beta0 + beta1 * X, sigma);\n    beta0 ~ normal(547, 597);\n    beta1 ~ normal(0.16, 0.31);\n    sigma ~ exponential(0.01136364);\n  }\n\"\n\n\n\n\ntime_start &lt;- Sys.time()\n\nrent_df_for_stan &lt;- rent_df |&gt;\n  slice_sample(prop = 0.05)\n\nrent_stan_sim &lt;- \n  stan(model_code = rent_stan_model, \n       data = list(n = nrow(rent_df_for_stan), \n                   Y = rent_df_for_stan$price, \n                   X = rent_df_for_stan$sqft), \n       chains = 4, iter = 5000*2, refresh = 0, seed = 320)\n\ntime_end &lt;- Sys.time()\ntime_end - time_start\n\nTime difference of 58.85536 secs\n\n\n\n\n\nbayesplot::mcmc_trace(rent_stan_sim, \n                      pars = c(\"beta0\", \"beta1\", \"sigma\"), \n                      size = 0.1) +\n  labs(title = \"MCMC Traces\")\n\n\n\n\n\nbayesplot::mcmc_dens_overlay(rent_stan_sim,\n                             pars = c(\"beta0\", \"beta1\", \"sigma\")) +\n  labs(title = \"Density Plots\")\n\n\n\n\n\nbayesplot::mcmc_acf(rent_stan_sim,\n                    pars = c(\"beta0\", \"beta1\", \"sigma\")) +\n  labs(title = \"Autocorrelations\")\n\n\n\n\n\nbayesplot::neff_ratio(rent_stan_sim,\n                      pars = c(\"beta0\", \"beta1\", \"sigma\"))\n\n    beta0     beta1     sigma \n0.3692006 0.3690437 0.4980528 \n\n\n\nbayesplot::rhat(rent_stan_sim,\n                pars = c(\"beta0\", \"beta1\", \"sigma\"))\n\n    beta0     beta1     sigma \n0.9999020 0.9998856 1.0001496 \n\n\n\n\n\nbroom.mixed::tidy(rent_stan_sim,\n                  effects = c(\"fixed\", \"aux\"),\n                  conf.int = TRUE, conf.level = 0.80) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n# A tibble: 3 × 5\n  term  estimate std.error conf.low conf.high\n  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1 beta0 1482.      42.5    1428.     1537.   \n2 beta1    0.872    0.0371    0.824     0.919\n3 sigma  805.      10.8     791.      819."
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#rstan-1",
+    "href": "posts/11_normal_regression/11_normal_regression.html#rstan-1",
+    "title": "11: Normal Regression",
+    "section": "rstan",
+    "text": "rstan\n\n\n# A tibble: 3 × 3\n  term  estimate std.error\n  &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1 beta0 1482.      42.5   \n2 beta1    0.872    0.0371\n3 sigma  805.      10.8"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#rstanarm-1",
+    "href": "posts/11_normal_regression/11_normal_regression.html#rstanarm-1",
+    "title": "11: Normal Regression",
+    "section": "rstanarm",
+    "text": "rstanarm\n\n\n# A tibble: 4 × 3\n  term        estimate std.error\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) 1527.      42.9   \n2 sqft           0.803    0.0367\n3 sigma        809.      10.8   \n4 mean_PPD    2390.      21.6"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#rstanarm-2",
+    "href": "posts/11_normal_regression/11_normal_regression.html#rstanarm-2",
+    "title": "11: Normal Regression",
+    "section": "rstanarm",
+    "text": "rstanarm\n\n\n# A tibble: 4 × 3\n  term        estimate std.error\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) 1527.      42.9   \n2 sqft           0.803    0.0367\n3 sigma        809.      10.8   \n4 mean_PPD    2390.      21.6"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#autoscale-1",
+    "href": "posts/11_normal_regression/11_normal_regression.html#autoscale-1",
+    "title": "11: Normal Regression",
+    "section": "autoscale",
+    "text": "autoscale\n\n\n# A tibble: 4 × 3\n  term        estimate std.error\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) 1505.       44.0  \n2 sqft           0.862     0.038\n3 sigma        828.       11.4  \n4 mean_PPD    2444.       22.2"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#many-models",
+    "href": "posts/11_normal_regression/11_normal_regression.html#many-models",
+    "title": "11: Normal Regression",
+    "section": "Many Models",
+    "text": "Many Models\n\nrent_model_df &lt;- as.data.frame(rent_autoscale_sim)\n\n# nrow(rent_model_df)\n# 20000 models from 20000 chains\n\nhead(rent_model_df)\n\n  (Intercept)      sqft    sigma\n1    1605.731 0.8024525 823.1324\n2    1595.615 0.8117000 822.9240\n3    1429.658 0.9107199 835.7474\n4    1536.464 0.8128524 835.6783\n5    1463.692 0.8782975 835.7370\n6    1476.271 0.8683633 833.1336"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#many-lines",
+    "href": "posts/11_normal_regression/11_normal_regression.html#many-lines",
+    "title": "11: Normal Regression",
+    "section": "Many Lines",
+    "text": "Many Lines\n\nPlotCode\n\n\n\n\n\n\nfor(i in 1:25){\n  \n  beta_0 &lt;- rent_model_df$`(Intercept)`[i]\n  beta_1 &lt;- rent_model_df$sqft[i]\n  \n  this_plot &lt;- rent_df |&gt;\n    ggplot(aes(x = sqft, y = price)) +\n    geom_point(color = \"gray75\") +\n    geom_vline(xintercept = 1500, color = \"blue\", linewidth = 3) +\n    geom_abline(intercept = beta_0, slope = beta_1,\n                color = \"red\", linewidth = 3) +\n    geom_point(x = 1500, y = beta_0 + beta_1*1500,\n               color = \"purple\", size = 5) +\n    labs(title = \"Bayesian Regression\",\n         subtitle = \"What is the expected monthly rent for a property of 1500 square feet in size?\",\n         caption = \"Source: Tidy Tuesday\",\n         x = \"area (square feet)\",\n         y = \"price (USD)\") +\n    theme_minimal()\n  \n  ggsave(filename = paste0(\"for_animations/bayes_reg_plot_\", i, \".png\"),\n         plot = this_plot)\n}\n\n# then combined using the website https://ezgif.com/"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#evidence",
+    "href": "posts/11_normal_regression/11_normal_regression.html#evidence",
+    "title": "11: Normal Regression",
+    "section": "Evidence",
+    "text": "Evidence\n\nObjectiveVisualCredible IntervalPosterior Probability\n\n\nDo we have posterior evidence that there is a positive relationship between area and price?\n\\[\\beta_{1} &gt; 0?\\]\n\n\nIt appears that all of our slopes are positive.\n\n\n\nThe credible interval does not contain zero.\n\nbroom.mixed::tidy(rent_autoscale_sim,\n                  effects = c(\"fixed\", \"aux\"),\n                  conf.int = TRUE, conf.level = 0.80) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n# A tibble: 4 × 5\n  term        estimate std.error conf.low conf.high\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) 1505.       44.0   1447.     1561.   \n2 sqft           0.862     0.038    0.813     0.911\n3 sigma        828.       11.4    813.      842.   \n4 mean_PPD    2444.       22.2   2416.     2472.   \n\n\n\n\n\\[P(\\beta_{1} &gt; 0 | \\vec{y}) \\approx 1\\]\n\nrent_model_df |&gt;\n  mutate(slope_exceeds_0 = sqft &gt; 0) |&gt;\n  janitor::tabyl(slope_exceeds_0) |&gt;\n  janitor::adorn_totals()\n\n slope_exceeds_0     n percent\n            TRUE 20000       1\n           Total 20000       1"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#posterior-predictive-model",
+    "href": "posts/11_normal_regression/11_normal_regression.html#posterior-predictive-model",
+    "title": "11: Normal Regression",
+    "section": "Posterior Predictive Model",
+    "text": "Posterior Predictive Model\n\\[Y_{\\text{new}} | \\beta_{0}, \\beta_{1}, \\sigma \\sim N(\\mu, \\sigma^{2}) \\text{ with } \\mu = \\beta_{0} + \\beta_{1}*1500\\]\n\nset.seed(320)\nrent_predict_df &lt;- rent_model_df |&gt;\n  mutate(mu = `(Intercept)` + sqft*1500,\n         y_new = rnorm(20000, mean = mu, sd = sigma))"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#many-models-1",
+    "href": "posts/11_normal_regression/11_normal_regression.html#many-models-1",
+    "title": "11: Normal Regression",
+    "section": "Many Models",
+    "text": "Many Models\n\nhead(rent_predict_df)\n\n  (Intercept)      sqft    sigma       mu    y_new\n1    1605.731 0.8024525 823.1324 2809.410 1096.676\n2    1595.615 0.8117000 822.9240 2813.165 1835.540\n3    1429.658 0.9107199 835.7474 2795.738 2218.671\n4    1536.464 0.8128524 835.6783 2755.743 3398.422\n5    1463.692 0.8782975 835.7370 2781.139 2335.670\n6    1476.271 0.8683633 833.1336 2778.816 2966.288"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#intervals",
+    "href": "posts/11_normal_regression/11_normal_regression.html#intervals",
+    "title": "11: Normal Regression",
+    "section": "Intervals",
+    "text": "Intervals\n\nrent_predict_df |&gt;\n  summarize(lower_mu = quantile(mu, 0.025),\n            upper_mu = quantile(mu, 0.975),\n            lower_new = quantile(y_new, 0.025),\n            upper_new = quantile(y_new, 0.975))\n\n  lower_mu upper_mu lower_new upper_new\n1 2753.982 2841.034  1153.325  4437.741\n\n\n\ntypical rent: (2754, 2841)\nposterior prediction interval: (1153, 4437)"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#averaging",
+    "href": "posts/11_normal_regression/11_normal_regression.html#averaging",
+    "title": "11: Normal Regression",
+    "section": "Averaging",
+    "text": "Averaging\n\nrent_predict_df |&gt;\n  ggplot(aes(x = mu)) +\n  geom_density(fill = \"purple\") +\n  labs(title = \"Typical Rent\",\n       subtitle = \"distribution for mu\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "posts/11_normal_regression/11_normal_regression.html#distributions",
+    "href": "posts/11_normal_regression/11_normal_regression.html#distributions",
+    "title": "11: Normal Regression",
+    "section": "Distributions",
+    "text": "Distributions\n\nPlotsCode"
   }
 ]
