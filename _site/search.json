@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1636,5 +1636,159 @@
     "title": "11: Normal Regression",
     "section": "Distributions",
     "text": "Distributions\n\nPlotsCode"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html",
+    "title": "12: Evaluating Regression Models",
+    "section": "",
+    "text": "Goal: Discuss the fairness and accuracy of Bayesian regression models"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#how-was-the-data-collected",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#how-was-the-data-collected",
+    "title": "12: Evaluating Regression Models",
+    "section": "How was the data collected?",
+    "text": "How was the data collected?\n\nThousands of listings scraped from Craiglist—a freely available retail message board.\nsome lack of confidentiality:\n\nuser names removed\naddresses could be scraped"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#by-whom-and-for-what-purpose-was-the-data-collected",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#by-whom-and-for-what-purpose-was-the-data-collected",
+    "title": "12: Evaluating Regression Models",
+    "section": "By whom and for what purpose was the data collected?",
+    "text": "By whom and for what purpose was the data collected?\n\ncollected by Dr Kate Pennington, research economist at the US Census Bureau in the Center for Economic Studies\non Gentrification and Displacement in San Francisco"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#how-might-the-results-of-the-analysis-or-the-data-collection-itself-impact-individuals-and-society",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#how-might-the-results-of-the-analysis-or-the-data-collection-itself-impact-individuals-and-society",
+    "title": "12: Evaluating Regression Models",
+    "section": "How might the results of the analysis, or the data collection itself, impact individuals and society?",
+    "text": "How might the results of the analysis, or the data collection itself, impact individuals and society?\n\nresearch investigation, publication, and communication may affect rental market; but probably differently than other media"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#what-biases-might-be-baked-into-this-analysis",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#what-biases-might-be-baked-into-this-analysis",
+    "title": "12: Evaluating Regression Models",
+    "section": "What biases might be baked into this analysis?",
+    "text": "What biases might be baked into this analysis?\n\nWhile Craiglist webscraping produced a sizeable data set, lack of information from other rental market communications may detract from diagnosing trends in market behavior."
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#model-assumptions",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#model-assumptions",
+    "title": "12: Evaluating Regression Models",
+    "section": "Model Assumptions",
+    "text": "Model Assumptions\n\nrentals are independent observations (not true in reality)\nlinear model between predictor \\(X\\) and price \\(Y\\)\n\nlast time: \\(\\beta_{1} &gt; 0\\)\n\nAt any \\(X\\) value, \\(Y\\) varies normally around \\(\\mu\\) with consistent variability \\(\\sigma\\).\n\nif these assumptions are valid, then the simulated posterior distribution should model the data well"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#exploratory-data-analysis",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#exploratory-data-analysis",
+    "title": "12: Evaluating Regression Models",
+    "section": "Exploratory Data Analysis",
+    "text": "Exploratory Data Analysis\n\nVariablesVisualizationCodeMLS\n\n\n\nresponse: price (monthly rent in USD)\npredictor: year (discrete, 2009 to 2018)\ncommentary: the dataset allows a refined investigation of a time series, but we are going for an intentionally flawed analysis for this lecture session\n\n\n\n\n\n\n\n\n\n\n\nrent_df$year_fac &lt;- factor(rent_df$year)\n\nrent_df |&gt;\n  ggplot(aes(x = year_fac, y = price, color = year_fac)) +\n  ggbeeswarm::geom_quasirandom() +\n  labs(title = \"SF Rental Market\",\n       subtitle = \"2009 to 2018\",\n       caption = \"Source: TidyTuesday\",\n       x = \"year\",\n       y = \"monthly rent (USD)\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#mcmc",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#mcmc",
+    "title": "12: Evaluating Regression Models",
+    "section": "MCMC",
+    "text": "MCMC\n\nIf the priors are not specified, rstanarm will create weakly informative priors through its autoscale process\n\n\nset.seed(320)\nrent_df_for_stan &lt;- rent_df |&gt;\n  slice_sample(prop = 0.10)\n\nmodel_area &lt;- stan_glm(price ~ sqft, data = rent_df_for_stan,\n                       chains = 4, iter = 5000*2, refresh = 0, seed = 320)\nmodel_year &lt;- stan_glm(price ~ year, data = rent_df_for_stan,\n                       chains = 4, iter = 5000*2, refresh = 0, seed = 320)"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#priors",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#priors",
+    "title": "12: Evaluating Regression Models",
+    "section": "Priors",
+    "text": "Priors\n\narea modelyear model\n\n\n\nrstanarm::prior_summary(model_area)\n\nPriors for model 'model_area' \n------\nIntercept (after predictors centered)\n  Specified prior:\n    ~ normal(location = 2405, scale = 2.5)\n  Adjusted prior:\n    ~ normal(location = 2405, scale = 2227)\n\nCoefficients\n  Specified prior:\n    ~ normal(location = 0, scale = 2.5)\n  Adjusted prior:\n    ~ normal(location = 0, scale = 5.4)\n\nAuxiliary (sigma)\n  Specified prior:\n    ~ exponential(rate = 1)\n  Adjusted prior:\n    ~ exponential(rate = 0.0011)\n------\nSee help('prior_summary.stanreg') for more details\n\n\n\n\n\nrstanarm::prior_summary(model_year)\n\nPriors for model 'model_year' \n------\nIntercept (after predictors centered)\n  Specified prior:\n    ~ normal(location = 2405, scale = 2.5)\n  Adjusted prior:\n    ~ normal(location = 2405, scale = 2227)\n\nCoefficients\n  Specified prior:\n    ~ normal(location = 0, scale = 2.5)\n  Adjusted prior:\n    ~ normal(location = 0, scale = 1083)\n\nAuxiliary (sigma)\n  Specified prior:\n    ~ exponential(rate = 1)\n  Adjusted prior:\n    ~ exponential(rate = 0.0011)\n------\nSee help('prior_summary.stanreg') for more details"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#area-model-1",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#area-model-1",
+    "title": "12: Evaluating Regression Models",
+    "section": "Area Model",
+    "text": "Area Model\n\nOne ModelSimulationOne SimulationDensity\n\n\n\nmodel_area_df &lt;- data.frame(model_area)\nfirst_set &lt;- head(model_area_df, 1)\nfirst_set\n\n  X.Intercept.      sqft    sigma\n1     1408.002 0.9145315 805.5614\n\n\n\n\n\nbeta_0 &lt;- first_set$`X.Intercept.`\nbeta_1 &lt;- first_set$sqft\nsigma  &lt;- first_set$sigma\nset.seed(320)\none_simulation &lt;- rent_df_for_stan |&gt;\n  mutate(mu = beta_0 + beta_1 * sqft,\n         simulated_price = rnorm(nrow(rent_df_for_stan), \n                                 mean = mu, sd = sigma)) |&gt;\n  select(sqft, price, simulated_price)\n\n\n\n\nhead(one_simulation, 5)\n\n# A tibble: 5 × 3\n   sqft price simulated_price\n  &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;\n1  1346  1390            963.\n2  1570  2950           1887.\n3   700  2595           1492.\n4  1046  2008           2984.\n5  1000  2650           1893.\n\n\n\n\n\n\n\n\n\n\nsubtitle_string &lt;- \"&lt;span style='color:#BF40BF'&gt;Real rents&lt;/span&gt; versus &lt;span style='color:#7f7f7f'&gt;simulated rents&lt;/span&gt;\"\n\none_simulation |&gt;\n  ggplot() +\n  geom_density(aes(x = price), color = \"#BF40BF\", linewidth = 3) +\n  geom_density(aes(x = simulated_price), color = \"#7f7f7f\", linewidth = 2) +\n  labs(title = \"Model: price versus area\",\n       subtitle = subtitle_string,\n       caption = \"SML 320\") +\n  theme_minimal() +\n  theme(axis.title.y = element_blank(),\n        axis.text.y  = element_blank(),\n        axis.ticks.y = element_blank(),\n        plot.subtitle = element_markdown()) #use ggtext package"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#year-model-1",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#year-model-1",
+    "title": "12: Evaluating Regression Models",
+    "section": "Year Model",
+    "text": "Year Model\n\nOne ModelSimulationOne SimulationDensity\n\n\n\nmodel_year_df &lt;- data.frame(model_year)\nfirst_set &lt;- head(model_year_df, 1)\nfirst_set\n\n  X.Intercept.     year    sigma\n1      -316870 158.5494 826.6045\n\n\n\n\n\nbeta_0 &lt;- first_set$`X.Intercept.`\nbeta_1 &lt;- first_set$year\nsigma  &lt;- first_set$sigma\nset.seed(320)\none_simulation &lt;- rent_df_for_stan |&gt;\n  mutate(mu = beta_0 + beta_1 * year,\n         simulated_price = rnorm(nrow(rent_df_for_stan), \n                                 mean = mu, sd = sigma)) |&gt;\n  select(year, price, simulated_price)\n\n\n\n\nhead(one_simulation, 5)\n\n# A tibble: 5 × 3\n   year price simulated_price\n  &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;\n1  2014  3815            729.\n2  2012  1177           1149.\n3  2012  1888           1561.\n4  2012  2500           2767.\n5  2016  4150           2325.\n\n\n\n\n\n\n\n\n\n\nsubtitle_string &lt;- \"&lt;span style='color:#BF40BF'&gt;Real rents&lt;/span&gt; versus &lt;span style='color:#7f7f7f'&gt;simulated rents&lt;/span&gt;\"\n\none_simulation |&gt;\n  ggplot() +\n  geom_density(aes(x = price), color = \"#BF40BF\", linewidth = 3) +\n  geom_density(aes(x = simulated_price), color = \"#7f7f7f\", linewidth = 2) +\n  labs(title = \"Model: price versus year\",\n       subtitle = subtitle_string,\n       caption = \"SML 320\") +\n  theme_minimal() +\n  theme(axis.title.y = element_blank(),\n        axis.text.y  = element_blank(),\n        axis.ticks.y = element_blank(),\n        plot.subtitle = element_markdown()) #use ggtext package"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#different-data-structure",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#different-data-structure",
+    "title": "12: Evaluating Regression Models",
+    "section": "Different Data Structure",
+    "text": "Different Data Structure\n\nNormal\nPoisson\nNegative Binomial\nBinomial\netc."
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#transformations",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#transformations",
+    "title": "12: Evaluating Regression Models",
+    "section": "Transformations",
+    "text": "Transformations\n\ntransform \\(Y\\): \\[g(Y_{i}) | \\beta_{0}, \\beta_{1}, \\sigma \\sim N(\\mu, \\sigma^{2}) \\text{ with } \\mu_{i} = \\beta_{0} + \\beta_{1}X_{i}\\]\ntransform \\(X\\): \\[Y_{i} | \\beta_{0}, \\beta_{1}, \\sigma \\sim N(\\mu, \\sigma^{2}) \\text{ with } \\mu_{i} = \\beta_{0} + \\beta_{1}h(X_{i})\\]\ntransform both \\(X\\) and \\(Y\\): \\[g(Y_{i}) | \\beta_{0}, \\beta_{1}, \\sigma \\sim N(\\mu, \\sigma^{2}) \\text{ with } \\mu_{i} = \\beta_{0} + \\beta_{1}h(X_{i})\\]\n\nwhere functions \\(g,h\\) might take forms like \\(\\log(X), \\sqrt{X}, X^{2}, X^{3},\\) etc."
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#predictions",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#predictions",
+    "title": "12: Evaluating Regression Models",
+    "section": "Predictions",
+    "text": "Predictions\nSimilar to the predict command in base-R, the posterior_predict command in rstanarm takes a model and a data frame.\n\nmodel_area_predictions &lt;- rstanarm::posterior_predict(\n  model_area, newdata = rent_df_for_stan\n)\n\n\nmodel_year_predictions &lt;- rstanarm::posterior_predict(\n  model_year, newdata = rent_df_for_stan\n)\n\n\ndim(model_area_predictions)\n\n[1] 20000  5514"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#metrics",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#metrics",
+    "title": "12: Evaluating Regression Models",
+    "section": "Metrics",
+    "text": "Metrics\n\nmedian absolute error\n\n\\[\\text{MAE} = \\text{median}|Y_{i} - Y_{i}^{'}|\\]\n\nscaled median absolute error\n\n\\[\\text{MAE scaled} = \\text{median}\\frac{|Y_{i} - Y_{i}^{'}|}{\\text{sd}_{i}}\\]\n\nwithin 50: proportion of observed values \\(Y_{i}\\) that fall within their 50% posterior prediction interval\nwithin 95: proportion of observed values \\(Y_{i}\\) that fall within their 95% posterior prediction interval"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#posterior-predictive-summaries",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#posterior-predictive-summaries",
+    "title": "12: Evaluating Regression Models",
+    "section": "Posterior Predictive Summaries",
+    "text": "Posterior Predictive Summaries\nThe textbook authors made another helper function in their bayesrules package called prediction_summary\n\nset.seed(320)\nrent_df_for_ML &lt;- rent_df |&gt;\n  slice_sample(prop = 0.01)\nbayesrules::prediction_summary(model_area, \n                               data = rent_df_for_ML)\n\n       mae mae_scaled within_50 within_95\n1 529.2686   0.649922 0.5172414 0.9491833\n\n\n\nbayesrules::prediction_summary(model_year, \n                               data = rent_df_for_ML)\n\n       mae mae_scaled within_50 within_95\n1 566.7108  0.6837057 0.4936479 0.9455535"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#training-and-testing-sets",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#training-and-testing-sets",
+    "title": "12: Evaluating Regression Models",
+    "section": "Training and Testing Sets",
+    "text": "Training and Testing Sets\n\nallocate about 75% of observations into a training set\n\nbuild models from the training set\n\nallocate other 25% of observations into a testing set\n\nmeasure error on the testing set\n\n\n\nrent_split &lt;- rsample::initial_split(rent_df_for_ML)\nrent_train &lt;- rsample::training(rent_split) #about 75% of observations\nrent_test  &lt;- rsample::testing(rent_split)  #about 25% of observations\n\n\nsubtitle_string &lt;- \"&lt;span style='color:#7f7f7f'&gt;Training data&lt;/span&gt; and &lt;span style='color:#FF0000'&gt;testing data&lt;/span&gt;\"\n\nrent_train |&gt;\n    ggplot(aes(x = sqft, y = price)) +\n    geom_point(color = \"#7f7f7f\") +\n    geom_smooth(method = \"lm\", color = \"black\", se = FALSE) +\n    geom_point(aes(x = sqft, y = price),\n               color = \"#FF0000\", data = rent_test, size = 4) +\n    labs(title = \"Machine Learning on SF Rent Data\",\n         subtitle = subtitle_string,\n         caption = \"Source: Tidy Tuesday\",\n         x = \"area (square feet)\",\n         y = \"price (USD)\") +\n    theme_minimal() +\n    theme(plot.subtitle = element_markdown())"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#bias-variance-trade-off",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#bias-variance-trade-off",
+    "title": "12: Evaluating Regression Models",
+    "section": "Bias Variance Trade-Off",
+    "text": "Bias Variance Trade-Off\n\n\n\nbias-variance trade-off\n\n\nimage source"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validation",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validation",
+    "title": "12: Evaluating Regression Models",
+    "section": "Cross Validation",
+    "text": "Cross Validation\nBetter measurement of errors comes from cross-validation\n\n\n\ncross validation\n\n\nimage source"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#training-and-testing-data",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#training-and-testing-data",
+    "title": "12: Evaluating Regression Models",
+    "section": "Training and Testing Data",
+    "text": "Training and Testing Data\n\n\n\ntraining and testing sets\n\n\n\nsubtitle_string &lt;- \"&lt;span style='color:#7f7f7f'&gt;Training data&lt;/span&gt; and &lt;span style='color:#FF0000'&gt;testing data&lt;/span&gt;\"\n\nfor(i in 1:25){\n  \n  rent_split &lt;- rsample::initial_split(rent_df_for_ML)\n  rent_train &lt;- rsample::training(rent_split) #about 75% of observations\n  rent_test  &lt;- rsample::testing(rent_split)  #about 25% of observations\n  \n  this_plot &lt;- rent_train |&gt;\n    ggplot(aes(x = sqft, y = price)) +\n    geom_point(color = \"#7f7f7f\") +\n    geom_smooth(method = \"lm\", color = \"black\", se = FALSE) +\n    geom_point(aes(x = sqft, y = price),\n               color = \"#FF0000\", data = rent_test, size = 4) +\n    labs(title = \"Machine Learning on SF Rent Data\",\n         subtitle = subtitle_string,\n         caption = \"Source: Tidy Tuesday\",\n         x = \"area (square feet)\",\n         y = \"price (USD)\") +\n    theme_minimal() +\n    theme(plot.subtitle = element_markdown()) #use ggtext package\n  \n  ggsave(filename = paste0(\"for_animations/ML_reg_plot_\", i, \".png\"),\n         plot = this_plot)\n}\n\n# then combined using the website https://ezgif.com/"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validation-through-bayesrules",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validation-through-bayesrules",
+    "title": "12: Evaluating Regression Models",
+    "section": "Cross Validation through bayesrules",
+    "text": "Cross Validation through bayesrules\n\nset.seed(320)\n\nmodel_area_cv &lt;- bayesrules::prediction_summary_cv(\n  model = model_area, data = rent_df_for_ML, k = 10\n)\n\nmodel_year_cv &lt;- bayesrules::prediction_summary_cv(\n  model = model_year, data = rent_df_for_ML, k = 10\n)\n\nmodel_year_cv$folds\n\n   fold      mae mae_scaled within_50 within_95\n1     1 565.1712  0.6681426 0.5000000 0.9821429\n2     2 483.4587  0.5717974 0.6363636 0.9454545\n3     3 492.0445  0.5862028 0.5454545 0.9272727\n4     4 641.4328  0.7601855 0.4363636 0.9818182\n5     5 666.7055  0.7885234 0.3636364 0.9818182\n6     6 584.7050  0.6943528 0.4909091 0.9454545\n7     7 715.9861  0.8555493 0.4181818 0.9454545\n8     8 483.1197  0.5810148 0.5818182 0.9272727\n9     9 676.2278  0.8031427 0.4363636 0.9272727\n10   10 463.2350  0.5560119 0.5454545 0.9272727"
+  },
+  {
+    "objectID": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validated",
+    "href": "posts/12_evaluating_regression/12_evaluating_regression.html#cross-validated",
+    "title": "12: Evaluating Regression Models",
+    "section": "Cross-Validated",
+    "text": "Cross-Validated\nThe prediction_summary_cv function in the bayesrules package will also average the results across all \\(k\\) folds and store that information into cv.\n\nmodel_area_cv$cv\n\n       mae mae_scaled within_50 within_95\n1 519.9732  0.6470611 0.5244156 0.9474675\n\n\n\nmodel_year_cv$cv\n\n       mae mae_scaled within_50 within_95\n1 577.2086  0.6864923 0.4954545 0.9491234"
   }
 ]

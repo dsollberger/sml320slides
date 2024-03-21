@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/12_evaluating_regression/12_evaluating_regression.html",
       "/posts/11_normal_regression/11_normal_regression.html",
       "/posts/10_posterior_prediction/10_posterior_prediction.html",
       "/posts/09_posterior_inference/09_posterior_inference.html",
