@@ -46,5 +46,8 @@
   },
   "posts/13_extending_regression/13_extending_regression.qmd": {
     "13_extending_regression.html": "38e5e7da"
+  },
+  "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.qmd": {
+    "14_poisson_neg_binomial.html": "f62c4837"
   }
 }

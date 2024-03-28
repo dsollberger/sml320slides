@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1853,5 +1853,131 @@
     "title": "13: Extending Regression Models",
     "section": "Claim 2: Change in Market in 2014",
     "text": "Claim 2: Change in Market in 2014\n\nVizR CodeModel StatsVizInference\n\n\n\n\n\n\n\n\nrent_ts |&gt;\n  ggplot(aes(x = date, y = avg_price)) +\n  geom_line() +\n  geom_vline(xintercept = lubridate::ymd(\"20140101\"),\n             color = \"red\", linetype = 2, linewidth = 3) +\n  labs(title = \"Was there a market intervention in 2014?\",\n       caption = \"SML 320\",\n       x = \"date\", y = \"average monthly rent (USD)\") +\n  theme_minimal()\n\n\n\n\nintervention_index &lt;- which.max(rent_ts$year &gt;= 2014)\npre_intervention &lt;- c(1, intervention_index-1)\npost_intervention &lt;- c(intervention_index, nrow(rent_ts))\n\nts_impact &lt;- CausalImpact::CausalImpact(rent_ts$avg_price,\n                                        pre_intervention,\n                                        post_intervention)\n\n\n\n\nsummary(ts_impact)\n\nPosterior inference {CausalImpact}\n\n                         Average        Cumulative      \nActual                   2788           521273          \nPrediction (s.d.)        2301 (80)      430286 (14984)  \n95% CI                   [2156, 2469]   [403170, 461701]\n                                                        \nAbsolute effect (s.d.)   487 (80)       90987 (14984)   \n95% CI                   [319, 632]     [59572, 118103] \n                                                        \nRelative effect (s.d.)   21% (4.2%)     21% (4.2%)      \n95% CI                   [13%, 29%]     [13%, 29%]      \n\nPosterior tail-area probability p:   0.0012\nPosterior prob. of a causal effect:  99.88024%\n\nFor more details, type: summary(impact, \"report\")\n\n\n\n\nThe plot of an “impact” object returns a ggplot object!\n\nplot(ts_impact)\n\n\n\n\n\n\n\nsummary(ts_impact, \"report\")\n\nAnalysis report {CausalImpact}\n\n\nDuring the post-intervention period, the response variable had an average value of approx. 2.79K. By contrast, in the absence of an intervention, we would have expected an average response of 2.30K. The 95% interval of this counterfactual prediction is [2.16K, 2.47K]. Subtracting this prediction from the observed response yields an estimate of the causal effect the intervention had on the response variable. This effect is 0.49K with a 95% interval of [0.32K, 0.63K]. For a discussion of the significance of this effect, see below.\n\nSumming up the individual data points during the post-intervention period (which can only sometimes be meaningfully interpreted), the response variable had an overall value of 521.27K. By contrast, had the intervention not taken place, we would have expected a sum of 430.29K. The 95% interval of this prediction is [403.17K, 461.70K].\n\nThe above results are given in terms of absolute numbers. In relative terms, the response variable showed an increase of +21%. The 95% interval of this percentage is [+13%, +29%].\n\nThis means that the positive effect observed during the intervention period is statistically significant and unlikely to be due to random fluctuations. It should be noted, however, that the question of whether this increase also bears substantive significance can only be answered by comparing the absolute effect (0.49K) to the original goal of the underlying intervention.\n\nThe probability of obtaining this effect by chance is very small (Bayesian one-sided tail-area probability p = 0.001). This means the causal effect can be considered statistically significant."
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html",
+    "title": "14: Poisson Regression Models",
+    "section": "",
+    "text": "Goal: Explore Poisson and Negative Binomial Regression Models\n\n\n\n\n\n\n\n\n\n\n\nsource: TidyTuesday\n2019-12-03 edition\nOpen Data Philly\n\nfiltered to year 2017 data that had latitude/longitude\n\n\n\n\n\n\nlibrary(\"bayesrules\")\nlibrary(\"bayesplot\")\nlibrary(\"gt\")\nlibrary(\"patchwork\")\nlibrary(\"rstan\")\nlibrary(\"rstanarm\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\n# tickets_raw &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-03/tickets.csv\")\n\n\n\n\n\n\n\nIdeasCode\n\n\n\nextract month and day from datetime\ncompute number of street sweeping violations per day\nmake categorical variable weekend\n\n\n\n\ntickets_df &lt;- tickets_raw |&gt;\n  separate(issue_datetime, into = c(\"date\", \"time\"), sep = \" \") |&gt;\n  separate(date, into = c(\"year\", \"month\", \"day\"), \n           sep = \"-\", remove = FALSE) |&gt;\n  select(date, month, day, lat, lon) |&gt;\n  group_by(month, day) |&gt;\n  mutate(violations = n(), .before = date) |&gt;\n  ungroup()\n\ntickets_df$day_of_week &lt;- lubridate::wday(tickets_df$date, label = TRUE)\n\ntickets_df &lt;- tickets_df |&gt;\n  mutate(weekend = day_of_week %in% c(\"Sat\", \"Sun\")) |&gt;\n  select(violations, month, day, weekend, lat, lon)\n\ntickets_df$month &lt;- as.numeric(tickets_df$month)\ntickets_df$day &lt;- as.numeric(tickets_df$day)\n\nset.seed(320)\ntickets_df_for_stan &lt;- tickets_df |&gt;\n  slice_sample(prop = 0.05)\n\n\n\n\n\n\n\n\n\n\n\n\\(Y\\): violations\n\ncount variable: number of street sweeping violations per day\n\n\n\n\nHow many street sweeping violations will there be on March 28?\n\n\n\n\n\n\n\n\\(X_{1}\\): month (1, 2, 3, etc.)\n\\(X_{2}\\): day (of month)\n\\(X_{3}\\): weekend (boolean)\n\\(X_{4}\\): latitude\n\\(X_{5}\\): longitude"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#data",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#data",
+    "title": "14: Poisson Regression Models",
+    "section": "",
+    "text": "source: TidyTuesday\n2019-12-03 edition\nOpen Data Philly\n\nfiltered to year 2017 data that had latitude/longitude\n\n\n\n\n\n\nlibrary(\"bayesrules\")\nlibrary(\"bayesplot\")\nlibrary(\"gt\")\nlibrary(\"patchwork\")\nlibrary(\"rstan\")\nlibrary(\"rstanarm\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\n# tickets_raw &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-12-03/tickets.csv\")"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#data-wrangling",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#data-wrangling",
+    "title": "14: Poisson Regression Models",
+    "section": "",
+    "text": "IdeasCode\n\n\n\nextract month and day from datetime\ncompute number of street sweeping violations per day\nmake categorical variable weekend\n\n\n\n\ntickets_df &lt;- tickets_raw |&gt;\n  separate(issue_datetime, into = c(\"date\", \"time\"), sep = \" \") |&gt;\n  separate(date, into = c(\"year\", \"month\", \"day\"), \n           sep = \"-\", remove = FALSE) |&gt;\n  select(date, month, day, lat, lon) |&gt;\n  group_by(month, day) |&gt;\n  mutate(violations = n(), .before = date) |&gt;\n  ungroup()\n\ntickets_df$day_of_week &lt;- lubridate::wday(tickets_df$date, label = TRUE)\n\ntickets_df &lt;- tickets_df |&gt;\n  mutate(weekend = day_of_week %in% c(\"Sat\", \"Sun\")) |&gt;\n  select(violations, month, day, weekend, lat, lon)\n\ntickets_df$month &lt;- as.numeric(tickets_df$month)\ntickets_df$day &lt;- as.numeric(tickets_df$day)\n\nset.seed(320)\ntickets_df_for_stan &lt;- tickets_df |&gt;\n  slice_sample(prop = 0.05)"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#variables",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#variables",
+    "title": "14: Poisson Regression Models",
+    "section": "",
+    "text": "\\(Y\\): violations\n\ncount variable: number of street sweeping violations per day\n\n\n\n\nHow many street sweeping violations will there be on March 28?\n\n\n\n\n\n\n\n\\(X_{1}\\): month (1, 2, 3, etc.)\n\\(X_{2}\\): day (of month)\n\\(X_{3}\\): weekend (boolean)\n\\(X_{4}\\): latitude\n\\(X_{5}\\): longitude"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#poisson-data-model",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#poisson-data-model",
+    "title": "14: Poisson Regression Models",
+    "section": "Poisson Data Model",
+    "text": "Poisson Data Model\n\ncount response variable \\(Y_{i}\\) (per unit of time)\nrate parameter \\(\\lambda_{i}\\)\nlikelihood\n\n\\[Y_{i} | \\lambda_{i} \\sim \\text{Pois}(\\lambda_{i})\\]"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#expectation",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#expectation",
+    "title": "14: Poisson Regression Models",
+    "section": "Expectation",
+    "text": "Expectation\nThe expected number \\(Y_{i}\\) predicted by values \\(X_{ij}\\) (over \\(j\\) predictor variables) captured by parameter \\(\\lambda_{i}\\) is\n\\[\\text{E}(Y_{i} | \\lambda_{i}) = \\lambda_{i}\\]"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#log_link-function",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#log_link-function",
+    "title": "14: Poisson Regression Models",
+    "section": "Log_Link Function",
+    "text": "Log_Link Function\n\\[Y_{i} | \\beta_{0}, \\beta_{1}, \\beta_{2} \\sim \\text{Pois}(\\lambda_{i}) \\quad\\text{with}\\quad \\ln(\\lambda_{i}) = \\beta_{0} + \\beta_{1}X_{i1} + \\beta_{2}X_{i2}\\] \\[\\text{OR}\\] \\[Y_{i} | \\beta_{0}, \\beta_{1}, \\beta_{2} \\sim \\text{Pois}(\\lambda_{i}) \\quad\\text{with}\\quad \\lambda_{i} = e^{\\beta_{0} + \\beta_{1}X_{i1} + \\beta_{2}X_{i2}}\\]"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#model-assumptions",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#model-assumptions",
+    "title": "14: Poisson Regression Models",
+    "section": "Model Assumptions",
+    "text": "Model Assumptions\n\nStructure of the data: observed data are independent\nStructure of the response variable: \\(Y\\) has a Poisson structure that seeks a discrete count of events (per unit time)\nStructure of the relationship: the logged average \\(Y\\) can be written as a linear combination of the predictors\n\n\\[\\lambda_{i} = e^{\\beta_{0} + \\beta_{1}X_{i1} + \\beta_{2}X_{i2}}\\]\n\nStructure of the variability in \\(Y\\):\n\n\\[\\text{E}(Y) = \\text{Var}(Y) = \\lambda\\]\neditor’s note: better visuals by Professors Roback and Legler at St Olaf College"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#interpreting-coefficients",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#interpreting-coefficients",
+    "title": "14: Poisson Regression Models",
+    "section": "Interpreting Coefficients",
+    "text": "Interpreting Coefficients\n\nIntercept\nWhen \\(X_{1} = 0, X_{2} = 0, ...\\)\n\\[\\text{E}(Y) = \\lambda = e^{\\beta_{0}} \\quad\\rightarrow\\quad \\beta_{0} = \\ln(\\lambda)\\]\n\n\\(\\beta_{0}\\): logged average\n\\(e^{\\beta_{0}}\\): average value\n\n\n\nRates\nWhen we control other predictors and increase \\(X_{i}\\) by one unit,\n\\[\\beta_{i} = \\ln(\\lambda_{x+1}) - \\ln(\\lambda_{x}) \\quad\\rightarrow\\quad e^{\\beta_{i}} = \\displaystyle\\frac{\\lambda_{x+1}}{\\lambda_{x}}\\]\n\n\\(\\beta_{i}\\): change in logged average\n\\(e^{\\beta_{i}}\\): multiplicative change in average value"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#coefficients",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#coefficients",
+    "title": "14: Poisson Regression Models",
+    "section": "Coefficients",
+    "text": "Coefficients\n\nbroom.mixed::tidy(mod_pois, effects = c(\"fixed\", \"aux\")) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n# A tibble: 4 × 3\n  term        estimate std.error\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept)   3.58      0.0233\n2 month         0.0357    0.0027\n3 day          -0.0087    0.0009\n4 mean_PPD     39.4       0.467 \n\n\n\\[e^{\\beta_{1}} = e^{0.0357} \\approx 1.0363\\]\nAs we go from one month to the next, the number of street sweeping violations increases by about 3.6 percent.\n\\[e^{\\beta_{2}} = e^{-0.0087} \\approx 0.9913\\]\nAs we go from one day to the next, the number of street sweeping violations decreases by about 0.9 percent."
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#prior-distributions",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#prior-distributions",
+    "title": "14: Poisson Regression Models",
+    "section": "Prior Distributions",
+    "text": "Prior Distributions\n\nCodeInterpretationFull Model\n\n\n\nrstanarm::prior_summary(mod_pois)\n\nPriors for model 'mod_pois' \n------\nIntercept (after predictors centered)\n ~ normal(location = 0, scale = 2.5)\n\nCoefficients\n  Specified prior:\n    ~ normal(location = [0,0], scale = [2.5,2.5])\n  Adjusted prior:\n    ~ normal(location = [0,0], scale = [0.78,0.28])\n------\nSee help('prior_summary.stanreg') for more details\n\n\n\n\nFor the prior distributions,\n\\[e^{\\beta_{0}} \\in (e^{-5}, e^{5}) \\approx (0, 149)\\]\n\nthe average number of street sweeping violations per day is in between zero and 149\n\n\\[e^{\\beta_{1}} \\in (e^{-1.56}, e^{1.56}) \\approx (0.2101, 4.7588)\\]\n\nmoving from one month to the next, the percent change in the number of street sweeping violations per day is in between 21 and 476 percent\n\n\\[e^{\\beta_{2}} \\in (e^{-0.56}, e^{0.56}) \\approx (0.5712, 1.7507)\\]\n\nmoving from one day to the next, the percent change in the number of street sweeping violations per day is in between -43 and 175 percent\n\n\n\n\\[\\begin{array}{rcl}\n  Y_{i}|\\beta_{0},\\beta_{1},\\beta_{2} & \\sim & \\text{Pois}(\\lambda_{i}) \\text{ with }\\ln(\\lambda_{i}) = \\beta_{0} + \\beta_{1}X_{i1} + \\beta_{2}X_{i2} \\\\\n  \\beta_{0c} & \\sim & \\text{N}(0, 2.5^{2}) \\\\\n  \\beta_{1} & \\sim & \\text{N}(0, 0.78^{2}) \\\\\n  \\beta_{2} & \\sim & \\text{N}(0, 0.28^{2}) \\\\\n\\end{array}\\]"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#posterior-prediction-interval",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#posterior-prediction-interval",
+    "title": "14: Poisson Regression Models",
+    "section": "Posterior Prediction Interval",
+    "text": "Posterior Prediction Interval\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nthese_predictions &lt;- rstanarm::posterior_predict(\n  mod_pois, newdata = data.frame(month = 3, day = 28))\ncredible_interval &lt;- round(quantile(these_predictions, c(0.05, 0.95)))\nsubtitle_string &lt;- paste0(\"90 Percent Credible Interval: (\",\n                          credible_interval[1], \", \",\n                          credible_interval[2], \")\")\nbayesplot::mcmc_areas(these_predictions, prob = 0.9) +\n  labs(title = \"Predictions for March 28\",\n       subtitle = subtitle_string,\n       caption = \"SML 320\",\n       x = \"number of street sweeping violations\")"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#motivation-and-definition",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#motivation-and-definition",
+    "title": "14: Poisson Regression Models",
+    "section": "Motivation and Definition",
+    "text": "Motivation and Definition\n\n\n\n\n\n\nOverdispersion\n\n\n\n\n\nA random variable \\(Y\\) is overdispersed if the observed variability in \\(Y\\) exceeds the variability expected by the assumed probability model of \\(Y\\)\n\n\n\nIf the count data appears to be demonstrating overdispersion, consider using the negative binomial distribution.\n\n\n\n\n\n\nNegative Binomial model\n\n\n\n\n\nLet random variable \\(Y\\) be some count, \\(Y\\in\\{0,1,2,…\\}\\), that can be modeled by the Negative Binomial with mean parameter \\(\\mu\\) and reciprocal dispersion parameter \\(r\\):\n\\[Y|\\mu,r \\sim \\text{NegBin}(\\mu,r)\\]\nThen \\(Y\\) has conditional pmf\n\\[f(y|\\mu,r) = \\binom{y+r-1}{r}\\left( \\displaystyle\\frac{r}{\\mu+r} \\right)^{r}\\left(  \\displaystyle\\frac{\\mu}{\\mu+r}\\right)^{y} \\text{ for } y\\in\\{0,1,2,...\\}\\]\nwith statistics\n\\[\\text{E}(Y|\\mu,r) = \\mu \\quad\\text{and}\\quad \\text{Var}(Y|\\mu,r) = \\mu + \\displaystyle\\frac{\\mu^{2}}{r}\\]\n\n\n\n\n\n\n\n\n\nCommentary\n\n\n\n\n\n\nfor large \\(r\\), this distribution behaves like the Poisson distribution\nfor small \\(r\\), and \\(Y\\) is overdispersed\n\\(\\text{Var}(Y) \\neq \\text{E}(Y)\\)"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#prior-distributions-1",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#prior-distributions-1",
+    "title": "14: Poisson Regression Models",
+    "section": "Prior Distributions",
+    "text": "Prior Distributions\n\nCodeInterpretationFull Model\n\n\n\nmodel_priors &lt;- rstanarm::prior_summary(mod_neg_bin)\nmodel_priors #print\n\nPriors for model 'mod_neg_bin' \n------\nIntercept (after predictors centered)\n ~ normal(location = 0, scale = 2.5)\n\nCoefficients\n  Specified prior:\n    ~ normal(location = [0,0,0,...], scale = [2.5,2.5,2.5,...])\n  Adjusted prior:\n    ~ normal(location = [0,0,0,...], scale = [ 0.78, 0.28,19.58,...])\n\nAuxiliary (reciprocal_dispersion)\n ~ exponential(rate = 1)\n------\nSee help('prior_summary.stanreg') for more details\n\n# model_priors$prior$adjusted_scale #after autoscaling\n\n\n\nFor the prior distributions,\n\\[e^{\\beta_{0}} \\in (e^{-5}, e^{5}) \\approx (0, 149)\\]\n\nthe average number of street sweeping violations per day is in between zero and 149\n\n\\[e^{\\beta_{1}} \\in (e^{-1.56}, e^{1.56}) \\approx (0.2101, 4.7588)\\]\n\nmoving from one month to the next, the percent change in the number of street sweeping violations per day is in between 21 and 476 percent\n\n\\[e^{\\beta_{2}} \\in (e^{-0.56}, e^{0.56}) \\approx (0.5712, 1.7507)\\]\n\nmoving from one day to the next, the percent change in the number of street sweeping violations per day is in between -43 and 175 percent\n\n\\[e^{\\beta_{3}} \\in (e^{-39.16}, e^{39.16})\\]\n\n[We have a vague prior for the coefficient of the categorical variable]\n\n\n\n\\[\\begin{array}{rcl}\n  Y_{i}|\\beta_{0},\\beta_{1},\\beta_{2} & \\sim & \\text{NegBin}(\\mu_{i},r) \\text{ with }\\ln(\\mu_{i}) = \\beta_{0} + \\beta_{1}X_{i1} + \\beta_{2}X_{i2} + ... \\\\\n  \\beta_{0c} & \\sim & \\text{N}(0, 2.5^{2}) \\\\\n  \\beta_{1} & \\sim & \\text{N}(0, 0.78^{2}) \\\\\n  \\beta_{2} & \\sim & \\text{N}(0, 0.28^{2}) \\\\\n  \\beta_{3} & \\sim & \\text{N}(0, 19.58^{2}) \\\\\n  \\beta_{4} & \\sim & \\text{N}(0, 1.09^{2}) \\\\\n  r & \\sim & \\text{Exp}(1) \\\\\n\\end{array}\\]"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#ppc-3",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#ppc-3",
+    "title": "14: Poisson Regression Models",
+    "section": "PPC",
+    "text": "PPC\n\nbayesplot::pp_check(mod_neg_bin, nreps = 50) +\n  labs(title = \"Posterior Predictive Check\",\n       subtitle = \"Negative Binomial Regression Model\",\n       caption = \"SML 320\")"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#coefficients-1",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#coefficients-1",
+    "title": "14: Poisson Regression Models",
+    "section": "Coefficients",
+    "text": "Coefficients\nLike in the Poisson regression models, the coefficents of negative binomial regression models are also desribed with the logarithmic transformation in mind.\n\nbroom.mixed::tidy(mod_neg_bin, effects = c(\"fixed\", \"aux\"),\n                  conf.int = TRUE, conf.level = 0.90) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n# A tibble: 6 × 5\n  term        estimate std.error conf.low conf.high\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) 124.       24.9     82.2     165.    \n2 month         0.022     0.0066   0.0112    0.0329\n3 day          -0.0039    0.0023  -0.0077   -0.0002\n4 weekendTRUE   0.879     0.160    0.627     1.15  \n5 lat:lon       0.04      0.0083   0.0262    0.0536\n6 mean_PPD     39.5       1.16    37.6      41.4   \n\n\n\\[e^{\\beta_{1}} = e^{0.0220} \\approx 1.0222\\]\n\nAs we go from one month to the next, the number of street sweeping violations increases by about 2.2 percent.\n\n\\[e^{\\beta_{2}} = e^{-0.0039} \\approx 0.9961\\]\n\nAs we go from one day to the next, the number of street sweeping violations decreases by about 0.04 percent.\n\n\\[e^{\\beta_{3}} = e^{0.8791} \\approx 2.4087\\]\n\nCompared to a weekday, the expected amount of street sweeping violations on a weekend day is 241 percent higher (caution: sample size issue).\n\n\\[1.0 \\notin (e^{0.0262}, e^{0.0536})\\]\n\nWe may have some evidence that \\(\\beta_{4} &gt; 1.0\\), or the notion that there may be an interaction effect between latitude and longitude"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#posterior-prediction-interval-1",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#posterior-prediction-interval-1",
+    "title": "14: Poisson Regression Models",
+    "section": "Posterior Prediction Interval",
+    "text": "Posterior Prediction Interval\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nthese_predictions &lt;- rstanarm::posterior_predict(\n  mod_neg_bin, newdata = data.frame(month = 3, \n                                    day = 28,\n                                    weekend = FALSE,\n                                    lat = mean(tickets_df$lat),\n                                    lon = mean(tickets_df$lon)))\ncredible_interval &lt;- round(quantile(these_predictions, c(0.05, 0.95)))\nsubtitle_string &lt;- paste0(\"90 Percent Credible Interval: (\",\n                          credible_interval[1], \", \",\n                          credible_interval[2], \")\")\nbayesplot::mcmc_areas(these_predictions, prob = 0.9) +\n  labs(title = \"Predictions for March 28\",\n       subtitle = subtitle_string,\n       caption = \"SML 320\",\n       x = \"number of street sweeping violations\")"
+  },
+  {
+    "objectID": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#dispersion-1",
+    "href": "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html#dispersion-1",
+    "title": "14: Poisson Regression Models",
+    "section": "Dispersion",
+    "text": "Dispersion\n\\[\\text{E}(Y) = \\text{Var}(Y)??\\]\n\nmean(these_predictions)\n\n[1] 33.85635\n\n\n\nvar(these_predictions)\n\n         1\n1 175.5899"
   }
 ]
