@@ -1,0 +1,869 @@
+---
+title: "15: Logistic Regression"
+author: "Derek Sollberger"
+date: "2024-04-02"
+execute:
+  cache: true
+# format:
+#   revealjs:
+#     scrollable: true
+format:
+  html:
+    toc: true
+---
+
+\newcommand{\ds}{\displaystyle}
+
+# Logistic Regression
+
+:::: {.columns}
+
+::: {.column width="45%"}
+**Goal:** Use Bayesian approaches to classification tasks
+
+*Bayes Rules!* Exercise 13.14
+
+![Another Ghostbusters movie came out in 2024](ghostbusters_frozen_empire.png)
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+```{r}
+#| message: false
+#| warning: false
+
+library("bayesrules")
+library("bayesplot")
+library("ggtext")
+library("gt")
+library("janitor")
+library("rstan")
+library("rstanarm")
+library("tidyverse")
+
+knitr::opts_chunk$set(echo = TRUE)
+
+data(pulse_of_the_nation)
+pulse_df <- pulse_of_the_nation
+
+pulse_df$education <- factor(pulse_df$education,
+                             levels = c("Graduate degree",
+                                        "College degree",
+                                        "Some college",
+                                        "High school",
+                                        "Other"))
+pulse_df$robots <- factor(pulse_df$robots,
+                          levels = c("Likely", "Unlikely"))
+pulse_df$ghosts <- factor(pulse_df$ghosts,
+                          levels = c("Yes", "No"))
+```
+:::
+
+::::
+
+# Data
+
+:::: {.columns}
+
+::: {.column width="45%"}
+* source: [Pulse of the Nation](https://thepulseofthenation.com/#intro) survey by Cards Against Humanity
+* Poll 1: September 2017
+
+* 1000 observations
+* 15 variables
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+![Pulse of the Nation](prulse_of_the_nation.png)
+:::
+
+::::
+
+## Exploratory Data Analyses
+
+::::: {.panel-tabset}
+
+## Income
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = income)) +
+  geom_density(fill = "green") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Income of participants",
+       caption = "SML 320",
+       x = "income (thousands of dollars)",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = income)) +
+  geom_density(fill = "green") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Income of participants",
+       caption = "SML 320",
+       x = "income (thousands of dollars)",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+## Age
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = age)) +
+  geom_density(fill = "purple") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Age of participants",
+       caption = "SML 320",
+       x = "age",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = age)) +
+  geom_density(fill = "purple") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Age of participants",
+       caption = "SML 320",
+       x = "age",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+## Education
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = education, fill = education)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Education attainment of participants",
+       caption = "SML 320",
+       x = "education",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = education, fill = education)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Education attainment of participants",
+       caption = "SML 320",
+       x = "education",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Robots
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = robots, fill = robots)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Is it likely that robots would take your jobs within the next decade",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = robots, fill = robots)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Is it likely that robots would take your jobs within the next decade",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Ghosts
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = ghosts, fill = ghosts)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = ghosts, fill = ghosts)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+:::::
+
+## Variables
+
+:::: {.columns}
+
+::: {.column width="40%"}
+### Response Variable
+
+$Y$: `ghosts`
+
+* *binary variable*: did the survey participant believe in ghosts?
+
+### Prediction
+
+What percentage of 21-year-olds who make $75,000 believe in ghosts?
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="50%"}
+### Predictor Variables
+
+* $X_{1}$: `income`
+* $X_{2}$: `age`
+* $X_{3}$: `education`
+* $X_{4}$: `robots`
+:::
+
+::::
+
+# Odds
+
+::::: {.panel-tabset}
+
+## Definition
+
+The notion of **odds** is related to probability.  If we have a probability computed with a value of $\pi$, then the odds are
+
+$$\text{odds} = \frac{\pi}{1 - \pi}$$
+
+* $\pi \in [0,1]$
+* odds $\in [0 \infty)$
+
+## Example
+
+The observed probability (scaled frequency) of believing in ghosts is 37.9 percent.
+
+```{r}
+pulse_df |> 
+  janitor::tabyl(ghosts) |> 
+  janitor::adorn_totals()
+```
+
+Compute the odds of believing in ghosts.
+
+$$\text{odds} = \frac{\pi}{1 - \pi} = \frac{0.379}{1 - 0.379} = 0.610$$
+The odds of believing in ghosts are 379 to 621.
+
+## Inverse
+
+If we know the odds of an event, the associated probability is
+
+$$\pi = \frac{\text{odds}}{1 + \text{odds}}$$
+
+## Example
+
+Among the participants with a college degree, the odds of believing in ghosts was 45 to 268.  What was the probability of randomly selecting a person in that set that believed in ghosts?
+
+$$\pi = \frac{\text{odds}}{1 + \text{odds}} = \frac{\frac{45}{268}}{1 + \frac{45}{268}} \approx 0.1438$$
+
+```{r}
+pulse_df |>
+  filter(education == "College degree") |>
+  janitor::tabyl(robots) |> 
+  janitor::adorn_totals()
+```
+
+:::::
+
+
+# Logistic Model
+
+::::: {.panel-tabset}
+
+## Definition
+
+$$Y_{i} | \beta_{0}, \beta_{1} \sim \text{Bern}(\pi_{i}) \quad\text{with}\quad \ln\left(\frac{\pi_{i}}{1 - \pi_{i}}\right) = \beta_{0} + \beta_{1}X_{i1} ...$$
+
+$$\frac{\pi_{i}}{1 - \pi_{i}} = e^{\beta_{0} + \beta_{1}X_{i1}} \quad\text{and}\quad \pi_{i} = \frac{e^{\beta_{0} + \beta_{1}X_{i1}}}{1 + e^{\beta_{0} + \beta_{1}X_{i1}}}$$
+
+## Viz
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = age, y = income, color = ghosts)) +
+  geom_point() +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "age",
+       y = "income") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = age, y = income, color = ghosts)) +
+  geom_point() +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "age",
+       y = "income") +
+  theme_minimal()
+```
+
+## Stan
+
+```{r}
+log_reg_mod_1 <- rstanarm::stan_glm(
+  formula = ghosts ~ income + age,
+  data = pulse_df,
+  family = binomial, #changed here
+  chains = 4, iter = 5000*2, refresh = 0, seed = 320)
+```
+
+## Diagnostics
+
+::: {.callout-note collapse="true"}
+## Function
+
+```{r}
+model_diagnostics <- function(the_stan_model){
+  p1 <- bayesplot::mcmc_trace(the_stan_model, size = 0.1) +
+  labs(title = "MCMC Traces")
+  print(p1)
+  
+  p2 <- bayesplot::mcmc_dens_overlay(the_stan_model) +
+  labs(title = "Density Plots")
+  print(p2)
+  
+  p3 <- bayesplot::mcmc_acf(the_stan_model) +
+  labs(title = "Autocorrelations")
+  print(p3)
+  
+  # effective sample size
+  print("Effective Sample Size:")
+  print(bayesplot::neff_ratio(the_stan_model))
+  
+  # split-R metric
+  print("R-Hat")
+  print(bayesplot::rhat(the_stan_model))
+}
+```
+
+:::
+
+```{r}
+#| message: false
+#| warning: false
+model_diagnostics(log_reg_mod_1)
+```
+
+## Model Stats
+
+```{r}
+broom.mixed::tidy(log_reg_mod_1,
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+:::::
+
+
+# Interpretation
+
+::::: {.panel-tabset}
+
+## Ideas
+
+$$\ln(\text{odds})=\ln\left(\frac{\pi}{1 - \pi}\right)=\beta_{0}+\beta_{1}X_{1}+\cdots+\beta_{p}X_{p}$$
+
+* intercept: $\beta_{0}$ is the *log odds*, $e^{\beta_{0}}$ is the odds
+
+$$\beta_{i} = \ln(\text{odds}_{x+1}) - \ln(\text{odds}_{x}) \quad\text{and}\quad e^{\beta_{i}} = \frac{\text{odds}_{x+1}}{\text{odds}_{x}}$$
+
+* $\beta_{i}$: change in log odds
+* $e^{\beta_{i}}$: *multiplicative* change in odds
+
+## Intercept
+
+When $X_{1} = 0$ and $X_{2} = 0$,
+
+$$\begin{array}{rrrr}
+\text{log odds: } & \beta_{0} & \approx & -0.1422 \\
+\text{odds: } & e^{\beta_{0}} & \approx & 0.8674
+\end{array}$$
+
+Overall, since the odds are less than one, it is less likely to encounter a person who believes in ghosts than a person who doesn't believe in ghosts.
+
+## Coefficients
+
+$$\beta_{1} \approx 0.0021 \quad\rightarrow\quad e^{\beta_{1}} \approx 1.0021$$
+
+For each $1000 increase in annual income, the odds of believing in ghosts increases by about 0.21 percent.
+
+$$\beta_{2} \approx 0.0091	 \quad\rightarrow\quad e^{\beta_{2}} \approx 1.0091$$
+
+For each unit increase in age, the odds of believing in ghosts increases by about 0.91 percent.
+
+## Autoscale
+
+```{r}
+prior_summary(log_reg_mod_1)
+```
+
+$$Y_{i} | \beta_{0}, \beta_{1} \sim \text{Bern}(\pi_{i}) \quad\text{with}\quad \ln\left(\frac{\pi_{i}}{1 - \pi_{i}}\right) = \beta_{0} + \beta_{1}X_{i1} + \beta_{2}X_{i2}$$
+$$\begin{array}{rcl}
+  \beta_{0c} & \sim & \text{N}(0, 2.5^2) \\
+  \beta_{1} & \sim & \text{N}(0, 0.044^2) \\
+  \beta_{2} & \sim & \text{N}(0, 0.150^2) \\
+\end{array}$$
+
+## Priors
+
+$$\beta_{0c}: \quad \left( e^{-5}, e^{5} \right)$$
+
+The prior odds for believing in ghosts varied largely.
+
+$$\beta_{1}: \quad \left( e^{-0.088}, e^{0.088} \right)$$
+The prior odds change for income was between decreasing by 8.6 percent and increasing by 9.1 percent.
+
+$$\beta_{2}: \quad \left( e^{-0.3}, e^{0.3} \right)$$
+The prior odds change for income was between decreasing by 26 percent and increasing by 35 percent.
+
+## Posterior
+
+```{r}
+# change in log odds
+rstanarm::posterior_interval(log_reg_mod_1, prob = 0.90) |>
+  round(digits = 4)
+```
+
+```{r}
+# multiplicative change in odds
+exp(rstanarm::posterior_interval(log_reg_mod_1, prob = 0.90)) |>
+  round(digits = 4)
+```
+
+:::::
+
+
+# Prediction
+
+## Simulation
+
+What percentage of 21-year-olds who make $75,000 believe in ghosts?
+
+```{r}
+set.seed(320)
+log_reg_mod_1_df <- as.data.frame(log_reg_mod_1) |>
+  mutate(log_odds = `(Intercept)` + income*75 + age*21,
+         odds = exp(log_odds),
+         prob = odds / (1 + odds),
+         Y = rbinom(20000, size = 1, prob = prob))
+```
+
+```{r}
+log_reg_mod_1_df |>
+  mutate_if(is.numeric, round, digits = 4) |>
+  slice_sample(n = 10)
+```
+What percentage of 21-year-olds who make $75,000 believe in ghosts?
+
+```{r}
+mean(log_reg_mod_1_df$Y)
+```
+
+## Cutoff
+
+```{r}
+set.seed(320)
+
+# make 20000 predictions
+ghost_preds <- rstanarm::posterior_predict(
+  log_reg_mod_1, newdata = pulse_df)
+
+ghost_classifications <- pulse_df |>
+  mutate(ghost_prob = colMeans(ghost_preds),
+         ghost_class = ifelse(ghost_prob >= 0.60, 1, 0)) |>
+  select(income, age, ghost_prob, ghost_class, ghosts)
+
+head(ghost_classifications, 10)
+```
+
+## Confusion Matrix
+
+```{r}
+ghost_classifications |>
+  janitor::tabyl(ghosts, ghost_class) |>
+  adorn_totals(c("row", "col"))
+```
+
+::: {.callout-note collapse="true"}
+## Formulas
+
+$$\text{accuracy } = \frac{TP + TN}{TP + FN + FP + TN}$$
+$$\text{sensitivity } = \frac{TP}{TP + FN}$$
+$$\text{specificity } = \frac{TN}{FP + TN}$$
+$$\text{F-score } = \frac{2*TP}{2*TP + FN + FP}$$
+
+Source: [Wikipedia page on sensitivity and specificity](https://en.wikipedia.org/wiki/Sensitivity_and_specificity)
+
+:::
+
+
+# Confusion
+
+## Classification
+
+```{r}
+set.seed(320)
+class_results <- bayesrules::classification_summary(
+  model = log_reg_mod_1,
+  data = pulse_df,
+  cutoff = 0.6
+)
+```
+
+```{r}
+class_results$confusion_matrix
+```
+
+```{r}
+class_results$accuracy_rates |> round(digits = 4)
+```
+
+## Cutoff
+
+How do we choose a cutoff value?
+
+::::: {.panel-tabset}
+
+## Loop
+
+```{r}
+N <- 11 #resolution
+cutoff_vals <- seq(0.5, 1.0, length.out = N)
+
+accuracies <-    rep(NA, N)
+sensitivities <- rep(NA, N)
+specificities <- rep(NA, N)
+
+for(i in 1:length(cutoff_vals)){
+  this_class_result <- bayesrules::classification_summary(
+    model = log_reg_mod_1,
+    data = pulse_df,
+    cutoff = cutoff_vals[i]
+  )
+  
+  these_metrics <- unlist(this_class_result$accuracy_rates)
+  
+  accuracies[i]    <- these_metrics[3]
+  sensitivities[i] <- these_metrics[1]
+  specificities[i] <- these_metrics[2]
+}
+
+cutoff_df <- data.frame(cutoff_vals, accuracies, sensitivities, specificities)
+```
+
+## Viz
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+
+subtitle_string <- "<span style='color:#ff00ff'>Accuracy</span>,<span style='color:#0000ff'>Sensitivity</span>, and <span style='color:#ff0000'>Specificity</span>"
+
+cutoff_df |>
+  ggplot() +
+  geom_point(aes(x = cutoff_vals, y = specificities),
+             color = "#ff0000", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = specificities),
+             color = "#ff0000", linewidth = 1) +
+  geom_point(aes(x = cutoff_vals, y = sensitivities),
+             color = "#0000ff", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = sensitivities),
+             color = "#0000ff", linewidth = 1) +
+  geom_point(aes(x = cutoff_vals, y = accuracies),
+             color = "#ff00ff", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = accuracies),
+             color = "#ff00ff", linewidth = 1) +
+  labs(title = "Confusion Matrix Metrics",
+       subtitle = subtitle_string,
+       caption = "SML 320",
+       x = "cutoff value",
+       y = "metric value") +
+  theme_minimal() +
+  theme(plot.subtitle = element_markdown()) #use ggtext package
+```
+
+* As we lower $c$, sensitivity increases, but specificity decreases.
+* As we increase $c$, specificity increases, but sensitivity decreases.
+* Perhaps a cutoff value around 0.62 would be good here.
+
+## Code
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: false
+
+subtitle_string <- "<span style='color:#ff00ff'>Accuracy</span>,<span style='color:#0000ff'>Sensitivity</span>, and <span style='color:#ff0000'>Specificity</span>"
+
+cutoff_df |>
+  ggplot() +
+  geom_point(aes(x = cutoff_vals, y = specificities),
+             color = "#ff0000", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = specificities),
+             color = "#ff0000", linewidth = 1) +
+  geom_point(aes(x = cutoff_vals, y = sensitivities),
+             color = "#0000ff", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = sensitivities),
+             color = "#0000ff", linewidth = 1) +
+  geom_point(aes(x = cutoff_vals, y = accuracies),
+             color = "#ff00ff", size = 5) +
+  geom_line(aes(x = cutoff_vals, y = accuracies),
+             color = "#ff00ff", linewidth = 1) +
+  labs(title = "Confusion Matrix Metrics",
+       subtitle = subtitle_string,
+       caption = "SML 320",
+       x = "cutoff value",
+       y = "metric value") +
+  theme_minimal() +
+  theme(plot.subtitle = element_markdown()) #use ggtext package
+```
+
+:::::
+
+## Cross Validation
+
+```{r}
+set.seed(320)
+log_reg_mod_1_cv <- bayesrules::classification_summary_cv(
+  model = log_reg_mod_1, data = pulse_df,
+  cutoff = 0.62, k = 10)
+
+log_reg_mod_1_cv$cv
+```
+
+
+# Extended Model
+
+::::: {.panel-tabset}
+
+## Stan
+
+```{r}
+log_reg_mod_2 <- rstanarm::stan_glm(
+  formula = ghosts ~ income + age + education + robots,
+  data = pulse_df,
+  family = binomial, #changed here
+  chains = 4, iter = 5000*2, refresh = 0, seed = 320)
+```
+
+## Diagnostics
+
+```{r}
+#| message: false
+#| warning: false
+model_diagnostics(log_reg_mod_2)
+```
+
+## Model Stats
+
+```{r}
+broom.mixed::tidy(log_reg_mod_2,
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+## Cross Validation
+
+```{r}
+set.seed(320)
+log_reg_mod_2_cv <- bayesrules::classification_summary_cv(
+  model = log_reg_mod_2, data = pulse_df,
+  cutoff = 0.62, k = 10)
+```
+
+:::::
+
+# Model Selection
+
+$$\ln\left(\frac{\pi_{i}}{1 - \pi_{i}}\right) = \beta_{0} + \beta_{1}X_{i1} + \beta_{2}X_{i2}$$
+
+```{r}
+log_reg_mod_1_cv$cv |> round(digits = 4)
+```
+
+$$\ln\left(\frac{\pi_{i}}{1 - \pi_{i}}\right) = \beta_{0} + \beta_{1}X_{i1} + \beta_{2}X_{i2} + \beta_{3}X_{i3} + \beta_{4}X_{i4}$$
+
+```{r}
+log_reg_mod_2_cv$cv |> round(digits = 4)
+```
+
+
+# Posterior Interval
+
+```{r}
+proportion_calc <- function(x){ mean(x == 1) }
+rstanarm::pp_check(log_reg_mod_1, binwidth = 0.01,
+                   plotfun = "stat", stat = "proportion_calc") +
+  xlab("proportion believes in ghosts")
+```
+
+```{r}
+#| echo: false
+#| eval: true
+CI_left <- quantile(log_reg_mod_1_df$prob, 0.05)
+CI_right <- quantile(log_reg_mod_1_df$prob, 0.95)
+
+log_reg_mod_1_df |>
+  ggplot(aes(x = prob)) +
+  geom_density(color = "#121212", fill = "#E77500") +
+  geom_vline(xintercept = CI_left, color = "#121212", 
+             linetype = 2, linewidth = 3) +
+  geom_vline(xintercept = CI_right, color = "#121212", 
+             linetype = 2, linewidth = 3) +
+  labs(title = "For a 21-year-old making $75k/year, belief in ghosts",
+       subtitle = paste0("Has a 90-percent credible interval of (", round(CI_left,2),
+                         ", ", round(CI_right,2), ")"),
+       caption = "SML 320",
+       x = "proportion",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+CI_left <- quantile(log_reg_mod_1_df$prob, 0.05)
+CI_right <- quantile(log_reg_mod_1_df$prob, 0.95)
+
+log_reg_mod_1_df |>
+  ggplot(aes(x = prob)) +
+  geom_density(color = "#121212", fill = "#E77500") +
+  geom_vline(xintercept = CI_left, color = "#121212", 
+             linetype = 2, linewidth = 3) +
+  geom_vline(xintercept = CI_right, color = "#121212", 
+             linetype = 2, linewidth = 3) +
+  labs(title = "For a 21-year-old making $75k/year, belief in ghosts",
+       subtitle = paste0("Has a 90-percent credible interval of (", round(CI_left,2),
+                         ", ", round(CI_right,2), ")"),
+       caption = "SML 320",
+       x = "proportion",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+
+# Footnotes
+
+* [Bayesian Logistic Regression Models](https://people.stat.sc.edu/hitchcock/stat535slides13BRBhandout.pdf) by Dr David B Hitchcock at the University of South Carolina
+
+::: {.callout-note collapse="true"}
+## Session Info
+
+```{r}
+sessionInfo()
+```
+:::
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+	
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+:::
+
+::::
+
+
+::::: {.panel-tabset}
+
+
+
+:::::

@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "15: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\nApr 2, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -1979,5 +1979,68 @@
     "title": "14: Poisson Regression Models",
     "section": "Dispersion",
     "text": "Dispersion\n\\[\\text{E}(Y) = \\text{Var}(Y)??\\]\n\nmean(these_predictions)\n\n[1] 33.85635\n\n\n\nvar(these_predictions)\n\n         1\n1 175.5899"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html",
+    "title": "15: Logistic Regression",
+    "section": "",
+    "text": "Goal: Use Bayesian approaches to classification tasks\nBayes Rules! Exercise 13.14\n\n\n\nAnother Ghostbusters movie came out in 2024\n\n\n\n\n\n\nlibrary(\"bayesrules\")\nlibrary(\"bayesplot\")\nlibrary(\"ggtext\")\nlibrary(\"gt\")\nlibrary(\"janitor\")\nlibrary(\"rstan\")\nlibrary(\"rstanarm\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\ndata(pulse_of_the_nation)\npulse_df &lt;- pulse_of_the_nation\n\npulse_df$education &lt;- factor(pulse_df$education,\n                             levels = c(\"Graduate degree\",\n                                        \"College degree\",\n                                        \"Some college\",\n                                        \"High school\",\n                                        \"Other\"))\npulse_df$robots &lt;- factor(pulse_df$robots,\n                          levels = c(\"Likely\", \"Unlikely\"))\npulse_df$ghosts &lt;- factor(pulse_df$ghosts,\n                          levels = c(\"Yes\", \"No\"))"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#exploratory-data-analyses",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#exploratory-data-analyses",
+    "title": "15: Logistic Regression",
+    "section": "Exploratory Data Analyses",
+    "text": "Exploratory Data Analyses\n\nIncomeAgeEducationRobotsGhosts\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = income)) +\n  geom_density(fill = \"green\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Income of participants\",\n       caption = \"SML 320\",\n       x = \"income (thousands of dollars)\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = age)) +\n  geom_density(fill = \"purple\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Age of participants\",\n       caption = \"SML 320\",\n       x = \"age\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = education, fill = education)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Education attainment of participants\",\n       caption = \"SML 320\",\n       x = \"education\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = robots, fill = robots)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Is it likely that robots would take your jobs within the next decade\",\n       caption = \"September 2017\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = ghosts, fill = ghosts)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Do you believe in ghosts?\",\n       caption = \"September 2017\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#variables",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#variables",
+    "title": "15: Logistic Regression",
+    "section": "Variables",
+    "text": "Variables\n\n\n\nResponse Variable\n\\(Y\\): ghosts\n\nbinary variable: did the survey participant believe in ghosts?\n\n\n\nPrediction\nWhat percentage of 21-year-olds who make $75,000 believe in ghosts?\n\n\n\n\n\nPredictor Variables\n\n\\(X_{1}\\): income\n\\(X_{2}\\): age\n\\(X_{3}\\): education\n\\(X_{4}\\): robots"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#simulation",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#simulation",
+    "title": "15: Logistic Regression",
+    "section": "Simulation",
+    "text": "Simulation\nWhat percentage of 21-year-olds who make $75,000 believe in ghosts?\n\nset.seed(320)\nlog_reg_mod_1_df &lt;- as.data.frame(log_reg_mod_1) |&gt;\n  mutate(log_odds = `(Intercept)` + income*75 + age*21,\n         odds = exp(log_odds),\n         prob = odds / (1 + odds),\n         Y = rbinom(20000, size = 1, prob = prob))\n\n\nlog_reg_mod_1_df |&gt;\n  mutate_if(is.numeric, round, digits = 4) |&gt;\n  slice_sample(n = 10)\n\n   (Intercept) income     age log_odds   odds   prob Y\n1      -0.0165 0.0011  0.0081   0.2364 1.2667 0.5588 1\n2       0.2884 0.0028 -0.0008   0.4830 1.6209 0.6184 1\n3      -0.2852 0.0034  0.0128   0.2402 1.2715 0.5598 1\n4      -0.2206 0.0018  0.0109   0.1463 1.1576 0.5365 1\n5      -0.3701 0.0024  0.0115   0.0559 1.0575 0.5140 0\n6      -0.1566 0.0024  0.0074   0.1799 1.1971 0.5448 0\n7      -0.1805 0.0029  0.0066   0.1775 1.1942 0.5443 0\n8      -0.1173 0.0003  0.0129   0.1723 1.1880 0.5430 1\n9      -0.4068 0.0028  0.0116   0.0493 1.0505 0.5123 0\n10      0.1703 0.0025  0.0029   0.4165 1.5166 0.6026 1\n\n\nWhat percentage of 21-year-olds who make $75,000 believe in ghosts?\n\nmean(log_reg_mod_1_df$Y)\n\n[1] 0.54835"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#cutoff",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#cutoff",
+    "title": "15: Logistic Regression",
+    "section": "Cutoff",
+    "text": "Cutoff\n\nset.seed(320)\n\n# make 20000 predictions\nghost_preds &lt;- rstanarm::posterior_predict(\n  log_reg_mod_1, newdata = pulse_df)\n\nghost_classifications &lt;- pulse_df |&gt;\n  mutate(ghost_prob = colMeans(ghost_preds),\n         ghost_class = ifelse(ghost_prob &gt;= 0.60, 1, 0)) |&gt;\n  select(income, age, ghost_prob, ghost_class, ghosts)\n\nhead(ghost_classifications, 10)\n\n# A tibble: 10 × 5\n   income   age ghost_prob ghost_class ghosts\n    &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt; \n 1      8    64      0.608           1 Yes   \n 2     68    56      0.625           1 No    \n 3     46    63      0.629           1 No    \n 4     51    48      0.601           1 No    \n 5    100    32      0.590           0 Yes   \n 6     54    64      0.634           1 No    \n 7     83    61      0.641           1 Yes   \n 8    114    64      0.666           1 No    \n 9     90    64      0.660           1 No    \n10      5    68      0.621           1 No"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#confusion-matrix",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#confusion-matrix",
+    "title": "15: Logistic Regression",
+    "section": "Confusion Matrix",
+    "text": "Confusion Matrix\n\nghost_classifications |&gt;\n  janitor::tabyl(ghosts, ghost_class) |&gt;\n  adorn_totals(c(\"row\", \"col\"))\n\n ghosts   0   1 Total\n    Yes 135 244   379\n     No 172 449   621\n  Total 307 693  1000\n\n\n\n\n\n\n\n\nFormulas\n\n\n\n\n\n\\[\\text{accuracy } = \\frac{TP + TN}{TP + FN + FP + TN}\\] \\[\\text{sensitivity } = \\frac{TP}{TP + FN}\\] \\[\\text{specificity } = \\frac{TN}{FP + TN}\\] \\[\\text{F-score } = \\frac{2*TP}{2*TP + FN + FP}\\]\nSource: Wikipedia page on sensitivity and specificity"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#classification",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#classification",
+    "title": "15: Logistic Regression",
+    "section": "Classification",
+    "text": "Classification\n\nset.seed(320)\nclass_results &lt;- bayesrules::classification_summary(\n  model = log_reg_mod_1,\n  data = pulse_df,\n  cutoff = 0.6\n)\n\n\nclass_results$confusion_matrix\n\n   y   0   1\n Yes 135 244\n  No 172 449\n\n\n\nclass_results$accuracy_rates |&gt; round(digits = 4)\n\n                       \nsensitivity      0.7230\nspecificity      0.3562\noverall_accuracy 0.5840"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#cutoff-1",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#cutoff-1",
+    "title": "15: Logistic Regression",
+    "section": "Cutoff",
+    "text": "Cutoff\nHow do we choose a cutoff value?\n\nLoopVizCode\n\n\n\nN &lt;- 11 #resolution\ncutoff_vals &lt;- seq(0.5, 1.0, length.out = N)\n\naccuracies &lt;-    rep(NA, N)\nsensitivities &lt;- rep(NA, N)\nspecificities &lt;- rep(NA, N)\n\nfor(i in 1:length(cutoff_vals)){\n  this_class_result &lt;- bayesrules::classification_summary(\n    model = log_reg_mod_1,\n    data = pulse_df,\n    cutoff = cutoff_vals[i]\n  )\n  \n  these_metrics &lt;- unlist(this_class_result$accuracy_rates)\n  \n  accuracies[i]    &lt;- these_metrics[3]\n  sensitivities[i] &lt;- these_metrics[1]\n  specificities[i] &lt;- these_metrics[2]\n}\n\ncutoff_df &lt;- data.frame(cutoff_vals, accuracies, sensitivities, specificities)\n\n\n\n\n\n\n\n\n\nAs we lower \\(c\\), sensitivity increases, but specificity decreases.\nAs we increase \\(c\\), specificity increases, but sensitivity decreases.\nPerhaps a cutoff value around 0.62 would be good here.\n\n\n\n\nsubtitle_string &lt;- \"&lt;span style='color:#ff00ff'&gt;Accuracy&lt;/span&gt;,&lt;span style='color:#0000ff'&gt;Sensitivity&lt;/span&gt;, and &lt;span style='color:#ff0000'&gt;Specificity&lt;/span&gt;\"\n\ncutoff_df |&gt;\n  ggplot() +\n  geom_point(aes(x = cutoff_vals, y = specificities),\n             color = \"#ff0000\", size = 5) +\n  geom_line(aes(x = cutoff_vals, y = specificities),\n             color = \"#ff0000\", linewidth = 1) +\n  geom_point(aes(x = cutoff_vals, y = sensitivities),\n             color = \"#0000ff\", size = 5) +\n  geom_line(aes(x = cutoff_vals, y = sensitivities),\n             color = \"#0000ff\", linewidth = 1) +\n  geom_point(aes(x = cutoff_vals, y = accuracies),\n             color = \"#ff00ff\", size = 5) +\n  geom_line(aes(x = cutoff_vals, y = accuracies),\n             color = \"#ff00ff\", linewidth = 1) +\n  labs(title = \"Confusion Matrix Metrics\",\n       subtitle = subtitle_string,\n       caption = \"SML 320\",\n       x = \"cutoff value\",\n       y = \"metric value\") +\n  theme_minimal() +\n  theme(plot.subtitle = element_markdown()) #use ggtext package"
+  },
+  {
+    "objectID": "posts/15_logistic_regression/15_logistic_regression.html#cross-validation",
+    "href": "posts/15_logistic_regression/15_logistic_regression.html#cross-validation",
+    "title": "15: Logistic Regression",
+    "section": "Cross Validation",
+    "text": "Cross Validation\n\nset.seed(320)\nlog_reg_mod_1_cv &lt;- bayesrules::classification_summary_cv(\n  model = log_reg_mod_1, data = pulse_df,\n  cutoff = 0.62, k = 10)\n\nlog_reg_mod_1_cv$cv\n\n  sensitivity specificity overall_accuracy\n1    0.553233   0.5416136            0.547"
   }
 ]

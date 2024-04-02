@@ -49,5 +49,8 @@
   },
   "posts/14_poisson_neg_binomial/14_poisson_neg_binomial.qmd": {
     "14_poisson_neg_binomial.html": "f62c4837"
+  },
+  "posts/15_logistic_regression/15_logistic_regression.qmd": {
+    "15_logistic_regression.html": "124975ba"
   }
 }
