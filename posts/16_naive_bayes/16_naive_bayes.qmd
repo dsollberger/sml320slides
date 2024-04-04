@@ -1,0 +1,1334 @@
+---
+title: "16: Naive Bayes Classification"
+author: "Derek Sollberger"
+date: "2024-04-04"
+execute:
+  cache: true
+# format:
+#   revealjs:
+#     scrollable: true
+format:
+  html:
+    toc: true
+---
+
+\newcommand{\ds}{\displaystyle}
+
+# Naive Bayes Classification
+
+:::: {.columns}
+
+::: {.column width="45%"}
+**Goal:** Use Bayesian approaches to classification tasks
+
+**Objectives**:
+
+* explore the pros and cons of naive Bayes classification
+* generalize classification tasks for more than two categories
+
+*Bayes Rules!* Exercise 13.14
+
+![meme](grad_student_meme.png)
+
+```{r}
+#| message: false
+#| warning: false
+
+library("bayesrules")
+library("e1071") #for the naiveBayes() function
+library("ggtext")
+library("janitor")
+library("tidyverse")
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+```{r}
+#| message: false
+#| warning: false
+data(pulse_of_the_nation)
+pulse_df <- pulse_of_the_nation |>
+  filter(education %in% c("Graduate degree", "College degree", "High school"))
+
+pulse_df$education <- factor(pulse_df$education,
+                             levels = c("Graduate degree",
+                                        "College degree",
+                                        "High school"))
+pulse_df$robots <- factor(pulse_df$robots,
+                          levels = c("Likely", "Unlikely"))
+pulse_df$ghosts <- factor(pulse_df$ghosts,
+                          levels = c("Yes", "No"))
+
+# https://www.color-hex.com/color-palette/46386
+ghostbusters_green <- "#23B63C"
+ghostbusters_red   <- "#EA0000"
+ghostbusters_gray  <- "#AB9F8F"
+```
+:::
+
+::::
+
+# Data
+
+:::: {.columns}
+
+::: {.column width="45%"}
+* source: [Pulse of the Nation](https://thepulseofthenation.com/#intro) survey by Cards Against Humanity
+* Poll 1: September 2017
+
+* 707 observations
+* 15 variables
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+![Pulse of the Nation](prulse_of_the_nation.png)
+:::
+
+::::
+
+## Exploratory Data Analyses
+
+::::: {.panel-tabset}
+
+## Income
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = income)) +
+  geom_density(fill = "green") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Income of participants",
+       caption = "SML 320",
+       x = "income (thousands of dollars)",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = income)) +
+  geom_density(fill = "green") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Income of participants",
+       caption = "SML 320",
+       x = "income (thousands of dollars)",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+## Age
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = age)) +
+  geom_density(fill = "purple") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Age of participants",
+       caption = "SML 320",
+       x = "age",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = age)) +
+  geom_density(fill = "purple") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Age of participants",
+       caption = "SML 320",
+       x = "age",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+## Education
+
+$$Y = \begin{cases} G, & \text{Graduate Degree} \\ C, & \text{College Degree} \\ H, & \text{High School} \end{cases}$$
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = education, fill = education)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Education attainment of participants",
+       caption = "SML 320",
+       x = "education",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = education, fill = education)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Education attainment of participants",
+       caption = "SML 320",
+       x = "education",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Robots
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = robots, fill = robots)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Is it likely that robots would take your jobs within the next decade",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = robots, fill = robots)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Is it likely that robots would take your jobs within the next decade",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Ghosts
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = ghosts, fill = ghosts)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = ghosts, fill = ghosts)) +
+  geom_bar(stat = "count") +
+  labs(title = "Pulse of the Nation",
+       subtitle = "Do you believe in ghosts?",
+       caption = "September 2017",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+:::::
+
+## Variables
+
+:::: {.columns}
+
+::: {.column width="40%"}
+### Response Variable
+
+$Y$: `education`
+
+* *categorical variable*: education attained
+
+### Prediction
+
+What degree does a 25-year-old who makes $50,000/year have?
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="50%"}
+### Predictor Variables
+
+* $X_{1}$: `ghosts`
+* $X_{2}$: `age`
+* $X_{3}$: `income`
+* $X_{4}$: `robots`
+:::
+
+::::
+
+## Ideas
+
+Here, we have *three* categories, whereas logistic regression is limited to classifying *binary* response variables.
+As an alternative, **naive Bayes classification**
+
+-   can classify categorical response variables $Y$ with two or more categories
+-   doesn't require much theory beyond Bayes' Rule
+-   it's computationally efficient, i.e., doesn't require MCMC simulation
+
+But why is it called "naive"?
+
+
+# One Categorical Predictor
+
+Suppose that a researcher encounters a participant who believes in ghosts.  Our goal is to help this researcher guess the educational attainment of the participant: high school, college degree, or graduate degree.
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = education, fill = ghosts)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in ghosts most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>belief in ghosts</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = education, fill = ghosts)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in ghosts most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>belief in ghosts</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Recall: Bayes Rule
+
+$$f(y|x_{1}) = \frac{\text{prior}\cdot\text{likelihood}}{\text{normalizing constant}} = \frac{f(y) \cdot L(y|x_{1})}{f(x_{1})}$$ where, by the Law of Total Probability,
+
+$$\begin{array}{rcl}
+f(x_{1}) & = & \displaystyle\sum_{\text{all } y'} f(y')L(y'|x_{1}) \\
+~ & = & f(y' = G)L(y' = G|x_{1}) + f(y' = C)L(y' = C|x_{1}) + f(y' = H)L(y' = H|x_{1}) \\
+\end{array}$$
+
+over our three education levels.
+
+## Calculation
+
+```{r}
+pulse_df |>
+  janitor::tabyl(education, ghosts) |>
+  janitor::adorn_totals(c("row", "col"))
+```
+
+Prior probabilities:
+
+$$f(y = G) = \frac{203}{707}, \quad f(y = C) = \frac{313}{707}, \quad f(y = H) = \frac{191}{707}$$
+
+Likelihoods:
+
+$$\begin{array}{rcccl}
+  L(y = G | x_{1} = 1) & = & \frac{58}{203} & \approx & 0.2857 \\
+  L(y = C | x_{1} = 1) & = & \frac{112}{313} & \approx & 0.3578 \\
+  L(y = H | x_{1} = 1) & = & \frac{84}{191} & \approx & 0.4398 \\
+\end{array}$$
+Total probability:
+
+$$f(x_{1} = 1) = \frac{203}{707}\cdot\frac{58}{203} + \frac{313}{707}\cdot\frac{112}{313} + \frac{191}{707}\cdot\frac{84}{191} = \frac{97}{270}$$
+
+Bayes' Rules:
+
+$$\begin{array}{rcccccl}
+  f(y = G | x_{1} = 1) & = & \frac{f(y = G) \cdot L(y = G | x_{1} = 1)}{f(x_{1} = 1)} = \frac{\frac{203}{707}\cdot\frac{58}{203}}{\frac{97}{270}} & \approx & 0.2283 \\
+  f(y = C | x_{1} = 1) & = & \frac{f(y = C) \cdot L(y = C | x_{1} = 1)}{f(x_{1} = 1)} = \frac{\frac{313}{707}\cdot\frac{112}{313}}{\frac{97}{270}} & \approx & 0.4409 \\
+  f(y = H | x_{1} = 1) & = & \frac{f(y = H) \cdot L(y = H | x_{1} = 1)}{f(x_{1} = 1)} = \frac{\frac{191}{707}\cdot\frac{84}{191}}{\frac{97}{270}} & \approx & 0.3307 \\
+\end{array}$$
+
+While the likelihoods pointed at the high school level, the survey had more college degree participants, so the posterior distribution balance, so far, assigns the highest probability to the college degree level
+
+
+# One Numerical Predictor
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = age, fill = education)) +
+  geom_density(alpha = 0.7) + 
+  geom_vline(xintercept = 25, linetype = "dashed", linewidth = 3) + 
+  labs(title = "<span style = 'color:#EA0000'>For which education level is a<br>25-year-old the most common?</span>",
+       subtitle = "one numerical predictor",
+       caption = "R4DS Book Club") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = age, fill = education)) +
+  geom_density(alpha = 0.7) + 
+  geom_vline(xintercept = 25, linetype = "dashed", linewidth = 3) + 
+  labs(title = "<span style = 'color:#EA0000'>For which education level is a<br>25-year-old the most common?</span>",
+       subtitle = "one numerical predictor",
+       caption = "R4DS Book Club") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+Our data points to our participant having a college degree
+
+-   we could consider the fact that college degree is the most frequent of these three education levels
+-   difficult to compute likelihood $L(y = C | x_{2} = 25)$
+
+## Naivety
+
+This is where one "*naive*" part of naive Bayes classification comes into play. The naive Bayes method typically assumes that any quantitative predictor, here $X_{2}$, is **continuous** and **conditionally normal**:
+
+$$\begin{array}{rcl}
+  X_{2} | (Y = G) & \sim & N(\mu_{G}, \sigma_{G}^{2}) \\
+  X_{2} | (Y = C) & \sim & N(\mu_{C}, \sigma_{C}^{2}) \\
+  X_{2} | (Y = H) & \sim & N(\mu_{H}, \sigma_{H}^{2}) \\
+\end{array}$$
+
+```{r}
+# Calculate sample mean and sd for each Y group
+pulse_df |>
+  group_by(education) |>
+  summarize(mean = mean(age, na.rm = TRUE), 
+            sd = sd(age, na.rm = TRUE))
+```
+
+## Priors
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+
+pulse_df |>
+  ggplot(aes(x = age, color = education)) + 
+  stat_function(fun = dnorm, args = list(mean = 51.34975, sd = 15.27409), 
+                aes(color = "Graduate degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 50.17277, sd = 17.18495	),
+                aes(color = "High school"), linewidth = 3) + 
+  stat_function(fun = dnorm, args = list(mean = 48.98403, sd = 16.10412),
+                aes(color = "College degree"), linewidth = 3) +
+  geom_vline(xintercept = 25, linetype = "dashed") + 
+  labs(title = "<span style = 'color:#23B63C'>Prior Probabilities</span>",
+       subtitle = "conditionally normal",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+pulse_df |>
+  ggplot(aes(x = age, color = education)) + 
+  stat_function(fun = dnorm, args = list(mean = 51.34975, sd = 15.27409), 
+                aes(color = "Graduate degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 50.17277, sd = 17.18495	),
+                aes(color = "High school"), linewidth = 3) + 
+  stat_function(fun = dnorm, args = list(mean = 48.98403, sd = 16.10412),
+                aes(color = "College degree"), linewidth = 3) +
+  geom_vline(xintercept = 25, linetype = "dashed") + 
+  labs(title = "<span style = 'color:#23B63C'>Prior Probabilities</span>",
+       subtitle = "conditionally normal",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Likelihoods
+
+Computing the likelihoods in `R`:
+
+```{r}
+#| eval: false
+# L(y = G | x_2 = 25) = 0.0060
+dnorm(25, mean = 51.3, sd = 15.3)
+
+# L(y = C | x_2 = 25) = 0.0082
+dnorm(25, mean = 49.0, sd = 16.1)
+
+# L(y = H | x_2 = 25) = 0.0079
+dnorm(25, mean = 50.2, sd = 17.2)
+```
+
+Total probability:
+
+$$f(x_{2} = 25) = \frac{203}{707}\cdot(0.0060) + \frac{313}{707}\cdot(0.0082) + \frac{191}{707}\cdot(0.0079) \approx 0.0074$$
+
+## Bayes Rule
+
+$$\begin{array}{rcccccl}
+  f(y = G | x_{2} = 25) & = & \frac{f(y = G) \cdot L(y = G | x_{2} = 25)}{f(x_{2} = 25)} = \frac{\frac{203}{707}\cdot(0.0060)}{0.0074} & \approx & 0.2328 \\
+  f(y = C | x_{2} = 25) & = & \frac{f(y = C) \cdot L(y = C | x_{2} = 25)}{f(x_{2} = 25)} = \frac{\frac{313}{707}\cdot(0.0082)}{0.0074} & \approx & 0.4906 \\
+  f(y = H | x_{2} = 25) & = & \frac{f(y = H) \cdot L(y = H | x_{2} = 25)}{f(x_{2} = 25)} = \frac{\frac{191}{707}\cdot(0.0079)}{0.0074} & \approx & 0.2884 \\
+\end{array}$$
+
+This model also places the most probability the the participant at the college degree education level.
+
+
+# Another Numerical Predictor
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = income, fill = education)) +
+  geom_density(alpha = 0.7) + 
+  geom_vline(xintercept = 50, linetype = "dashed", linewidth = 3) + 
+  labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>$50k income the most common?</span>",
+       subtitle = "one numerical predictor",
+       caption = "R4DS Book Club") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = income, fill = education)) +
+  geom_density(alpha = 0.7) + 
+  geom_vline(xintercept = 50, linetype = "dashed", linewidth = 3) + 
+  labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>$50k income the most common?</span>",
+       subtitle = "one numerical predictor",
+       caption = "R4DS Book Club") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Naivety
+
+This is where one "*naive*" part of naive Bayes classification comes into play. The naive Bayes method typically assumes that any quantitative predictor, here $X_{3}$, is **continuous** and **conditionally normal**:
+
+$$\begin{array}{rcl}
+  X_{3} | (Y = G) & \sim & N(\mu_{G}, \sigma_{G}^{2}) \\
+  X_{3} | (Y = C) & \sim & N(\mu_{C}, \sigma_{C}^{2}) \\
+  X_{3} | (Y = H) & \sim & N(\mu_{H}, \sigma_{H}^{2}) \\
+\end{array}$$
+
+```{r}
+# Calculate sample mean and sd for each Y group
+pulse_df |>
+  group_by(education) |>
+  summarize(mean = mean(income, na.rm = TRUE), 
+            sd = sd(income, na.rm = TRUE))
+```
+
+## Priors
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+
+pulse_df |>
+  ggplot(aes(x = income, color = education)) + 
+  stat_function(fun = dnorm, args = list(mean = 114, sd = 71), 
+                aes(color = "Graduate degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 102, sd = 59.7),
+                aes(color = "College degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 63.9, sd = 35.5),
+                aes(color = "High school"), linewidth = 3) + 
+  geom_vline(xintercept = 50, linetype = "dashed", linewidth = 2) + 
+  labs(title = "<span style = 'color:#AB9F8F'>Prior Probabilities</span>",
+       subtitle = "conditionally normal",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+
+pulse_df |>
+  ggplot(aes(x = income, color = education)) + 
+  stat_function(fun = dnorm, args = list(mean = 114, sd = 71), 
+                aes(color = "Graduate degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 102, sd = 59.7),
+                aes(color = "College degree"), linewidth = 3) +
+  stat_function(fun = dnorm, args = list(mean = 63.9, sd = 35.5),
+                aes(color = "High school"), linewidth = 3) + 
+  geom_vline(xintercept = 50, linetype = "dashed", linewidth = 2) + 
+  labs(title = "<span style = 'color:#AB9F8F'>Prior Probabilities</span>",
+       subtitle = "conditionally normal",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Likelihoods
+
+Computing the likelihoods in `R`:
+
+```{r}
+#| eval: false
+# L(y = G | x_3 = 50) = 0.0037
+dnorm(50, mean = 114, sd = 71)
+
+# L(y = C | x_3 = 50) = 0.0046
+dnorm(50, mean = 102, sd = 59.7)
+
+# L(y = H | x_3 = 50) = 0.0104
+dnorm(50, mean = 63.9, sd = 35.5)
+```
+
+Total probability:
+
+$$f(x_{3} = 50) = \frac{203}{707}\cdot(0.0037) + \frac{313}{707}\cdot(0.0046) + \frac{191}{707}\cdot(0.0104) \approx 0.0059$$
+
+## Bayes Rule
+
+$$\begin{array}{rcccccl}
+  f(y = G | x_{3} = 50) & = & \frac{f(y = G) \cdot L(y = G | x_{3} = 50)}{f(x_{3} = 50)} = \frac{\frac{203}{707}\cdot(0.0037)}{0.0059} & \approx & 0.1801 \\
+  f(y = C | x_{3} = 50) & = & \frac{f(y = C) \cdot L(y = C | x_{3} = 50)}{f(x_{3} = 50)} = \frac{\frac{313}{707}\cdot(0.0046)}{0.0059} & \approx & 0.3452 \\
+  f(y = H | x_{3} = 50) & = & \frac{f(y = H) \cdot L(y = H | x_{3} = 50)}{f(x_{3} = 50)} = \frac{\frac{191}{707}\cdot(0.0104)}{0.0059} & \approx & 0.4762 \\
+\end{array}$$
+
+This model places the most probability the the participant at the high school education level.
+
+
+# Another Categorical Predictor
+
+Suppose that a researcher encounters a participant who believes that it is *likely* that their job will be replaced by robots over the next 10 years..  Our goal is to help this researcher guess the educational attainment of the participant: high school, college degree, or graduate degree.
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = education, fill = robots)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in robot takeover most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>likely</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = education, fill = robots)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in robot takeover most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>likely</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Likelihoods
+
+```{r}
+pulse_df |>
+  janitor::tabyl(education, robots) |>
+  janitor::adorn_totals(c("row", "col"))
+```
+
+$$\begin{array}{rcccl}
+  L(y = G | x_{4} = 1) & = & \frac{26}{203} & \approx & 0.1281 \\
+  L(y = C | x_{4} = 1) & = & \frac{45}{313} & \approx & 0.1438 \\
+  L(y = H | x_{4} = 1) & = & \frac{69}{191} & \approx & 0.3089 \\
+\end{array}$$
+
+Total probability:
+
+$$f(x_{4} = 1) = \frac{203}{707}\cdot\frac{26}{203} + \frac{313}{707}\cdot\frac{45}{313} + \frac{191}{707}\cdot\frac{69}{191} = \frac{143}{707}$$
+
+## Bayes Rule
+
+$$\begin{array}{rcccccl}
+  f(y = G | x_{4} = 1) & = & \frac{f(y = G) \cdot L(y = G | x_{4} = 1)}{f(x_{4} = 1)} = \frac{\frac{203}{707}\cdot\frac{26}{203}}{\frac{143}{707}} & \approx & 0.1818 \\
+  f(y = C | x_{4} = 1) & = & \frac{f(y = C) \cdot L(y = C | x_{4} = 1)}{f(x_{4} = 1)} = \frac{\frac{313}{707}\cdot\frac{45}{313}}{\frac{143}{707}} & \approx & 0.3147 \\
+  f(y = H | x_{4} = 1) & = & \frac{f(y = H) \cdot L(y = H | x_{4} = 1)}{f(x_{4} = 1)} = \frac{\frac{191}{707}\cdot\frac{69}{191}}{\frac{143}{707}} & \approx & 0.4825 \\
+\end{array}$$
+
+This model places the most probability the the participant at the high school education level.
+
+
+# Two Numerical Predictors
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+ggplot(aes(x = age, y = income, 
+           color = education)) + 
+  geom_point(size = 3) + 
+  geom_segment(aes(x = 25, y = 0, xend = 25, yend = 50),
+               color = "black", linetype = 2, linewidth = 2) +
+  geom_segment(aes(x = 0, y = 50, xend = 25, yend = 50),
+               color = "black", linetype = 2, linewidth = 2) +
+  labs(title = "<span style = 'color:#AB9F8F'>Two Predictor Variables</span>",
+       subtitle = "25-year-old with $50k salary",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+ggplot(aes(x = age, y = income, 
+           color = education)) + 
+  geom_point(size = 3) + 
+  geom_segment(aes(x = 25, y = 0, xend = 25, yend = 50),
+               color = "black", linetype = 2, linewidth = 2) +
+  geom_segment(aes(x = 0, y = 50, xend = 25, yend = 50),
+               color = "black", linetype = 2, linewidth = 2) +
+  labs(title = "<span style = 'color:#AB9F8F'>Two Predictor Variables</span>",
+       subtitle = "25-year-old with $50k salary",
+       caption = "R4DS Book Club") +
+  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+:::::
+
+## Generalizing Bayes' Rule:
+
+$$f(y | x_{2}, x_{3}) = \frac{f(y) \cdot L(y | x_{2}, x_{3})}{\sum_{y'} f(y') \cdot L(y' | x_{2}, x_{3})}$$
+
+Another "naive" assumption of **conditionally independent**:
+
+$$L(y | x_{2}, x_{3}) = f(x_{2}, x_{3} | y) = f(x_{2} | y) \cdot f(x_{3} | y)$$
+
+-   mathematically efficient
+-   but what about correlation?
+
+## Likelihoods
+
+:::: {.columns}
+
+::: {.column width="45%"}
+```{r}
+#| eval: false
+# L(y = G | x_2 = 25) = 0.0060
+dnorm(25, mean = 51.3, sd = 15.3)
+
+# L(y = C | x_2 = 25) = 0.0082
+dnorm(25, mean = 49.0, sd = 16.1)
+
+# L(y = H | x_2 = 25) = 0.0079
+dnorm(25, mean = 50.2, sd = 17.2)
+```	
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+```{r}
+#| eval: false
+# L(y = G | x_3 = 50) = 0.0037
+dnorm(50, mean = 114, sd = 71)
+
+# L(y = C | x_3 = 50) = 0.0046
+dnorm(50, mean = 102, sd = 59.7)
+
+# L(y = H | x_3 = 50) = 0.0104
+dnorm(50, mean = 63.9, sd = 35.5)
+```
+:::
+
+::::
+
+$$f(x_2 = 50, x_{3} = 50) = \frac{203}{707}\cdot(0.0060)(0.0037) + \frac{313}{707}\cdot(0.0082)(0.0046) + \frac{191}{707}\cdot(0.0079)(0.0104) \approx 0.00004527$$
+
+## Bayes Rule
+
+$$\begin{array}{rcccccl}
+  f(y = G | x_2 = 50, x_{3} = 50) & = & \frac{f(y = G) \cdot L(y = G | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \frac{\frac{203}{707}\cdot(0.0060)(0.0037)}{0.00004527} & \approx & 0.1398 \\
+  f(y = C | x_2 = 50, x_{3} = 50) & = & \frac{f(y = C) \cdot L(y = C | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \frac{\frac{313}{707}\cdot(0.0082)(0.0046)}{0.00004527} & \approx & 0.3660 \\
+  f(y = H | x_2 = 50, x_{3} = 50) & = & \frac{f(y = H) \cdot L(y = H | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \frac{\frac{191}{707}\cdot(0.0079)(0.0104)}{0.00004527} & \approx & 0.4942 \\
+\end{array}$$
+
+This model places the most probability the the participant at the high school education level.
+
+
+
+
+
+
+
+
+# Predictions
+
+::::: {.panel-tabset}
+
+## Model 1
+
+```{r}
+naive_model_1 <- e1071::naiveBayes(education ~ ghosts, data = pulse_df)
+```
+
+```{r}
+predict(naive_model_1, 
+        newdata = data.frame(ghosts = "Yes"), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_1, 
+        newdata = data.frame(ghosts = "Yes"))
+```
+
+## Model 2
+
+```{r}
+naive_model_2 <- e1071::naiveBayes(education ~ age, data = pulse_df)
+```
+
+```{r}
+predict(naive_model_2, 
+        newdata = data.frame(age = 25), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_2, 
+        newdata = data.frame(age = 25))
+```
+
+## Model 3
+
+```{r}
+naive_model_3 <- e1071::naiveBayes(education ~ income, data = pulse_df)
+```
+
+```{r}
+predict(naive_model_3, 
+        newdata = data.frame(income = 50), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_3, 
+        newdata = data.frame(income = 50))
+```
+
+## Model 4
+
+```{r}
+naive_model_4 <- e1071::naiveBayes(education ~ robots, data = pulse_df)
+```
+
+```{r}
+predict(naive_model_4, 
+        newdata = data.frame(robots = "Likely"), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_4, 
+        newdata = data.frame(robots = "Likely"))
+```
+
+## Model 5
+
+### Two Numerical Predictor Variables
+
+```{r}
+naive_model_5 <- e1071::naiveBayes(education ~ age + income, 
+                                   data = pulse_df)
+```
+
+```{r}
+predict(naive_model_5, 
+        newdata = data.frame(age = 25, income = 50), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_5, 
+        newdata = data.frame(age = 25, income = 50))
+```
+
+## Model 6
+
+### Extended Model with all 4 Predictor Variables
+
+```{r}
+naive_model_6 <- e1071::naiveBayes(education ~ 
+                                     ghosts + age + income + robots, 
+                                   data = pulse_df)
+```
+
+```{r}
+predict(naive_model_6, 
+        newdata = data.frame(ghosts = "Yes", 
+                             age = 25, 
+                             income = 50,
+                             robots = "Likely"), 
+        type = "raw") |> round(digits = 4)
+```
+
+```{r}
+predict(naive_model_6, 
+        newdata = data.frame(ghosts = "Yes", 
+                             age = 25, 
+                             income = 50,
+                             robots = "Likely"))
+```
+
+:::::
+
+
+# Confusion
+
+## Cross-Validation
+
+```{r}
+set.seed(320)
+naive_model_1_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_1, data = pulse_df, y = "education", k = 10)
+
+naive_model_2_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_2, data = pulse_df, y = "education", k = 10)
+
+naive_model_3_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_3, data = pulse_df, y = "education", k = 10)
+
+naive_model_4_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_4, data = pulse_df, y = "education", k = 10)
+
+naive_model_5_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_5, data = pulse_df, y = "education", k = 10)
+
+naive_model_6_cv <- bayesrules::naive_classification_summary_cv(
+  model = naive_model_6, data = pulse_df, y = "education", k = 10)
+```
+
+::: {.callout-note collapse="true"}
+## Accuracy of a Confusion Matrix
+
+```{r}
+Confusion_Accuracy <- function(conf_mat){
+  # This function will compute the accuracy of a confusion matrix
+  
+  m <- nrow(conf_mat)
+  numbers_list <- stringr::str_extract_all(unlist(conf_mat), 
+                                              "\\([0-9]+\\)")
+  numbers_string <- paste(unlist(numbers_list))
+  numbers_string <- stringr::str_replace_all(numbers_string, "\\(", "")
+  numbers_string <- stringr::str_replace_all(numbers_string, "\\)", "")
+  numbers <- as.numeric(numbers_string)
+  M <- matrix(numbers, nrow = m, ncol = m)
+  
+  # return
+  sum(diag(M)) / sum(M)
+}
+```
+:::
+
+::::: {.panel-tabset}
+
+## Model 1
+
+```{r}
+naive_model_1_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_1_cv$cv)
+```
+
+## Model 2
+
+```{r}
+naive_model_2_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_2_cv$cv)
+```
+
+## Model 3
+
+```{r}
+naive_model_3_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_3_cv$cv)
+```
+
+## Model 4
+
+```{r}
+naive_model_4_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_4_cv$cv)
+```
+
+## Model 5
+
+```{r}
+naive_model_5_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_5_cv$cv)
+```
+
+## Model 6
+
+```{r}
+naive_model_6_cv$cv
+```
+
+```{r}
+Confusion_Accuracy(naive_model_6_cv$cv)
+```
+
+:::::
+
+## Model Selection
+
+```{r}
+#| echo: false
+#| eval: true
+df_for_metrics <- rbind(Confusion_Accuracy(naive_model_1_cv$cv),
+                        Confusion_Accuracy(naive_model_2_cv$cv),
+                        Confusion_Accuracy(naive_model_3_cv$cv),
+                        Confusion_Accuracy(naive_model_4_cv$cv),
+                        Confusion_Accuracy(naive_model_5_cv$cv),
+                        Confusion_Accuracy(naive_model_6_cv$cv)) |>
+  as.data.frame()
+colnames(df_for_metrics) <- "Accuracy"
+
+df_for_metrics |>
+  mutate(model = 1:6, .before = "Accuracy") |>
+  gt() |>
+  cols_align(align = "center", columns = everything()) |>
+  fmt_number(columns = -model,
+             decimals = 6) |>
+  tab_header(
+    title = md("**Naive Bayes on Pulse Survey Data**"),
+    subtitle = "Cross validation metrics"
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "yellow"),
+      cell_text(weight = "bold")
+    ),
+    locations = cells_body(
+      columns = everything(),
+      rows = Accuracy == max(Accuracy)
+    )
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "lightblue")
+    ),
+    locations = cells_body(
+      columns = model,
+      rows = everything()
+    )
+  )
+```
+
+
+# Return of the Best Model
+
+::::: {.panel-tabset}
+
+## Plot
+
+```{r}
+#| echo: false
+#| eval: true
+pulse_df |>
+  ggplot(aes(x = education, fill = robots)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in robot takeover most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>likely</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+```{r}
+#| echo: true
+#| eval: false
+pulse_df |>
+  ggplot(aes(x = education, fill = robots)) +
+  geom_bar(position = "fill") +
+   labs(title = "<span style = 'color:#AB9F8F'>For which education level is a<br>belief in robot takeover most likely?</span>",
+       subtitle = "(focus on the <span style = 'color:#23B63C'>likely</span> category)",
+       caption = "SML 320",
+       x = "education",
+       y = "proportion") +
+  scale_fill_manual(values = c("#23B63C", "#EA0000")) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(face = "bold", size = 24),
+        plot.subtitle = element_markdown(size = 16))
+```
+
+## Posterior Distribution
+
+```{r}
+#| echo: false
+#| eval: true
+edu_levels <- c("Graduate degree",
+                "College degree",
+                "High school")
+preds <- predict(naive_model_4, 
+                 newdata = data.frame(robots = "Likely"), 
+                 type = "raw")
+probs <- as.numeric(paste(preds))
+
+df_for_post_plot <- data.frame(edu_levels, probs)
+
+df_for_post_plot |>
+  ggplot(aes(x = edu_levels, y = probs, fill = edu_levels)) +
+  geom_bar(stat = "identity") + 
+  labs(title = "Posterior Distribution of Education Level",
+       subtitle = "Model 4: 'Do you believe that robots will replace your job over the next ten years?'",
+       caption = "SML 320",
+       x = "education level",
+       y = "probability") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+edu_levels <- c("Graduate degree",
+                "College degree",
+                "High school")
+preds <- predict(naive_model_4, 
+                 newdata = data.frame(robots = "Likely"), 
+                 type = "raw")
+probs <- as.numeric(paste(preds))
+
+df_for_post_plot <- data.frame(edu_levels, probs)
+
+df_for_post_plot |>
+  ggplot(aes(x = edu_levels, y = probs, fill = edu_levels)) +
+  geom_bar(stat = "identity") + 
+  labs(title = "Posterior Distribution of Education Level",
+       subtitle = "Model 4: 'Do you believe that robots will replace your job over the next ten years?'",
+       caption = "SML 320",
+       x = "education level",
+       y = "probability") +
+  scale_fill_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+:::::
+
+# Summary
+
+Naive Bayes
+
+$$f(y | x_{1}, x_{2}, ..., x_{p}) = \frac{f(y) \cdot L(y | x_{1}, x_{2}, ..., x_{p})}{\sum_{y'} f(y') \cdot L(y' | x_{1}, x_{2}, ..., x_{p})}$$
+
+-   conditionally independent $\rightarrow$ computationally efficient
+-   generalizes to more than two categories
+-   assumptions violated commonly in practice
+
+Logistic Regression
+
+$$\log\left(\frac{\pi}{1-\pi}\right) = \beta_{0} + \beta_{1}X_{1} + \cdots + \beta_{k}X_{p}$$
+
+-   binary classification
+-   coefficients $\rightarrow$ illumination of the relationships among these variables
+
+
+
+# Footnotes
+
+* 
+
+::: {.callout-note collapse="true"}
+## Session Info
+
+```{r}
+sessionInfo()
+```
+:::
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+	
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+:::
+
+::::
+
+
+::::: {.panel-tabset}
+
+
+
+:::::

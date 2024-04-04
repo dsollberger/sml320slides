@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "15: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\nApr 2, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "16: Naive Bayes Classification\n\n\n\n\n\n\n\n\n\n\n\n\nApr 4, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n15: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\nApr 2, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -2042,5 +2042,152 @@
     "title": "15: Logistic Regression",
     "section": "Cross Validation",
     "text": "Cross Validation\n\nset.seed(320)\nlog_reg_mod_1_cv &lt;- bayesrules::classification_summary_cv(\n  model = log_reg_mod_1, data = pulse_df,\n  cutoff = 0.62, k = 10)\n\nlog_reg_mod_1_cv$cv\n\n  sensitivity specificity overall_accuracy\n1    0.553233   0.5416136            0.547"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html",
+    "title": "16: Naive Bayes Classification",
+    "section": "",
+    "text": "Goal: Use Bayesian approaches to classification tasks\nObjectives:\n\nexplore the pros and cons of naive Bayes classification\ngeneralize classification tasks for more than two categories\n\nBayes Rules! Exercise 13.14\n\n\n\nmeme\n\n\n\nlibrary(\"bayesrules\")\nlibrary(\"e1071\") #for the naiveBayes() function\nlibrary(\"ggtext\")\nlibrary(\"janitor\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\n\n\n\n\ndata(pulse_of_the_nation)\npulse_df &lt;- pulse_of_the_nation |&gt;\n  filter(education %in% c(\"Graduate degree\", \"College degree\", \"High school\"))\n\npulse_df$education &lt;- factor(pulse_df$education,\n                             levels = c(\"Graduate degree\",\n                                        \"College degree\",\n                                        \"High school\"))\npulse_df$robots &lt;- factor(pulse_df$robots,\n                          levels = c(\"Likely\", \"Unlikely\"))\npulse_df$ghosts &lt;- factor(pulse_df$ghosts,\n                          levels = c(\"Yes\", \"No\"))\n\n# https://www.color-hex.com/color-palette/46386\nghostbusters_green &lt;- \"#23B63C\"\nghostbusters_red   &lt;- \"#EA0000\"\nghostbusters_gray  &lt;- \"#AB9F8F\""
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#exploratory-data-analyses",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#exploratory-data-analyses",
+    "title": "16: Naive Bayes Classification",
+    "section": "Exploratory Data Analyses",
+    "text": "Exploratory Data Analyses\n\nIncomeAgeEducationRobotsGhosts\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = income)) +\n  geom_density(fill = \"green\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Income of participants\",\n       caption = \"SML 320\",\n       x = \"income (thousands of dollars)\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = age)) +\n  geom_density(fill = \"purple\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Age of participants\",\n       caption = \"SML 320\",\n       x = \"age\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\\[Y = \\begin{cases} G, & \\text{Graduate Degree} \\\\ C, & \\text{College Degree} \\\\ H, & \\text{High School} \\end{cases}\\]\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = education, fill = education)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Education attainment of participants\",\n       caption = \"SML 320\",\n       x = \"education\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = robots, fill = robots)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Is it likely that robots would take your jobs within the next decade\",\n       caption = \"September 2017\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = ghosts, fill = ghosts)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Pulse of the Nation\",\n       subtitle = \"Do you believe in ghosts?\",\n       caption = \"September 2017\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#variables",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#variables",
+    "title": "16: Naive Bayes Classification",
+    "section": "Variables",
+    "text": "Variables\n\n\n\nResponse Variable\n\\(Y\\): education\n\ncategorical variable: education attained\n\n\n\nPrediction\nWhat degree does a 25-year-old who makes $50,000/year have?\n\n\n\n\n\nPredictor Variables\n\n\\(X_{1}\\): ghosts\n\\(X_{2}\\): age\n\\(X_{3}\\): income\n\\(X_{4}\\): robots"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#ideas",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#ideas",
+    "title": "16: Naive Bayes Classification",
+    "section": "Ideas",
+    "text": "Ideas\nHere, we have three categories, whereas logistic regression is limited to classifying binary response variables. As an alternative, naive Bayes classification\n\ncan classify categorical response variables \\(Y\\) with two or more categories\ndoesn’t require much theory beyond Bayes’ Rule\nit’s computationally efficient, i.e., doesn’t require MCMC simulation\n\nBut why is it called “naive”?"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#recall-bayes-rule",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#recall-bayes-rule",
+    "title": "16: Naive Bayes Classification",
+    "section": "Recall: Bayes Rule",
+    "text": "Recall: Bayes Rule\n\\[f(y|x_{1}) = \\frac{\\text{prior}\\cdot\\text{likelihood}}{\\text{normalizing constant}} = \\frac{f(y) \\cdot L(y|x_{1})}{f(x_{1})}\\] where, by the Law of Total Probability,\n\\[\\begin{array}{rcl}\nf(x_{1}) & = & \\displaystyle\\sum_{\\text{all } y'} f(y')L(y'|x_{1}) \\\\\n~ & = & f(y' = G)L(y' = G|x_{1}) + f(y' = C)L(y' = C|x_{1}) + f(y' = H)L(y' = H|x_{1}) \\\\\n\\end{array}\\]\nover our three education levels."
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#calculation",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#calculation",
+    "title": "16: Naive Bayes Classification",
+    "section": "Calculation",
+    "text": "Calculation\n\npulse_df |&gt;\n  janitor::tabyl(education, ghosts) |&gt;\n  janitor::adorn_totals(c(\"row\", \"col\"))\n\n       education Yes  No Total\n Graduate degree  58 145   203\n  College degree 112 201   313\n     High school  84 107   191\n           Total 254 453   707\n\n\nPrior probabilities:\n\\[f(y = G) = \\frac{203}{707}, \\quad f(y = C) = \\frac{313}{707}, \\quad f(y = H) = \\frac{191}{707}\\]\nLikelihoods:\n\\[\\begin{array}{rcccl}\n  L(y = G | x_{1} = 1) & = & \\frac{58}{203} & \\approx & 0.2857 \\\\\n  L(y = C | x_{1} = 1) & = & \\frac{112}{313} & \\approx & 0.3578 \\\\\n  L(y = H | x_{1} = 1) & = & \\frac{84}{191} & \\approx & 0.4398 \\\\\n\\end{array}\\] Total probability:\n\\[f(x_{1} = 1) = \\frac{203}{707}\\cdot\\frac{58}{203} + \\frac{313}{707}\\cdot\\frac{112}{313} + \\frac{191}{707}\\cdot\\frac{84}{191} = \\frac{97}{270}\\]\nBayes’ Rules:\n\\[\\begin{array}{rcccccl}\n  f(y = G | x_{1} = 1) & = & \\frac{f(y = G) \\cdot L(y = G | x_{1} = 1)}{f(x_{1} = 1)} = \\frac{\\frac{203}{707}\\cdot\\frac{58}{203}}{\\frac{97}{270}} & \\approx & 0.2283 \\\\\n  f(y = C | x_{1} = 1) & = & \\frac{f(y = C) \\cdot L(y = C | x_{1} = 1)}{f(x_{1} = 1)} = \\frac{\\frac{313}{707}\\cdot\\frac{112}{313}}{\\frac{97}{270}} & \\approx & 0.4409 \\\\\n  f(y = H | x_{1} = 1) & = & \\frac{f(y = H) \\cdot L(y = H | x_{1} = 1)}{f(x_{1} = 1)} = \\frac{\\frac{191}{707}\\cdot\\frac{84}{191}}{\\frac{97}{270}} & \\approx & 0.3307 \\\\\n\\end{array}\\]\nWhile the likelihoods pointed at the high school level, the survey had more college degree participants, so the posterior distribution balance, so far, assigns the highest probability to the college degree level"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#naivety",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#naivety",
+    "title": "16: Naive Bayes Classification",
+    "section": "Naivety",
+    "text": "Naivety\nThis is where one “naive” part of naive Bayes classification comes into play. The naive Bayes method typically assumes that any quantitative predictor, here \\(X_{2}\\), is continuous and conditionally normal:\n\\[\\begin{array}{rcl}\n  X_{2} | (Y = G) & \\sim & N(\\mu_{G}, \\sigma_{G}^{2}) \\\\\n  X_{2} | (Y = C) & \\sim & N(\\mu_{C}, \\sigma_{C}^{2}) \\\\\n  X_{2} | (Y = H) & \\sim & N(\\mu_{H}, \\sigma_{H}^{2}) \\\\\n\\end{array}\\]\n\n# Calculate sample mean and sd for each Y group\npulse_df |&gt;\n  group_by(education) |&gt;\n  summarize(mean = mean(age, na.rm = TRUE), \n            sd = sd(age, na.rm = TRUE))\n\n# A tibble: 3 × 3\n  education        mean    sd\n  &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 Graduate degree  51.3  15.3\n2 College degree   49.0  16.1\n3 High school      50.2  17.2"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#priors",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#priors",
+    "title": "16: Naive Bayes Classification",
+    "section": "Priors",
+    "text": "Priors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = age, color = education)) + \n  stat_function(fun = dnorm, args = list(mean = 51.34975, sd = 15.27409), \n                aes(color = \"Graduate degree\"), linewidth = 3) +\n  stat_function(fun = dnorm, args = list(mean = 50.17277, sd = 17.18495 ),\n                aes(color = \"High school\"), linewidth = 3) + \n  stat_function(fun = dnorm, args = list(mean = 48.98403, sd = 16.10412),\n                aes(color = \"College degree\"), linewidth = 3) +\n  geom_vline(xintercept = 25, linetype = \"dashed\") + \n  labs(title = \"&lt;span style = 'color:#23B63C'&gt;Prior Probabilities&lt;/span&gt;\",\n       subtitle = \"conditionally normal\",\n       caption = \"R4DS Book Club\") +\n  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +\n  theme_minimal() +\n  theme(plot.title = element_markdown(face = \"bold\", size = 24),\n        plot.subtitle = element_markdown(size = 16))"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods",
+    "title": "16: Naive Bayes Classification",
+    "section": "Likelihoods",
+    "text": "Likelihoods\nComputing the likelihoods in R:\n\n# L(y = G | x_2 = 25) = 0.0060\ndnorm(25, mean = 51.3, sd = 15.3)\n\n# L(y = C | x_2 = 25) = 0.0082\ndnorm(25, mean = 49.0, sd = 16.1)\n\n# L(y = H | x_2 = 25) = 0.0079\ndnorm(25, mean = 50.2, sd = 17.2)\n\nTotal probability:\n\\[f(x_{2} = 25) = \\frac{203}{707}\\cdot(0.0060) + \\frac{313}{707}\\cdot(0.0082) + \\frac{191}{707}\\cdot(0.0079) \\approx 0.0074\\]"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule",
+    "title": "16: Naive Bayes Classification",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\\begin{array}{rcccccl}\n  f(y = G | x_{2} = 25) & = & \\frac{f(y = G) \\cdot L(y = G | x_{2} = 25)}{f(x_{2} = 25)} = \\frac{\\frac{203}{707}\\cdot(0.0060)}{0.0074} & \\approx & 0.2328 \\\\\n  f(y = C | x_{2} = 25) & = & \\frac{f(y = C) \\cdot L(y = C | x_{2} = 25)}{f(x_{2} = 25)} = \\frac{\\frac{313}{707}\\cdot(0.0082)}{0.0074} & \\approx & 0.4906 \\\\\n  f(y = H | x_{2} = 25) & = & \\frac{f(y = H) \\cdot L(y = H | x_{2} = 25)}{f(x_{2} = 25)} = \\frac{\\frac{191}{707}\\cdot(0.0079)}{0.0074} & \\approx & 0.2884 \\\\\n\\end{array}\\]\nThis model also places the most probability the the participant at the college degree education level."
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#naivety-1",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#naivety-1",
+    "title": "16: Naive Bayes Classification",
+    "section": "Naivety",
+    "text": "Naivety\nThis is where one “naive” part of naive Bayes classification comes into play. The naive Bayes method typically assumes that any quantitative predictor, here \\(X_{3}\\), is continuous and conditionally normal:\n\\[\\begin{array}{rcl}\n  X_{3} | (Y = G) & \\sim & N(\\mu_{G}, \\sigma_{G}^{2}) \\\\\n  X_{3} | (Y = C) & \\sim & N(\\mu_{C}, \\sigma_{C}^{2}) \\\\\n  X_{3} | (Y = H) & \\sim & N(\\mu_{H}, \\sigma_{H}^{2}) \\\\\n\\end{array}\\]\n\n# Calculate sample mean and sd for each Y group\npulse_df |&gt;\n  group_by(education) |&gt;\n  summarize(mean = mean(income, na.rm = TRUE), \n            sd = sd(income, na.rm = TRUE))\n\n# A tibble: 3 × 3\n  education        mean    sd\n  &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt;\n1 Graduate degree 114.   71.0\n2 College degree  102.   59.7\n3 High school      63.9  35.5"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#priors-1",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#priors-1",
+    "title": "16: Naive Bayes Classification",
+    "section": "Priors",
+    "text": "Priors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npulse_df |&gt;\n  ggplot(aes(x = income, color = education)) + \n  stat_function(fun = dnorm, args = list(mean = 114, sd = 71), \n                aes(color = \"Graduate degree\"), linewidth = 3) +\n  stat_function(fun = dnorm, args = list(mean = 102, sd = 59.7),\n                aes(color = \"College degree\"), linewidth = 3) +\n  stat_function(fun = dnorm, args = list(mean = 63.9, sd = 35.5),\n                aes(color = \"High school\"), linewidth = 3) + \n  geom_vline(xintercept = 50, linetype = \"dashed\", linewidth = 2) + \n  labs(title = \"&lt;span style = 'color:#AB9F8F'&gt;Prior Probabilities&lt;/span&gt;\",\n       subtitle = \"conditionally normal\",\n       caption = \"R4DS Book Club\") +\n  scale_color_manual(values = c(ghostbusters_green, ghostbusters_red , ghostbusters_gray)) +\n  theme_minimal() +\n  theme(plot.title = element_markdown(face = \"bold\", size = 24),\n        plot.subtitle = element_markdown(size = 16))"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-1",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-1",
+    "title": "16: Naive Bayes Classification",
+    "section": "Likelihoods",
+    "text": "Likelihoods\nComputing the likelihoods in R:\n\n# L(y = G | x_3 = 50) = 0.0037\ndnorm(50, mean = 114, sd = 71)\n\n# L(y = C | x_3 = 50) = 0.0046\ndnorm(50, mean = 102, sd = 59.7)\n\n# L(y = H | x_3 = 50) = 0.0104\ndnorm(50, mean = 63.9, sd = 35.5)\n\nTotal probability:\n\\[f(x_{3} = 50) = \\frac{203}{707}\\cdot(0.0037) + \\frac{313}{707}\\cdot(0.0046) + \\frac{191}{707}\\cdot(0.0104) \\approx 0.0059\\]"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-1",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-1",
+    "title": "16: Naive Bayes Classification",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\\begin{array}{rcccccl}\n  f(y = G | x_{3} = 50) & = & \\frac{f(y = G) \\cdot L(y = G | x_{3} = 50)}{f(x_{3} = 50)} = \\frac{\\frac{203}{707}\\cdot(0.0037)}{0.0059} & \\approx & 0.1801 \\\\\n  f(y = C | x_{3} = 50) & = & \\frac{f(y = C) \\cdot L(y = C | x_{3} = 50)}{f(x_{3} = 50)} = \\frac{\\frac{313}{707}\\cdot(0.0046)}{0.0059} & \\approx & 0.3452 \\\\\n  f(y = H | x_{3} = 50) & = & \\frac{f(y = H) \\cdot L(y = H | x_{3} = 50)}{f(x_{3} = 50)} = \\frac{\\frac{191}{707}\\cdot(0.0104)}{0.0059} & \\approx & 0.4762 \\\\\n\\end{array}\\]\nThis model places the most probability the the participant at the high school education level."
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-2",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-2",
+    "title": "16: Naive Bayes Classification",
+    "section": "Likelihoods",
+    "text": "Likelihoods\n\npulse_df |&gt;\n  janitor::tabyl(education, robots) |&gt;\n  janitor::adorn_totals(c(\"row\", \"col\"))\n\n       education Likely Unlikely Total\n Graduate degree     26      177   203\n  College degree     45      268   313\n     High school     69      122   191\n           Total    140      567   707\n\n\n\\[\\begin{array}{rcccl}\n  L(y = G | x_{4} = 1) & = & \\frac{26}{203} & \\approx & 0.1281 \\\\\n  L(y = C | x_{4} = 1) & = & \\frac{45}{313} & \\approx & 0.1438 \\\\\n  L(y = H | x_{4} = 1) & = & \\frac{69}{191} & \\approx & 0.3089 \\\\\n\\end{array}\\]\nTotal probability:\n\\[f(x_{4} = 1) = \\frac{203}{707}\\cdot\\frac{26}{203} + \\frac{313}{707}\\cdot\\frac{45}{313} + \\frac{191}{707}\\cdot\\frac{69}{191} = \\frac{143}{707}\\]"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-2",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-2",
+    "title": "16: Naive Bayes Classification",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\\begin{array}{rcccccl}\n  f(y = G | x_{4} = 1) & = & \\frac{f(y = G) \\cdot L(y = G | x_{4} = 1)}{f(x_{4} = 1)} = \\frac{\\frac{203}{707}\\cdot\\frac{26}{203}}{\\frac{143}{707}} & \\approx & 0.1818 \\\\\n  f(y = C | x_{4} = 1) & = & \\frac{f(y = C) \\cdot L(y = C | x_{4} = 1)}{f(x_{4} = 1)} = \\frac{\\frac{313}{707}\\cdot\\frac{45}{313}}{\\frac{143}{707}} & \\approx & 0.3147 \\\\\n  f(y = H | x_{4} = 1) & = & \\frac{f(y = H) \\cdot L(y = H | x_{4} = 1)}{f(x_{4} = 1)} = \\frac{\\frac{191}{707}\\cdot\\frac{69}{191}}{\\frac{143}{707}} & \\approx & 0.4825 \\\\\n\\end{array}\\]\nThis model places the most probability the the participant at the high school education level."
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#generalizing-bayes-rule",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#generalizing-bayes-rule",
+    "title": "16: Naive Bayes Classification",
+    "section": "Generalizing Bayes’ Rule:",
+    "text": "Generalizing Bayes’ Rule:\n\\[f(y | x_{2}, x_{3}) = \\frac{f(y) \\cdot L(y | x_{2}, x_{3})}{\\sum_{y'} f(y') \\cdot L(y' | x_{2}, x_{3})}\\]\nAnother “naive” assumption of conditionally independent:\n\\[L(y | x_{2}, x_{3}) = f(x_{2}, x_{3} | y) = f(x_{2} | y) \\cdot f(x_{3} | y)\\]\n\nmathematically efficient\nbut what about correlation?"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-3",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#likelihoods-3",
+    "title": "16: Naive Bayes Classification",
+    "section": "Likelihoods",
+    "text": "Likelihoods\n\n\n\n# L(y = G | x_2 = 25) = 0.0060\ndnorm(25, mean = 51.3, sd = 15.3)\n\n# L(y = C | x_2 = 25) = 0.0082\ndnorm(25, mean = 49.0, sd = 16.1)\n\n# L(y = H | x_2 = 25) = 0.0079\ndnorm(25, mean = 50.2, sd = 17.2)\n\n\n\n\n\n# L(y = G | x_3 = 50) = 0.0037\ndnorm(50, mean = 114, sd = 71)\n\n# L(y = C | x_3 = 50) = 0.0046\ndnorm(50, mean = 102, sd = 59.7)\n\n# L(y = H | x_3 = 50) = 0.0104\ndnorm(50, mean = 63.9, sd = 35.5)\n\n\n\n\\[f(x_2 = 50, x_{3} = 50) = \\frac{203}{707}\\cdot(0.0060)(0.0037) + \\frac{313}{707}\\cdot(0.0082)(0.0046) + \\frac{191}{707}\\cdot(0.0079)(0.0104) \\approx 0.00004527\\]"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-3",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#bayes-rule-3",
+    "title": "16: Naive Bayes Classification",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\\begin{array}{rcccccl}\n  f(y = G | x_2 = 50, x_{3} = 50) & = & \\frac{f(y = G) \\cdot L(y = G | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \\frac{\\frac{203}{707}\\cdot(0.0060)(0.0037)}{0.00004527} & \\approx & 0.1398 \\\\\n  f(y = C | x_2 = 50, x_{3} = 50) & = & \\frac{f(y = C) \\cdot L(y = C | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \\frac{\\frac{313}{707}\\cdot(0.0082)(0.0046)}{0.00004527} & \\approx & 0.3660 \\\\\n  f(y = H | x_2 = 50, x_{3} = 50) & = & \\frac{f(y = H) \\cdot L(y = H | x_2 = 50, x_{3} = 50)}{f(x_2 = 50, x_{3} = 50)} = \\frac{\\frac{191}{707}\\cdot(0.0079)(0.0104)}{0.00004527} & \\approx & 0.4942 \\\\\n\\end{array}\\]\nThis model places the most probability the the participant at the high school education level."
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#cross-validation",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#cross-validation",
+    "title": "16: Naive Bayes Classification",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation\n\nset.seed(320)\nnaive_model_1_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_1, data = pulse_df, y = \"education\", k = 10)\n\nnaive_model_2_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_2, data = pulse_df, y = \"education\", k = 10)\n\nnaive_model_3_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_3, data = pulse_df, y = \"education\", k = 10)\n\nnaive_model_4_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_4, data = pulse_df, y = \"education\", k = 10)\n\nnaive_model_5_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_5, data = pulse_df, y = \"education\", k = 10)\n\nnaive_model_6_cv &lt;- bayesrules::naive_classification_summary_cv(\n  model = naive_model_6, data = pulse_df, y = \"education\", k = 10)\n\n\n\n\n\n\n\nAccuracy of a Confusion Matrix\n\n\n\n\n\n\nConfusion_Accuracy &lt;- function(conf_mat){\n  # This function will compute the accuracy of a confusion matrix\n  \n  m &lt;- nrow(conf_mat)\n  numbers_list &lt;- stringr::str_extract_all(unlist(conf_mat), \n                                              \"\\\\([0-9]+\\\\)\")\n  numbers_string &lt;- paste(unlist(numbers_list))\n  numbers_string &lt;- stringr::str_replace_all(numbers_string, \"\\\\(\", \"\")\n  numbers_string &lt;- stringr::str_replace_all(numbers_string, \"\\\\)\", \"\")\n  numbers &lt;- as.numeric(numbers_string)\n  M &lt;- matrix(numbers, nrow = m, ncol = m)\n  \n  # return\n  sum(diag(M)) / sum(M)\n}\n\n\n\n\n\nModel 1Model 2Model 3Model 4Model 5Model 6\n\n\n\nnaive_model_1_cv$cv\n\n       education Graduate degree College degree High school\n Graduate degree       0.00% (0)  100.00% (203)   0.00% (0)\n  College degree       0.00% (0)  100.00% (313)   0.00% (0)\n     High school       0.00% (0)  100.00% (191)   0.00% (0)\n\n\n\nConfusion_Accuracy(naive_model_1_cv$cv)\n\n[1] 0.4427157\n\n\n\n\n\nnaive_model_2_cv$cv\n\n       education Graduate degree College degree High school\n Graduate degree       0.00% (0)   99.01% (201)   0.99% (2)\n  College degree       0.00% (0)   98.40% (308)   1.60% (5)\n     High school       0.00% (0)   99.48% (190)   0.52% (1)\n\n\n\nConfusion_Accuracy(naive_model_2_cv$cv)\n\n[1] 0.437058\n\n\n\n\n\nnaive_model_3_cv$cv\n\n       education Graduate degree College degree  High school\n Graduate degree      6.40% (13)   65.02% (132) 28.57%  (58)\n  College degree      3.19% (10)   57.83% (181) 38.98% (122)\n     High school      0.00%  (0)   30.89%  (59) 69.11% (132)\n\n\n\nConfusion_Accuracy(naive_model_3_cv$cv)\n\n[1] 0.4611033\n\n\n\n\n\nnaive_model_4_cv$cv\n\n       education Graduate degree College degree High school\n Graduate degree       0.00% (0)   87.19% (177) 12.81% (26)\n  College degree       0.00% (0)   85.62% (268) 14.38% (45)\n     High school       0.00% (0)   63.87% (122) 36.13% (69)\n\n\n\nConfusion_Accuracy(naive_model_4_cv$cv)\n\n[1] 0.476662\n\n\n\n\n\nnaive_model_5_cv$cv\n\n       education Graduate degree College degree  High school\n Graduate degree      5.42% (11)   66.50% (135) 28.08%  (57)\n  College degree      4.15% (13)   58.47% (183) 37.38% (117)\n     High school      0.00%  (0)   32.98%  (63) 67.02% (128)\n\n\n\nConfusion_Accuracy(naive_model_5_cv$cv)\n\n[1] 0.4554455\n\n\n\n\n\nnaive_model_6_cv$cv\n\n       education Graduate degree College degree  High school\n Graduate degree      7.39% (15)   78.33% (159) 14.29%  (29)\n  College degree      5.75% (18)   69.97% (219) 24.28%  (76)\n     High school      0.52%  (1)   45.55%  (87) 53.93% (103)\n\n\n\nConfusion_Accuracy(naive_model_6_cv$cv)\n\n[1] 0.476662"
+  },
+  {
+    "objectID": "posts/16_naive_bayes/16_naive_bayes.html#model-selection",
+    "href": "posts/16_naive_bayes/16_naive_bayes.html#model-selection",
+    "title": "16: Naive Bayes Classification",
+    "section": "Model Selection",
+    "text": "Model Selection\n\n\n\n\n\n\n  \n    \n      Naive Bayes on Pulse Survey Data\n    \n    \n      Cross validation metrics\n    \n    \n      model\n      Accuracy\n    \n  \n  \n    1\n0.442716\n    2\n0.437058\n    3\n0.461103\n    4\n0.476662\n    5\n0.455446\n    6\n0.476662"
   }
 ]

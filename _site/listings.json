@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/16_naive_bayes/16_naive_bayes.html",
       "/posts/15_logistic_regression/15_logistic_regression.html",
       "/posts/14_poisson_neg_binomial/14_poisson_neg_binomial.html",
       "/posts/13_extending_regression/13_extending_regression.html",

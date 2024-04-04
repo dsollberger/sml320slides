@@ -52,5 +52,8 @@
   },
   "posts/15_logistic_regression/15_logistic_regression.qmd": {
     "15_logistic_regression.html": "124975ba"
+  },
+  "posts/16_naive_bayes/16_naive_bayes.qmd": {
+    "16_naive_bayes.html": "38d031f7"
   }
 }

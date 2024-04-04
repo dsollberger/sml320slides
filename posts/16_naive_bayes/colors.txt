@@ -1,0 +1,28 @@
+# https://www.color-hex.com/color-palette/46386
+ghostbusters_green <- "#23B63C"
+ghostbusters_red   <- "#EA0000"
+ghostbusters_gray  <- "#AB9F8F"
+
+
+## Observations and Predictions
+
+```{r}
+pulse_class <- pulse_df |>
+  mutate(class_1 = predict(naive_model_1, 
+                           newdata = data.frame(ghosts = "Yes")),
+         class_2 = predict(naive_model_2, 
+                           newdata = data.frame(age = 25)),
+         class_3 = predict(naive_model_3, 
+                           newdata = data.frame(income = 50)),
+         class_4 = predict(naive_model_4, 
+                           newdata = data.frame(robots = "Likely")),
+         class_5 = predict(naive_model_5, 
+                           newdata = data.frame(age = 25, income = 50)),
+         class_6 = predict(naive_model_6, 
+                           newdata = data.frame(ghosts = "Yes", 
+                             age = 25, 
+                             income = 50,
+                             robots = "Likely"))) |>
+  select(ghosts, income, age, robots, education, 
+         class_1, class_2, class_3, class_4, class_5, class_6)
+```
