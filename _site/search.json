@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "SML 320: Bayesian Analysis",
     "section": "",
-    "text": "16: Naive Bayes Classification\n\n\n\n\n\n\n\n\n\n\n\n\nApr 4, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n15: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\nApr 2, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
+    "text": "17: Hierarchical Models\n\n\n\n\n\n\n\n\n\n\n\n\nApr 9, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n16: Naive Bayes Classification\n\n\n\n\n\n\n\n\n\n\n\n\nApr 4, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n15: Logistic Regression\n\n\n\n\n\n\n\n\n\n\n\n\nApr 2, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n14: Poisson Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 28, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n13: Extending Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 26, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n12: Evaluating Regression Models\n\n\n\n\n\n\n\n\n\n\n\n\nMar 21, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n11: Normal Regression\n\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n10: Posterior Prediction\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 29, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n9: Posterior Inference\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 27, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n8: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 22, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n7: MCMC\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 20, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n6: Approximating the Posterior\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 15, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n5: Conjugate Families\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 13, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n4: Balance and Sequentiality\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 8, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n3: Beta-Binomial Models\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 6, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n2: Bayes’ Rule\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 1, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\n  \n\n\n\n\n1: Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n\nJan 30, 2024\n\n\nDerek Sollberger\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/02_bayes_rule/02_bayes_rule.html",
@@ -2189,5 +2189,75 @@
     "title": "16: Naive Bayes Classification",
     "section": "Model Selection",
     "text": "Model Selection\n\n\n\n\n\n\n  \n    \n      Naive Bayes on Pulse Survey Data\n    \n    \n      Cross validation metrics\n    \n    \n      model\n      Accuracy\n    \n  \n  \n    1\n0.442716\n    2\n0.437058\n    3\n0.461103\n    4\n0.476662\n    5\n0.455446\n    6\n0.476662"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html",
+    "title": "17: Hierarchical Models",
+    "section": "",
+    "text": "Goal: Apply group classifications to models\n\n\n\nJersey City, NJ\n\n\n\n\n\n\nlibrary(\"bayesplot\")\nlibrary(\"bayesrules\")\nlibrary(\"ggtext\")\nlibrary(\"janitor\")\nlibrary(\"patchwork\")\nlibrary(\"rstan\")\nlibrary(\"rstanarm\")\nlibrary(\"tidyverse\")\n\nknitr::opts_chunk$set(echo = TRUE)\n\nairbnb_raw &lt;- readr::read_csv(\"listings.csv\")\n\n# brand colors\n# https://pickcoloronline.com/brands/airbnb/\nairbnb_red &lt;- \"#FF5A5F\"\nairbnb_green &lt;- \"#00A699\"\nairbnb_orange &lt;- \"#FC642D\"\nairbnb_black &lt;- \"#484848\"\nairbnb_gray &lt;- \"#767676\"\n\n\n\n\n\n\n\n\nsource: Airbnb listings\n22 December, 2023\n“Summary information and metrics for listings in Jersey City (good for visualisations).”\n\nBefore data wrangling:\n\n1549 observations\n18 variables\n\n\n\n\n\n\n\nJersey City, NJ\n\n\n\n\n\n\n\n\n\n\nextracted ward classification\nnonzero availablity_365\nexcluded rare “Hotel” or “Shared Room” listing\nremoved observations with missing values\n\nAfter data wrangling:\n\n1348 observations\n7 variables\n\n\n\n\n\n\nairbnb_df &lt;- airbnb_raw |&gt;\n  mutate(ward = stringr::str_sub(neighbourhood,6,6)) |&gt;\n  select(price, host_id, number_of_reviews, availability_365, \n         room_type, ward) |&gt;\n  filter(availability_365 &gt; 0) |&gt;\n  filter(room_type %in% c(\"Entire home/apt\", \"Private room\")) |&gt;\n  na.omit() |&gt;\n  group_by(host_id) |&gt;\n  mutate(listings = n()) |&gt;\n  ungroup()\n\n\n\n\n\n\n\nReviewsAvailabilityTypeWard\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = number_of_reviews, y = price)) +\n  geom_point(color = \"#767676\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Price versus number of reviews\",\n       caption = \"SML 320\",\n       x = \"number of reviews\",\n       y = \"price\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = availability_365)) +\n  geom_density(color = \"#484848\", fill = \"#FC642D\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Availability over calendar year\",\n       caption = \"SML 320\",\n       x = \"availability\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = room_type, fill = room_type)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Listing Types\",\n       caption = \"SML 320\",\n       x = \"\",\n       y = \"count\") +\n  scale_fill_manual(values = c(\"#FF5A5F\", \"#00A699\")) +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = ward, fill = ward)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"ward\",\n       caption = \"SML 320\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#data",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#data",
+    "title": "17: Hierarchical Models",
+    "section": "",
+    "text": "source: Airbnb listings\n22 December, 2023\n“Summary information and metrics for listings in Jersey City (good for visualisations).”\n\nBefore data wrangling:\n\n1549 observations\n18 variables\n\n\n\n\n\n\n\nJersey City, NJ"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#data-wrangling",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#data-wrangling",
+    "title": "17: Hierarchical Models",
+    "section": "",
+    "text": "extracted ward classification\nnonzero availablity_365\nexcluded rare “Hotel” or “Shared Room” listing\nremoved observations with missing values\n\nAfter data wrangling:\n\n1348 observations\n7 variables\n\n\n\n\n\n\nairbnb_df &lt;- airbnb_raw |&gt;\n  mutate(ward = stringr::str_sub(neighbourhood,6,6)) |&gt;\n  select(price, host_id, number_of_reviews, availability_365, \n         room_type, ward) |&gt;\n  filter(availability_365 &gt; 0) |&gt;\n  filter(room_type %in% c(\"Entire home/apt\", \"Private room\")) |&gt;\n  na.omit() |&gt;\n  group_by(host_id) |&gt;\n  mutate(listings = n()) |&gt;\n  ungroup()"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#exploratory-data-analyses",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#exploratory-data-analyses",
+    "title": "17: Hierarchical Models",
+    "section": "",
+    "text": "ReviewsAvailabilityTypeWard\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = number_of_reviews, y = price)) +\n  geom_point(color = \"#767676\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Price versus number of reviews\",\n       caption = \"SML 320\",\n       x = \"number of reviews\",\n       y = \"price\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = availability_365)) +\n  geom_density(color = \"#484848\", fill = \"#FC642D\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Availability over calendar year\",\n       caption = \"SML 320\",\n       x = \"availability\",\n       y = \"\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank())\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = room_type, fill = room_type)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"Listing Types\",\n       caption = \"SML 320\",\n       x = \"\",\n       y = \"count\") +\n  scale_fill_manual(values = c(\"#FF5A5F\", \"#00A699\")) +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\nairbnb_df |&gt;\n  ggplot(aes(x = ward, fill = ward)) +\n  geom_bar(stat = \"count\") +\n  labs(title = \"Airbnb Data\",\n       subtitle = \"ward\",\n       caption = \"SML 320\",\n       x = \"\",\n       y = \"count\") +\n  theme_minimal() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#predictions",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#predictions",
+    "title": "17: Hierarchical Models",
+    "section": "Predictions",
+    "text": "Predictions\n\nVizCode\n\n\n\n\n\n\n\n\n\n\nset.seed(320)\nward_preds &lt;- rstanarm::posterior_predict(\n  ward_hier_model, \n  newdata = data.frame(ward = c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\")))\n\nbayesplot::mcmc_areas(ward_preds, prob = 0.8) +\n  labs(title = \"Posterior Distributions for Airbnb Prices\",\n       subtitle = \"For each ward in Jersey City\",\n       caption = \"SML 320\",\n       x = \"price\", y = \"ward\") +\n  scale_y_discrete(labels = c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\"))"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#predictions-1",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#predictions-1",
+    "title": "17: Hierarchical Models",
+    "section": "Predictions",
+    "text": "Predictions\n\nVizCode\n\n\n\n\n\n\n\n\n\n\nset.seed(320)\ntype_preds &lt;- rstanarm::posterior_predict(\n  type_hier_model, \n  newdata = data.frame(number_of_reviews = 100,\n                       availability_365 = 200,\n                       room_type = c(\"Entire home/apt\", \"Private room \")))\n\nbayesplot::mcmc_areas(type_preds, prob = 0.8) +\n  labs(title = \"Posterior Distributions for Airbnb Prices\",\n       subtitle = \"Host with 100 reviews and 200 days/year availability\",\n       caption = \"SML 320\",\n       x = \"price\", y = \"room type\") +\n  scale_y_discrete(labels = c(\"Entire home/apt\", \"Private room \"))"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#means",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#means",
+    "title": "17: Hierarchical Models",
+    "section": "Means",
+    "text": "Means\n\nglobal mean\n\n\\[\\bar{y}_{\\text{global}} = \\displaystyle\\frac{1}{n}\\sum_{i,j} y_{ij}\\]\n\ngroup mean\n\n\\[\\bar{y}_{j} = \\displaystyle\\frac{1}{n_{j}}\\sum_{i=1}^{n_{j}} y_{ij}\\]"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#definition",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#definition",
+    "title": "17: Hierarchical Models",
+    "section": "Definition",
+    "text": "Definition\nShrinkage refers to the phenomenon in which the group-specific local trends in a hierarchical model are pulled or shrunk toward the global trends.\n\\[\\displaystyle\\frac{\\sigma_{y}^{2}}{\\sigma_{y}^{2} + n_{j}\\sigma_{\\mu}^{2}} \\cdot \\bar{y}_{\\text{global}} + \\displaystyle\\frac{n_{j}\\sigma_{\\mu}^{2}}{\\sigma_{y}^{2} + n_{j}\\sigma_{\\mu}^{2}} \\cdot \\bar{y}_{j}\\]\n\n\\(n_{j}\\) decreases \\(\\rightarrow\\) shrinkage increases (i.e. rely more on global trends)\n\\(\\sigma_{y} &gt; \\sigma_{\\mu} \\rightarrow\\) shrinkage increases (i.e. more within group variance than between group variance)"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#posterior-predictive-check",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#posterior-predictive-check",
+    "title": "17: Hierarchical Models",
+    "section": "Posterior Predictive Check",
+    "text": "Posterior Predictive Check\n\nVizCode\n\n\n\n\n\n\n\n\n\n\np1 &lt;- bayesplot::pp_check(ward_hier_model) +\n  labs(title = \"Ward Hierarchical Model\", x = \"price\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank(),\n        legend.position = \"none\")\np2 &lt;- bayesplot::pp_check(type_hier_model) +\n  labs(title = \"Room Type Hierarchical Model\", x = \"price\") +\n  theme_minimal() +\n  theme(axis.text.y = element_blank(),\n        axis.ticks.y = element_blank(),\n        legend.position = \"bottom\")\n\np1 + p2"
+  },
+  {
+    "objectID": "posts/17_hierarchical_models/17_hierarchical_models.html#median-absolute-error",
+    "href": "posts/17_hierarchical_models/17_hierarchical_models.html#median-absolute-error",
+    "title": "17: Hierarchical Models",
+    "section": "Median Absolute Error",
+    "text": "Median Absolute Error\n\nset.seed(320)\nbayesrules::prediction_summary(ward_hier_model, data = airbnb_df) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      mae mae_scaled within_50 within_95\n1 72.5942     0.4707    0.7181    0.9592\n\n\n\nset.seed(320)\nbayesrules::prediction_summary(type_hier_model, data = airbnb_df) |&gt;\n  mutate_if(is.numeric, round, digits = 4)\n\n      mae mae_scaled within_50 within_95\n1 53.0925     0.3673    0.7871    0.9651"
   }
 ]

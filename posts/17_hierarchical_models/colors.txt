@@ -1,0 +1,6 @@
+# brand colors
+airbnb_red <- "#FF5A5F"
+airbnb_green <- "#00A699"
+airbnb_orange <- "#FC642D"
+airbnb_black <- "#484848"
+airbnb_gray <- "#767676"

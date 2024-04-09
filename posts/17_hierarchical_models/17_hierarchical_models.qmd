@@ -1,0 +1,1040 @@
+---
+title: "17: Hierarchical Models"
+author: "Derek Sollberger"
+date: "2024-04-09"
+execute:
+  cache: true
+# format:
+#   revealjs:
+#     scrollable: true
+format:
+  html:
+    toc: true
+---
+
+\newcommand{\ds}{\displaystyle}
+
+# Hierarchical Models
+
+:::: {.columns}
+
+::: {.column width="45%"}
+**Goal:** Apply group classifications to models
+
+![Jersey City, NJ](jersey_city_wards.png)
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+```{r}
+#| message: false
+#| warning: false
+
+library("bayesplot")
+library("bayesrules")
+library("ggtext")
+library("janitor")
+library("patchwork")
+library("rstan")
+library("rstanarm")
+library("tidyverse")
+
+knitr::opts_chunk$set(echo = TRUE)
+
+airbnb_raw <- readr::read_csv("listings.csv")
+
+# brand colors
+# https://pickcoloronline.com/brands/airbnb/
+airbnb_red <- "#FF5A5F"
+airbnb_green <- "#00A699"
+airbnb_orange <- "#FC642D"
+airbnb_black <- "#484848"
+airbnb_gray <- "#767676"
+```
+:::
+
+::::
+
+## Data
+
+:::: {.columns}
+
+::: {.column width="45%"}
+* source: [Airbnb](https://insideairbnb.com/get-the-data/) listings
+* 22 December, 2023
+* "Summary information and metrics for listings in Jersey City (good for visualisations)."
+
+Before data wrangling:
+
+* 1549 observations
+* 18 variables
+
+
+
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+![Jersey City, NJ](jersey_city_broad.png)
+:::
+
+::::
+
+## Data Wrangling
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+* extracted `ward` classification
+* nonzero `availablity_365`
+* excluded rare "Hotel" or "Shared Room" listing
+* removed observations with missing values
+
+After data wrangling:
+
+* 1348 observations
+* 7 variables	
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+```{r}
+airbnb_df <- airbnb_raw |>
+  mutate(ward = stringr::str_sub(neighbourhood,6,6)) |>
+  select(price, host_id, number_of_reviews, availability_365, 
+         room_type, ward) |>
+  filter(availability_365 > 0) |>
+  filter(room_type %in% c("Entire home/apt", "Private room")) |>
+  na.omit() |>
+  group_by(host_id) |>
+  mutate(listings = n()) |>
+  ungroup()
+```
+
+:::
+
+::::
+
+## Exploratory Data Analyses
+
+::::: {.panel-tabset}
+
+## Reviews
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  ggplot(aes(x = number_of_reviews, y = price)) +
+  geom_point(color = "#767676") +
+  labs(title = "Airbnb Data",
+       subtitle = "Price versus number of reviews",
+       caption = "SML 320",
+       x = "number of reviews",
+       y = "price") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  ggplot(aes(x = number_of_reviews, y = price)) +
+  geom_point(color = "#767676") +
+  labs(title = "Airbnb Data",
+       subtitle = "Price versus number of reviews",
+       caption = "SML 320",
+       x = "number of reviews",
+       y = "price") +
+  theme_minimal()
+```
+
+## Availability
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  ggplot(aes(x = availability_365)) +
+  geom_density(color = "#484848", fill = "#FC642D") +
+  labs(title = "Airbnb Data",
+       subtitle = "Availability over calendar year",
+       caption = "SML 320",
+       x = "availability",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  ggplot(aes(x = availability_365)) +
+  geom_density(color = "#484848", fill = "#FC642D") +
+  labs(title = "Airbnb Data",
+       subtitle = "Availability over calendar year",
+       caption = "SML 320",
+       x = "availability",
+       y = "") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```     
+
+## Type
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  ggplot(aes(x = room_type, fill = room_type)) +
+  geom_bar(stat = "count") +
+  labs(title = "Airbnb Data",
+       subtitle = "Listing Types",
+       caption = "SML 320",
+       x = "",
+       y = "count") +
+  scale_fill_manual(values = c("#FF5A5F", "#00A699")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  ggplot(aes(x = room_type, fill = room_type)) +
+  geom_bar(stat = "count") +
+  labs(title = "Airbnb Data",
+       subtitle = "Listing Types",
+       caption = "SML 320",
+       x = "",
+       y = "count") +
+  scale_fill_manual(values = c("#FF5A5F", "#00A699")) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Ward
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  ggplot(aes(x = ward, fill = ward)) +
+  geom_bar(stat = "count") +
+  labs(title = "Airbnb Data",
+       subtitle = "ward",
+       caption = "SML 320",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  ggplot(aes(x = ward, fill = ward)) +
+  geom_bar(stat = "count") +
+  labs(title = "Airbnb Data",
+       subtitle = "ward",
+       caption = "SML 320",
+       x = "",
+       y = "count") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+:::::
+
+# Complete Pooling
+
+::::: {.panel-tabset}
+
+## Math
+
+$$Y_{i} | \beta_{0}, \beta_{1}, \beta_{2}, \sigma \sim \text{N}(\mu_{i}, \sigma^{2}) \text{ with } \mu_{i} = \beta_{0} + \beta_{1}X_{i1} + \beta_{2}X_{i2}$$
+
+* using one pool of information
+
+## Stan
+
+```{r}
+complete_pooled_model <- rstanarm::stan_glm(
+  price ~ number_of_reviews + availability_365,
+  data = airbnb_df,
+  family = gaussian,
+  chains = 4, iter = 5000*2, refresh = 0, seed = 320)
+```
+
+## Diagnostics
+
+::: {.callout-note collapse="true"}
+## Function
+
+```{r}
+model_diagnostics <- function(the_stan_model){
+  p1 <- bayesplot::mcmc_trace(the_stan_model, size = 0.1) +
+  labs(title = "MCMC Traces")
+  print(p1)
+  
+  p2 <- bayesplot::mcmc_dens_overlay(the_stan_model) +
+  labs(title = "Density Plots")
+  print(p2)
+  
+  p3 <- bayesplot::mcmc_acf(the_stan_model) +
+  labs(title = "Autocorrelations")
+  print(p3)
+  
+  # effective sample size
+  print("Effective Sample Size:")
+  print(bayesplot::neff_ratio(the_stan_model))
+  
+  # split-R metric
+  print("R-Hat")
+  print(bayesplot::rhat(the_stan_model))
+}
+```
+
+:::
+
+```{r}
+#| message: false
+#| warning: false
+model_diagnostics(complete_pooled_model)
+```
+
+
+## Model Stats
+
+```{r}
+broom.mixed::tidy(complete_pooled_model,
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+* `number_of_reviews` not significant
+* `availability_365` significant
+
+## Post1
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  filter(listings > 1) |>
+  ggplot(aes(x = number_of_reviews, y = price, group = host_id)) +
+  geom_smooth(method = "lm", formula = "y~x", se = FALSE, color = "#767676") +
+  geom_abline(aes(intercept = 139.9941, slope = -0.0913),
+              color = "#FF5A5F", linewidth = 3) +
+  labs(title = "Posterior Median Model",
+       subtitle = "Hosts with multiple listings",
+       caption = "SML 320",
+       x = "number of reviews", y = "price") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  filter(listings > 1) |>
+  ggplot(aes(x = number_of_reviews, y = price, group = host_id)) +
+  geom_smooth(method = "lm", formula = "y~x", se = FALSE, color = "#767676") +
+  geom_abline(aes(intercept = 139.9941, slope = -0.0913),
+              color = "#FF5A5F", linewidth = 3) +
+  labs(title = "Posterior Median Model",
+       subtitle = "Hosts with multiple listings",
+       caption = "SML 320",
+       x = "number of reviews", y = "price") +
+  theme_minimal()
+```
+
+## Post2
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  filter(listings > 1) |>
+  ggplot(aes(x = availability_365, y = price, group = host_id)) +
+  geom_smooth(method = "lm", formula = "y~x", se = FALSE, color = "#767676") +
+  geom_abline(aes(intercept = 139.9941, slope = -0.0913),
+              color = "#00A699", linewidth = 3) +
+  labs(title = "Posterior Median Model",
+       subtitle = "Hosts with multiple listings",
+       caption = "SML 320",
+       x = "availability over calendar year", y = "price") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  filter(listings > 1) |>
+  ggplot(aes(x = availability_365, y = price, group = host_id)) +
+  geom_smooth(method = "lm", formula = "y~x", se = FALSE, color = "#767676") +
+  geom_abline(aes(intercept = 139.9941, slope = -0.0913),
+              color = "#00A699", linewidth = 3) +
+  labs(title = "Posterior Median Model",
+       subtitle = "Hosts with multiple listings",
+       caption = "SML 320",
+       x = "availability over calendar year", y = "price") +
+  theme_minimal()
+```
+
+:::::
+
+
+# No Pooling
+
+::::: {.panel-tabset}
+
+## Math
+
+$$Y_{ij} | \beta_{0j}, \beta_{1j}, \beta_{2j}, \sigma \sim \text{N}(\mu_{ij}, \sigma^{2}) \text{ with } \mu_{ij} = \beta_{0j} + \beta_{1j}X_{ij1} + \beta_{2}X_{ij2}$$
+
+* each host $j$ gets their own model
+
+## Post1
+
+```{r}
+#| echo: false
+#| eval: true
+most_listings <- airbnb_df |>
+  arrange(desc(listings)) |>
+  select(host_id, listings) |>
+  distinct() |>
+  slice_max(listings, n = 3)
+
+
+airbnb_df |>
+  filter(host_id %in% most_listings$host_id) |>
+  ggplot(aes(x = number_of_reviews, y = price)) +
+  geom_point(color = "#484848") +
+  geom_smooth(method = "lm", formula = "y~x",
+              color = "#FF5A5F",
+              fullrange = TRUE, se = FALSE) +
+  facet_wrap(~host_id) +
+  labs(title = "Airbnb Data",
+       subtitle = "4 Hosts (by ID)",
+       caption = "SML 320",
+       x = "number of reviews", y = "price") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+most_listings <- airbnb_df |>
+  arrange(desc(listings)) |>
+  select(host_id, listings) |>
+  distinct() |>
+  slice_max(listings, n = 3)
+
+
+airbnb_df |>
+  filter(host_id %in% most_listings$host_id) |>
+  ggplot(aes(x = number_of_reviews, y = price)) +
+  geom_point(color = "#484848") +
+  geom_smooth(method = "lm", formula = "y~x",
+              color = "#FF5A5F",
+              fullrange = TRUE, se = FALSE) +
+  facet_wrap(~host_id) +
+  labs(title = "Airbnb Data",
+       subtitle = "4 Hosts (by ID)",
+       caption = "SML 320",
+       x = "number of reviews", y = "price") +
+  theme_minimal()
+```
+
+## Post2
+
+```{r}
+#| echo: false
+#| eval: true
+airbnb_df |>
+  filter(host_id %in% most_listings$host_id) |>
+  ggplot(aes(x = availability_365, y = price)) +
+  geom_point(color = "#484848") +
+  geom_smooth(method = "lm", formula = "y~x",
+              color = "#00A699",
+              fullrange = TRUE, se = FALSE) +
+  facet_wrap(~host_id) +
+  labs(title = "Airbnb Data",
+       subtitle = "4 Hosts (by ID)",
+       caption = "SML 320",
+       x = "availability over calendar year", y = "price") +
+  theme_minimal()
+```
+
+```{r}
+#| echo: true
+#| eval: false
+airbnb_df |>
+  filter(host_id %in% most_listings$host_id) |>
+  ggplot(aes(x = availability_365, y = price)) +
+  geom_point(color = "#484848") +
+  geom_smooth(method = "lm", formula = "y~x",
+              color = "#00A699",
+              fullrange = TRUE, se = FALSE) +
+  facet_wrap(~host_id) +
+  labs(title = "Airbnb Data",
+       subtitle = "4 Hosts (by ID)",
+       caption = "SML 320",
+       x = "availability over calendar year", y = "price") +
+  theme_minimal()
+```
+
+:::::
+
+
+# Motivation
+
+Complete Pooling:
+
+* assumed independence between observations
+
+    * but observations can be correlated within a group
+
+* information about individual listings irrelevant toward larger model
+
+    * may offer misleading conclusions
+
+No Pooling:
+
+* cannot reliably generalize the group-specific no pooled models to groups outside those in our sample
+* No-pooled models assume that one group doesn’t contain relevant information about another
+
+    * especially awkward if a group(s) have small number of observations
+
+
+# Hierarchy
+
+::::: {.panel-tabset}
+
+## Layers
+
+Toward **partial-pooled** or **hierarchical** models, we can think in layers:
+
+* Layer 1: $Y_{ij} | \mu_{j}, \sigma_{y} \sim$ how price varies *within* host $j$
+* Layer 2: $\mu_{j}| \mu, \sigma_{\mu} \sim$ how price varies *between* hosts
+* Layer 3: $\mu, \sigma_{y}, \sigma_{\mu} \sim$ prior models for shared global parameters
+
+## Layer 1
+
+Price $Y_{ij}$ depends on host $j$
+
+$$Y_{ij} | \mu_{j}, \sigma_{y} \sim \text{N}(\mu_{j}, \sigma_{y}^{2})$$
+
+* $\mu_{j}$: mean price for host $j$
+* $\sigma_{y}$: **within-group variability** (i.e. within host $j$)
+
+## Layer 2
+
+Hosts are drawn from a broader population (here: `room_type`)
+
+$$\mu_{j}| \mu, \sigma_{\mu} \sim \text{N}(\mu, \sigma_{\mu}^{2})$$
+
+* $\mu$: **global average** (here: average price for most average host)
+* $\sigma_{\mu}$: **between-group variability** (i.e. between hosts)
+
+## Layer 3
+
+Specify priors for global parameters
+
+* normal distribution for $\mu$
+* exponential distributions for $\sigma_{y}$, $\sigma_{\mu}$
+
+:::::
+
+# ANOVA
+
+::::: {.panel-tabset}
+
+## Layers
+
+One-way analysis of variance (ANOVA)
+
+$$\begin{array}{rrcll}
+  \text{Layer 1: } & Y_{ij} | \mu_{j}, \sigma_{y} & \sim & \text{N}(\mu_{j}, \sigma_{y}^{2}) & \text{within host } j \\
+  \text{Layer 2: } & \mu_{j}| \mu, \sigma_{\mu} & \sim & \text{N}(\mu, \sigma_{\mu}^{2}) & \text{between hosts} \\
+  \text{Layer 3: } & \mu & \sim & \text{N}(m, s^{2}) \\
+  ~ & \sigma_{y} & \sim & \text{Exp}(\ell_{y}) \\
+  ~ & \sigma_{\mu} & \sim & \text{Exp}(\ell_{\mu}) \\
+\end{array}$$
+
+## Variance
+
+$$\text{Total Variance: } \text{Var}(Y_{ij}) = \sigma_{y}^{2} + \sigma_{\mu}^{2}$$
+
+* variance within groups: 
+
+$$\frac{\sigma_{y}^{2}}{\sigma_{\mu}^{2} + \sigma_{y}^{2}}$$
+
+* variance between groups: 
+
+$$\frac{\sigma_{\mu}^{2}}{\sigma_{\mu}^{2} + \sigma_{y}^{2}}$$
+
+## Correlation
+
+Within-group correlation assumes independence between groups $i$ and $k$
+
+$$\text{Cor}(Y_{ij}, Y_{kj}) = \frac{\sigma_{\mu}^{2}}{\sigma_{\mu}^{2} + \sigma_{y}^{2}}$$
+:::::
+
+# Case Study: Ward
+
+::::: {.panel-tabset}
+
+## Complexity
+
+$$6 \text{ wards } + 3 \text{ global parameters} = 9 \text{ model parameters}$$
+
+* group structure `(1|ward)` instead of predictor `ward`
+* prior covariance matrix
+
+## Stan
+
+```{r}
+start_time <- Sys.time()
+
+ward_hier_model <- rstanarm::stan_glmer(
+  price ~ (1 | ward),
+  data = airbnb_df,
+  prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
+  chains = 4, iter = 5000*2, refresh = 0, seed = 320)
+
+end_time <- Sys.time()
+print(round(end_time- start_time))
+```
+
+## Diagnostics
+
+```{r}
+#| message: false
+#| warning: false
+model_diagnostics(ward_hier_model)
+```
+
+## Model Stats
+
+```{r}
+broom.mixed::tidy(ward_hier_model, effects = "fixed",
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+## ANOVA
+
+```{r}
+var_df <- broom.mixed::tidy(ward_hier_model, effects = "ran_pars",
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+
+var_df #print
+```
+
+::: {.callout-note collapse="true"}
+## Function
+
+```{r}
+Extract_Variances <- function(V){
+  v1 <- unlist(V[1,3]^2 / (V[1,3]^2 + V[2,3]^2)) |> round(digits = 4)
+  v2 <- unlist(V[2,3]^2 / (V[1,3]^2 + V[2,3]^2)) |> round(digits = 4)
+  
+  print(paste0("Within Group Variance: ", v1))
+  print(paste0("Between Group Variance: ", v2))
+}
+```
+:::
+
+```{r}
+Extract_Variances(var_df)
+```
+
+:::::
+
+## Predictions
+
+::::: {.panel-tabset}
+
+## Viz
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+set.seed(320)
+ward_preds <- rstanarm::posterior_predict(
+  ward_hier_model, 
+  newdata = data.frame(ward = c("A", "B", "C", "D", "E", "F")))
+
+bayesplot::mcmc_areas(ward_preds, prob = 0.8) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "For each ward in Jersey City",
+       caption = "SML 320",
+       x = "price", y = "ward") +
+  scale_y_discrete(labels = c("A", "B", "C", "D", "E", "F"))
+```
+
+## Code
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: false
+set.seed(320)
+ward_preds <- rstanarm::posterior_predict(
+  ward_hier_model, 
+  newdata = data.frame(ward = c("A", "B", "C", "D", "E", "F")))
+
+bayesplot::mcmc_areas(ward_preds, prob = 0.8) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "For each ward in Jersey City",
+       caption = "SML 320",
+       x = "price", y = "ward") +
+  scale_y_discrete(labels = c("A", "B", "C", "D", "E", "F"))
+```
+
+:::::
+
+
+# Case Study: Room Types
+
+::::: {.panel-tabset}
+
+## Complexity
+
+* group: 2 room types
+* 2 numerical predictor variables
+* 3 global parameters
+* 7 model parameters
+
+## Stan
+
+```{r}
+start_time <- Sys.time()
+
+type_hier_model <- rstanarm::stan_glmer(
+  price ~ number_of_reviews + availability_365 + (1 | room_type),
+  data = airbnb_df,
+  prior_covariance = decov(reg = 1, conc = 1, shape = 1, scale = 1),
+  chains = 4, iter = 5000*2, refresh = 0, seed = 320)
+
+end_time <- Sys.time()
+print(round(end_time- start_time))
+```
+
+## Diagnostics
+
+```{r}
+#| message: false
+#| warning: false
+model_diagnostics(type_hier_model)
+```
+
+## Model Stats
+
+```{r}
+broom.mixed::tidy(type_hier_model, effects = "fixed",
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+## ANOVA
+
+```{r}
+var_df <- broom.mixed::tidy(type_hier_model, effects = "ran_pars",
+                  conf.int = TRUE, conf.level = 0.90) |>
+  mutate_if(is.numeric, round, digits = 4)
+
+var_df #print
+```
+
+```{r}
+Extract_Variances(var_df)
+```
+
+:::::
+
+## Predictions
+
+::::: {.panel-tabset}
+
+## Viz
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+set.seed(320)
+type_preds <- rstanarm::posterior_predict(
+  type_hier_model, 
+  newdata = data.frame(number_of_reviews = 100,
+                       availability_365 = 200,
+                       room_type = c("Entire home/apt", "Private room ")))
+
+bayesplot::mcmc_areas(type_preds, prob = 0.8) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "Host with 100 reviews and 200 days/year availability",
+       caption = "SML 320",
+       x = "price", y = "room type") +
+  scale_y_discrete(labels = c("Entire home/apt", "Private room "))
+```
+
+## Code
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: false
+set.seed(320)
+type_preds <- rstanarm::posterior_predict(
+  type_hier_model, 
+  newdata = data.frame(number_of_reviews = 100,
+                       availability_365 = 200,
+                       room_type = c("Entire home/apt", "Private room ")))
+
+bayesplot::mcmc_areas(type_preds, prob = 0.8) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "Host with 100 reviews and 200 days/year availability",
+       caption = "SML 320",
+       x = "price", y = "room type") +
+  scale_y_discrete(labels = c("Entire home/apt", "Private room "))
+```
+
+:::::
+
+# Shinkage
+
+::::: {.panel-tabset}
+
+## Viz1
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+global_mean <- mean(airbnb_df$price)
+
+bayesplot::mcmc_areas(ward_preds, prob = 0.8) +
+  geom_vline(xintercept = global_mean, color = "#484848", 
+             linewidth = 2) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "For each ward in Jersey City",
+       caption = "SML 320",
+       x = "price", y = "ward") +
+  scale_y_discrete(labels = c("A", "B", "C", "D", "E", "F"))
+```
+
+## Code1
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: false
+global_mean <- mean(airbnb_df$price)
+
+bayesplot::mcmc_areas(ward_preds, prob = 0.8) +
+  geom_vline(xintercept = global_mean, color = "#484848", 
+             linewidth = 2) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "For each ward in Jersey City",
+       caption = "SML 320",
+       x = "price", y = "ward") +
+  scale_y_discrete(labels = c("A", "B", "C", "D", "E", "F"))
+```
+
+## Viz2
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+global_mean <- mean(airbnb_df$price)
+
+bayesplot::mcmc_areas(type_preds, prob = 0.8) +
+  geom_vline(xintercept = global_mean, color = "#484848", 
+             linewidth = 2) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "Host with 100 reviews and 200 days/year availability",
+       caption = "SML 320",
+       x = "price", y = "room type") +
+  scale_y_discrete(labels = c("Entire home/apt", "Private room "))
+```
+
+## Code2
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+#| eval: true
+global_mean <- mean(airbnb_df$price)
+
+bayesplot::mcmc_areas(type_preds, prob = 0.8) +
+  geom_vline(xintercept = global_mean, color = "#484848", 
+             linewidth = 2) +
+  labs(title = "Posterior Distributions for Airbnb Prices",
+       subtitle = "Host with 100 reviews and 200 days/year availability",
+       caption = "SML 320",
+       x = "price", y = "room type") +
+  scale_y_discrete(labels = c("Entire home/apt", "Private room "))
+```
+
+:::::
+
+## Means
+
+* global mean
+
+$$\bar{y}_{\text{global}} = \ds\frac{1}{n}\sum_{i,j} y_{ij}$$
+
+* group mean
+
+$$\bar{y}_{j} = \ds\frac{1}{n_{j}}\sum_{i=1}^{n_{j}} y_{ij}$$
+
+## Definition
+
+**Shrinkage** refers to the phenomenon in which the group-specific local trends in a hierarchical model are pulled or shrunk toward the global trends.
+
+$$\ds\frac{\sigma_{y}^{2}}{\sigma_{y}^{2} + n_{j}\sigma_{\mu}^{2}} \cdot \bar{y}_{\text{global}} + \ds\frac{n_{j}\sigma_{\mu}^{2}}{\sigma_{y}^{2} + n_{j}\sigma_{\mu}^{2}} \cdot \bar{y}_{j}$$
+
+* $n_{j}$ decreases $\rightarrow$ shrinkage increases (i.e. rely more on global trends)
+* $\sigma_{y} > \sigma_{\mu} \rightarrow$ shrinkage increases (i.e. more within group variance than between group variance)
+
+
+# Model Evaluation
+
+## Posterior Predictive Check
+::::: {.panel-tabset}
+
+## Viz
+
+```{r}
+#| echo: false
+#| eval: true
+p1 <- bayesplot::pp_check(ward_hier_model) +
+  labs(title = "Ward Hierarchical Model", x = "price") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "none")
+p2 <- bayesplot::pp_check(type_hier_model) +
+  labs(title = "Room Type Hierarchical Model", x = "price") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "bottom")
+
+p1 + p2
+```
+
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+p1 <- bayesplot::pp_check(ward_hier_model) +
+  labs(title = "Ward Hierarchical Model", x = "price") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "none")
+p2 <- bayesplot::pp_check(type_hier_model) +
+  labs(title = "Room Type Hierarchical Model", x = "price") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = "bottom")
+
+p1 + p2
+```
+
+:::::
+
+## Median Absolute Error
+
+```{r}
+set.seed(320)
+bayesrules::prediction_summary(ward_hier_model, data = airbnb_df) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+```{r}
+set.seed(320)
+bayesrules::prediction_summary(type_hier_model, data = airbnb_df) |>
+  mutate_if(is.numeric, round, digits = 4)
+```
+
+
+# Summary
+
+Hierarchical models (AKA partial pooled models)
+
+* assumes independence between groups (but allows correlation within groups)
+* group-specific parameters $\mu_{j}$ describe group-specific trends
+* global parameters describe broader population
+* predictions for one group draws from info from other groups (can lead to shrinkage)
+* less variable than no pooling, less biased than complete pooling
+
+
+# Footnotes
+
+* 
+
+::: {.callout-note collapse="true"}
+## Session Info
+
+```{r}
+sessionInfo()
+```
+:::
+
+
+:::: {.columns}
+
+::: {.column width="45%"}
+	
+:::
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="45%"}
+
+:::
+
+::::
+
+
+::::: {.panel-tabset}
+
+
+
+:::::

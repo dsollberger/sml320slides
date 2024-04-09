@@ -55,5 +55,8 @@
   },
   "posts/16_naive_bayes/16_naive_bayes.qmd": {
     "16_naive_bayes.html": "38d031f7"
+  },
+  "posts/17_hierarchical_models/17_hierarchical_models.qmd": {
+    "17_hierarchical_models.html": "05a7bbc8"
   }
 }
