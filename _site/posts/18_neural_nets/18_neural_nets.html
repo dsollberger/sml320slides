@@ -201,11 +201,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#targets-matrix" id="toc-targets-matrix" class="nav-link" data-scroll-target="#targets-matrix">Targets Matrix</a></li>
   <li><a href="#train-network" id="toc-train-network" class="nav-link" data-scroll-target="#train-network">Train Network</a></li>
-  <li><a href="#hamiltonian-monte-carlo" id="toc-hamiltonian-monte-carlo" class="nav-link" data-scroll-target="#hamiltonian-monte-carlo">Hamiltonian Monte Carlo</a></li>
   </ul></li>
+  <li><a href="#hamiltonian-monte-carlo" id="toc-hamiltonian-monte-carlo" class="nav-link" data-scroll-target="#hamiltonian-monte-carlo">Hamiltonian Monte Carlo</a></li>
   <li><a href="#update-network" id="toc-update-network" class="nav-link" data-scroll-target="#update-network">Update Network</a></li>
   <li><a href="#gather-predictions" id="toc-gather-predictions" class="nav-link" data-scroll-target="#gather-predictions">Gather Predictions</a></li>
-  <li><a href="#examine-overall-error" id="toc-examine-overall-error" class="nav-link" data-scroll-target="#examine-overall-error">Examine Overall Error</a></li>
+  <li><a href="#examine-error" id="toc-examine-error" class="nav-link" data-scroll-target="#examine-error">Examine Error</a></li>
   </ul></li>
   <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
   </ul>
@@ -402,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(end_time<span class="sc">-</span> start_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 3 mins</code></pre>
+<pre><code>Time difference of 4 mins</code></pre>
 </div>
 </div>
 </div>
@@ -459,30 +459,30 @@ Function
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Effective Sample Size:"
                         (Intercept)                   number_of_reviews 
-                          0.3276667                           1.1083333 
+                          0.5086667                           0.9522222 
                    availability_365               room_typePrivate room 
-                          1.1418333                           1.1312500 
+                          0.8895556                           0.7847778 
               b[(Intercept) ward:A]               b[(Intercept) ward:B] 
-                          0.3708333                           0.3493333 
+                          0.6232222                           0.5092222 
               b[(Intercept) ward:C]               b[(Intercept) ward:D] 
-                          0.2865833                           0.3126667 
+                          0.4440000                           0.4608889 
               b[(Intercept) ward:E]               b[(Intercept) ward:F] 
-                          0.2976667                           0.3132500 
+                          0.3303333                           0.4488889 
                               sigma Sigma[ward:(Intercept),(Intercept)] 
-                          0.9867500                           0.2095833 
+                          0.8438889                           0.3378889 
 [1] "R-Hat"
                         (Intercept)                   number_of_reviews 
-                          1.0005077                           0.9997896 
+                          1.0002625                           0.9998291 
                    availability_365               room_typePrivate room 
-                          0.9999591                           1.0001469 
+                          0.9998054                           0.9998069 
               b[(Intercept) ward:A]               b[(Intercept) ward:B] 
-                          1.0007762                           1.0002805 
+                          1.0001120                           1.0001326 
               b[(Intercept) ward:C]               b[(Intercept) ward:D] 
-                          1.0004325                           1.0005001 
+                          1.0000578                           0.9999769 
               b[(Intercept) ward:E]               b[(Intercept) ward:F] 
-                          1.0002838                           1.0008691 
+                          1.0003429                           1.0003948 
                               sigma Sigma[ward:(Intercept),(Intercept)] 
-                          0.9999317                           1.0011528 </code></pre>
+                          1.0000282                           1.0005024 </code></pre>
 </div>
 </div>
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-7_9b564ab5e27b6e534697c3b83f4c4ba1">
@@ -499,86 +499,86 @@ Function
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Effective Sample Size:"
                                             (Intercept) 
-                                              0.4622500 
+                                              0.6875556 
                                       number_of_reviews 
-                                              1.1880833 
+                                              1.1898889 
                                        availability_365 
-                                              1.2578333 
+                                              1.1043333 
                                   room_typePrivate room 
-                                              0.3894167 
+                                              0.3803333 
                                   b[(Intercept) ward:A] 
-                                              0.5228333 
+                                              0.7395556 
                         b[room_typePrivate room ward:A] 
-                                              0.4582500 
+                                              0.4583333 
                                   b[(Intercept) ward:B] 
-                                              0.4841667 
+                                              0.5922222 
                         b[room_typePrivate room ward:B] 
-                                              0.4646667 
+                                              0.4535556 
                                   b[(Intercept) ward:C] 
-                                              0.4556667 
+                                              0.6764444 
                         b[room_typePrivate room ward:C] 
-                                              0.4309167 
+                                              0.4266667 
                                   b[(Intercept) ward:D] 
-                                              0.4832500 
+                                              0.4473333 
                         b[room_typePrivate room ward:D] 
-                                              0.4315833 
+                                              0.4472222 
                                   b[(Intercept) ward:E] 
-                                              0.4270833 
+                                              0.5104444 
                         b[room_typePrivate room ward:E] 
-                                              0.4256667 
+                                              0.4584444 
                                   b[(Intercept) ward:F] 
-                                              0.4616667 
+                                              0.6493333 
                         b[room_typePrivate room ward:F] 
-                                              0.4223333 
+                                              0.4303333 
                                                   sigma 
-                                              1.2114167 
+                                              1.0692222 
                     Sigma[ward:(Intercept),(Intercept)] 
-                                              0.4001667 
+                                              0.3853333 
           Sigma[ward:room_typePrivate room,(Intercept)] 
-                                              0.4628333 
+                                              0.4280000 
 Sigma[ward:room_typePrivate room,room_typePrivate room] 
-                                              0.4017500 
+                                              0.4431111 
 [1] "R-Hat"
                                             (Intercept) 
-                                              1.0003480 
+                                              0.9998817 
                                       number_of_reviews 
-                                              0.9999413 
+                                              0.9998938 
                                        availability_365 
-                                              0.9999063 
+                                              0.9999321 
                                   room_typePrivate room 
-                                              0.9998922 
+                                              1.0003472 
                                   b[(Intercept) ward:A] 
-                                              1.0008737 
+                                              0.9998446 
                         b[room_typePrivate room ward:A] 
-                                              1.0000989 
+                                              1.0002946 
                                   b[(Intercept) ward:B] 
-                                              1.0003532 
+                                              0.9999827 
                         b[room_typePrivate room ward:B] 
-                                              0.9999684 
+                                              1.0003456 
                                   b[(Intercept) ward:C] 
-                                              1.0003739 
+                                              0.9999604 
                         b[room_typePrivate room ward:C] 
-                                              0.9998888 
+                                              1.0003508 
                                   b[(Intercept) ward:D] 
-                                              0.9999954 
+                                              1.0000062 
                         b[room_typePrivate room ward:D] 
-                                              0.9998498 
+                                              1.0001489 
                                   b[(Intercept) ward:E] 
-                                              1.0003258 
+                                              1.0002141 
                         b[room_typePrivate room ward:E] 
-                                              1.0000400 
+                                              1.0003427 
                                   b[(Intercept) ward:F] 
-                                              1.0000689 
+                                              0.9998399 
                         b[room_typePrivate room ward:F] 
-                                              0.9998370 
+                                              0.9999825 
                                                   sigma 
-                                              0.9998471 
+                                              0.9998949 
                     Sigma[ward:(Intercept),(Intercept)] 
-                                              1.0005030 
+                                              1.0004354 
           Sigma[ward:room_typePrivate room,(Intercept)] 
-                                              0.9998544 
+                                              1.0002091 
 Sigma[ward:room_typePrivate room,room_typePrivate room] 
-                                              1.0003621 </code></pre>
+                                              0.9997902 </code></pre>
 </div>
 </div>
 </div>
@@ -588,8 +588,8 @@ Sigma[ward:room_typePrivate room,room_typePrivate room]
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>bayesrules<span class="sc">::</span><span class="fu">prediction_summary</span>(ward_intercept_model, <span class="at">data =</span> airbnb_df) <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      mae mae_scaled within_50 within_95
-1 53.0581     0.3704    0.7901    0.9644</code></pre>
+<pre><code>     mae mae_scaled within_50 within_95
+1 67.536      0.362    0.8479    0.9785</code></pre>
 </div>
 </div>
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-9_48ce2dfdbc50386d20f1baac2b214e81">
@@ -598,7 +598,7 @@ Sigma[ward:room_typePrivate room,room_typePrivate room]
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mae mae_scaled within_50 within_95
-1 52.5942     0.3763    0.7426    0.9666</code></pre>
+1 54.5806     0.3202     0.796    0.9607</code></pre>
 </div>
 </div>
 </div>
@@ -639,12 +639,12 @@ Sigma[ward:room_typePrivate room,room_typePrivate room]
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
-  term                  estimate std.error  conf.low conf.high
-  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-1 (Intercept)            185.      14.8     159.       210.   
-2 number_of_reviews       -0.154    0.0685   -0.266     -0.043
-3 availability_365         0.128    0.035     0.0711     0.186
-4 room_typePrivate room -115.       8.26   -129.      -102.   </code></pre>
+  term                  estimate std.error conf.low conf.high
+  &lt;chr&gt;                    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)            153.       35.3     93.2     212.   
+2 number_of_reviews       -0.128     0.195   -0.441     0.192
+3 availability_365         0.227     0.101    0.059     0.392
+4 room_typePrivate room  -72.3      23.9   -112.      -33.7  </code></pre>
 </div>
 </div>
 <ul>
@@ -665,12 +665,12 @@ Sigma[ward:room_typePrivate room,room_typePrivate room]
 <pre><code># A tibble: 6 × 7
   level group term        estimate std.error conf.low conf.high
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-1 A     ward  (Intercept)   -19.1       15.3   -48.1       5.26
-2 B     ward  (Intercept)   -18.0       14.4   -45.3       6.00
-3 C     ward  (Intercept)     7.58      12.9   -14.2      32.0 
-4 D     ward  (Intercept)     1.35      13.5   -22.4      25.2 
-5 E     ward  (Intercept)    31.2       13.5     9.71     57.2 
-6 F     ward  (Intercept)    -1.70      13.1   -24.8      22.9 </code></pre>
+1 A     ward  (Intercept)   -12.8       29.0   -72.8       36.4
+2 B     ward  (Intercept)   -23.7       31.2   -85.3       22.2
+3 C     ward  (Intercept)    -3.62      24.3   -50.9       42.3
+4 D     ward  (Intercept)     8.61      26.2   -36.4       62.1
+5 E     ward  (Intercept)    52.2       32.0     3.98     111. 
+6 F     ward  (Intercept)   -15.7       26.2   -67.6       28.3</code></pre>
 </div>
 </div>
 <p><strong>Ward E</strong> is the only one that is “practically significant” (based on the 90-percent credible intervals for the coefficients), and its coefficient shows how listings in that ward tend to be more expensive than the population average.</p>
@@ -688,8 +688,8 @@ Sigma[ward:room_typePrivate room,room_typePrivate room]
 <pre><code># A tibble: 2 × 3
   term                    group    estimate
   &lt;chr&gt;                   &lt;chr&gt;       &lt;dbl&gt;
-1 sd_(Intercept).ward     ward         31.2
-2 sd_Observation.Residual Residual    143. </code></pre>
+1 sd_(Intercept).ward     ward         54.9
+2 sd_Observation.Residual Residual    184. </code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -719,8 +719,8 @@ Function
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-16_f8d936a8d96f26cee07a7ed0ba2f6617">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Extract_Variances</span>(var_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Within Group Variance: 0.0452"
-[1] "Between Group Variance: 0.9548"</code></pre>
+<pre><code>[1] "Within Group Variance: 0.0821"
+[1] "Between Group Variance: 0.9179"</code></pre>
 </div>
 </div>
 </section>
@@ -767,26 +767,26 @@ Function
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Effective Sample Size:"
                         (Intercept)                   number_of_reviews 
-                          0.3770833                           0.8445000 
+                          0.4682500                           0.8668333 
                    availability_365               b[(Intercept) ward:A] 
-                          0.9560000                           0.5335000 
+                          0.9095833                           0.5275833 
               b[(Intercept) ward:B]               b[(Intercept) ward:C] 
-                          0.4801667                           0.3907500 
+                          0.5355833                           0.4380000 
               b[(Intercept) ward:D]               b[(Intercept) ward:E] 
-                          0.4282500                           0.4131667 
+                          0.4577500                           0.4185833 
               b[(Intercept) ward:F] Sigma[ward:(Intercept),(Intercept)] 
-                          0.3985000                           0.3523333 
+                          0.4354167                           0.3841667 
 [1] "R-Hat"
                         (Intercept)                   number_of_reviews 
-                          1.0002788                           1.0003189 
+                           1.000326                            1.000141 
                    availability_365               b[(Intercept) ward:A] 
-                          1.0001047                           1.0004294 
+                           1.000032                            1.000171 
               b[(Intercept) ward:B]               b[(Intercept) ward:C] 
-                          1.0002243                           0.9999522 
+                           1.000349                            1.000207 
               b[(Intercept) ward:D]               b[(Intercept) ward:E] 
-                          1.0005065                           0.9999636 
+                           1.000331                            1.000029 
               b[(Intercept) ward:F] Sigma[ward:(Intercept),(Intercept)] 
-                          1.0002730                           1.0009736 </code></pre>
+                           1.000179                            1.000765 </code></pre>
 </div>
 </div>
 </div>
@@ -803,17 +803,17 @@ Function
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>class_results<span class="sc">$</span>confusion_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> y  0   1
- 0 36  62
- 1 23 145</code></pre>
+ 0 38  62
+ 1 32 134</code></pre>
 </div>
 </div>
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-21_44ac359f968b271e2b74232d78c21313">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>class_results<span class="sc">$</span>accuracy_rates <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                       
-sensitivity      0.8631
-specificity      0.3673
-overall_accuracy 0.6805</code></pre>
+sensitivity      0.8072
+specificity      0.3800
+overall_accuracy 0.6466</code></pre>
 </div>
 </div>
 </div>
@@ -845,7 +845,7 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(end_time<span class="sc">-</span> start_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 53 secs</code></pre>
+<pre><code>Time difference of 44 secs</code></pre>
 </div>
 </div>
 </div>
@@ -864,30 +864,30 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Effective Sample Size:"
                         (Intercept)                   number_of_reviews 
-                          0.2792500                           1.0680000 
+                          0.5618333                           1.0082500 
                    availability_365               room_typePrivate room 
-                          1.0263333                           0.9499167 
+                          0.9248333                           1.1091667 
               b[(Intercept) ward:A]               b[(Intercept) ward:B] 
-                          0.3307500                           0.3429167 
+                          0.5662500                           0.5501667 
               b[(Intercept) ward:C]               b[(Intercept) ward:D] 
-                          0.2421667                           0.2567500 
+                          0.4396667                           0.4860000 
               b[(Intercept) ward:E]               b[(Intercept) ward:F] 
-                          0.2427500                           0.2690000 
+                          0.3343333                           0.4588333 
               reciprocal_dispersion Sigma[ward:(Intercept),(Intercept)] 
-                          0.9679167                           0.2297500 
+                          0.9117500                           0.2173333 
 [1] "R-Hat"
                         (Intercept)                   number_of_reviews 
-                          1.0003815                           0.9999456 
+                          0.9999635                           0.9998766 
                    availability_365               room_typePrivate room 
-                          1.0000473                           1.0000786 
+                          1.0001169                           0.9997772 
               b[(Intercept) ward:A]               b[(Intercept) ward:B] 
-                          1.0004978                           1.0002006 
+                          1.0006149                           1.0002727 
               b[(Intercept) ward:C]               b[(Intercept) ward:D] 
-                          1.0009517                           1.0007625 
+                          1.0004347                           1.0001468 
               b[(Intercept) ward:E]               b[(Intercept) ward:F] 
-                          1.0013215                           1.0005875 
+                          1.0006933                           1.0001187 
               reciprocal_dispersion Sigma[ward:(Intercept),(Intercept)] 
-                          0.9998918                           1.0015687 </code></pre>
+                          0.9999473                           1.0018798 </code></pre>
 </div>
 </div>
 </div>
@@ -898,7 +898,7 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_if</span>(is.numeric, round, <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mae mae_scaled within_50 within_95
-1 53.4337     0.5352    0.6424    0.9599</code></pre>
+1 56.0397     0.5393    0.6513    0.9703</code></pre>
 </div>
 </div>
 </div>
@@ -975,7 +975,7 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <section id="architecture" class="level2">
 <h2 class="anchored" data-anchor-id="architecture">Architecture</h2>
 <ul>
-<li><code>ncov = 2</code>: 2 input variables</li>
+<li><code>ncov = 3</code>: 2 input variables</li>
 <li><code>nout = 6</code>: 6 output variables (for the <code>ward</code>)</li>
 <li><code>hlayer_size = 8</code>: size of hidden layer</li>
 </ul>
@@ -990,13 +990,13 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 </section>
 <section id="data-wrangling-1" class="level2">
 <h2 class="anchored" data-anchor-id="data-wrangling-1">Data Wrangling</h2>
-<div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-31_2f3c7fa794d18dcf28107db58e4ad6aa">
+<div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-31_7a427dc52ebc2782e192fd7963844d5a">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">320</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>airbnb_for_bnn <span class="ot">&lt;-</span> airbnb_df <span class="sc">|&gt;</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">room_bin =</span> <span class="fu">ifelse</span>(room_type <span class="sc">==</span> <span class="st">"Entire home/apt"</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ward, number_of_reviews, availability_365, room_bin) <span class="sc">|&gt;</span></span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ward) <span class="sc">|&gt;</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="fl">0.3</span>) <span class="sc">|&gt;</span></span>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="targets-matrix" class="level3">
@@ -1025,26 +1025,17 @@ to find out why this is a problem and how to eliminate them.</code></pre>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>                            targ, </span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> <span class="dv">3</span>) <span class="co">#hidden layer size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># weights:  33
-initial  value 181.689223 
-iter  10 value 120.105830
-iter  20 value 117.705538
-iter  30 value 116.332153
-iter  40 value 115.266750
-iter  50 value 115.020725
-iter  60 value 114.863431
-iter  70 value 114.693553
-iter  80 value 114.688136
-iter  90 value 114.679208
-iter 100 value 114.659217
-final  value 114.659217 
-stopped after 100 iterations</code></pre>
+<pre><code># weights:  36
+initial  value 834.779501 
+final  value 402.000000 
+converged</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>nnetPredictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(nnetBasesline)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="hamiltonian-monte-carlo" class="level3">
-<h3 class="anchored" data-anchor-id="hamiltonian-monte-carlo">Hamiltonian Monte Carlo</h3>
+</section>
+<section id="hamiltonian-monte-carlo" class="level2">
+<h2 class="anchored" data-anchor-id="hamiltonian-monte-carlo">Hamiltonian Monte Carlo</h2>
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-34_78000902ea37a862e822630959182934">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1060,17 +1051,16 @@ stopped after 100 iterations</code></pre>
 <span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>                                                      <span class="at">gamma=</span><span class="dv">2</span>)</span>
 <span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>                        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Initial Step size : 0.002441406 
-Initial Step size : 0.009765625 
+<pre><code>Initial Step size : 0.01953125 
+Initial Step size : 0.004882812 
 Initial Step size : 0.009765625 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>end_time <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(end_time<span class="sc">-</span> start_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 45 secs</code></pre>
+<pre><code>Time difference of 2 mins</code></pre>
 </div>
 </div>
-</section>
 </section>
 <section id="update-network" class="level2">
 <h2 class="anchored" data-anchor-id="update-network">Update Network</h2>
@@ -1092,8 +1082,8 @@ Initial Step size : 0.009765625 </code></pre>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>HMCpred <span class="ot">&lt;-</span> <span class="fu">BLNN_Predict</span>(ClassNet, input_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="examine-overall-error" class="level2">
-<h2 class="anchored" data-anchor-id="examine-overall-error">Examine Overall Error</h2>
+<section id="examine-error" class="level2">
+<h2 class="anchored" data-anchor-id="examine-error">Examine Error</h2>
 <div class="cell" data-hash="18_neural_nets_cache/html/unnamed-chunk-37_2b9dff12bc173a0ce9a982e8e27f82cd">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>HMCpredClass <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, </span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">nrow =</span> <span class="fu">nrow</span>(airbnb_for_bnn), </span>
@@ -1128,13 +1118,13 @@ Initial Step size : 0.009765625 </code></pre>
 <span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(targ_df<span class="sc">$</span>class, HMCpredClass_df<span class="sc">$</span>class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
-         ward_A
-  ward_A     22
-  ward_B     27
-  ward_C     54
-  ward_D     28
-  ward_E      0
-  ward_F      0</code></pre>
+         ward_A ward_B ward_C ward_D
+  ward_A      0     14     11      9
+  ward_B      1     13      4     23
+  ward_C      2     12     26     41
+  ward_D      5     20     23     17
+  ward_E      5     23     11     68
+  ward_F      2     20     11     41</code></pre>
 </div>
 </div>
 </section>
@@ -1180,38 +1170,52 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] nnet_7.3-19        BLNN_1.0           lubridate_1.9.3    forcats_1.0.0     
- [5] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.5       
- [9] tidyr_1.3.1        tibble_3.2.1       ggplot2_3.4.3      tidyverse_2.0.0   
-[13] rstanarm_2.21.4    Rcpp_1.0.11        rstan_2.32.5       StanHeaders_2.32.5
-[17] patchwork_1.1.2    janitor_2.2.0      ggtext_0.1.2       bayesrules_0.0.2  
+ [1] lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4       
+ [5] purrr_1.0.2        readr_2.1.5        tidyr_1.3.1        tibble_3.2.1      
+ [9] ggplot2_3.4.3      tidyverse_2.0.0    rstanarm_2.21.4    Rcpp_1.0.11       
+[13] rstan_2.32.5       StanHeaders_2.32.5 patchwork_1.1.2    nnet_7.3-19       
+[17] janitor_2.2.0      ggtext_0.1.2       BLNN_1.0           bayesrules_0.0.2  
 [21] bayesplot_1.10.0  
 
 loaded via a namespace (and not attached):
- [1] gridExtra_2.3      inline_0.3.19      rlang_1.1.1        magrittr_2.0.3    
- [5] snakecase_0.11.0   matrixStats_1.0.0  e1071_1.7-13       compiler_4.3.2    
- [9] loo_2.6.0          callr_3.7.3        vctrs_0.6.5        reshape2_1.4.4    
-[13] pkgconfig_2.0.3    crayon_1.5.2       fastmap_1.1.1      ellipsis_0.3.2    
-[17] utf8_1.2.4         threejs_0.3.3      promises_1.2.1     rmarkdown_2.24    
-[21] tzdb_0.4.0         markdown_1.8       ps_1.7.5           nloptr_2.0.3      
-[25] xfun_0.40          jsonlite_1.8.7     later_1.3.1        parallel_4.3.2    
-[29] prettyunits_1.2.0  R6_2.5.1           dygraphs_1.1.1.6   stringi_1.8.3     
-[33] boot_1.3-28.1      knitr_1.43         zoo_1.8-12         base64enc_0.1-3   
-[37] httpuv_1.6.11      Matrix_1.6-1.1     splines_4.3.2      igraph_1.4.3      
-[41] timechange_0.3.0   tidyselect_1.2.0   rstudioapi_0.15.0  yaml_2.3.8        
-[45] codetools_0.2-19   miniUI_0.1.1.1     curl_5.0.2         processx_3.8.1    
-[49] pkgbuild_1.4.0     lattice_0.21-9     plyr_1.8.8         withr_3.0.0       
-[53] shiny_1.7.5        groupdata2_2.0.2   evaluate_0.21      survival_3.5-7    
-[57] proxy_0.4-27       RcppParallel_5.1.7 xml2_1.3.6         xts_0.13.1        
-[61] pillar_1.9.0       DT_0.28            stats4_4.3.2       shinyjs_2.1.0     
-[65] generics_0.1.3     hms_1.1.3          rstantools_2.3.1   munsell_0.5.0     
-[69] scales_1.2.1       minqa_1.2.5        gtools_3.9.4       xtable_1.8-4      
-[73] class_7.3-22       glue_1.6.2         tools_4.3.2        shinystan_2.6.0   
-[77] lme4_1.1-33        colourpicker_1.2.0 grid_4.3.2         QuickJSR_1.1.3    
-[81] crosstalk_1.2.0    colorspace_2.1-0   nlme_3.1-163       cli_3.6.1         
-[85] fansi_1.0.6        V8_4.3.0           gtable_0.3.4       digest_0.6.33     
-[89] htmlwidgets_1.6.2  htmltools_0.5.6    lifecycle_1.0.4    mime_0.12         
-[93] gridtext_0.1.5     shinythemes_1.2.0  MASS_7.3-60       </code></pre>
+  [1] tensorA_0.36.2       rstudioapi_0.15.0    jsonlite_1.8.7      
+  [4] magrittr_2.0.3       farver_2.1.1         nloptr_2.0.3        
+  [7] rmarkdown_2.24       vctrs_0.6.5          minqa_1.2.5         
+ [10] base64enc_0.1-3      htmltools_0.5.6      distributional_0.3.2
+ [13] curl_5.0.2           broom_1.0.5          parallelly_1.36.0   
+ [16] htmlwidgets_1.6.2    plyr_1.8.8           zoo_1.8-12          
+ [19] igraph_1.4.3         mime_0.12            lifecycle_1.0.4     
+ [22] pkgconfig_2.0.3      colourpicker_1.2.0   Matrix_1.6-1.1      
+ [25] R6_2.5.1             fastmap_1.1.1        future_1.32.0       
+ [28] shiny_1.7.5          snakecase_0.11.0     digest_0.6.33       
+ [31] colorspace_2.1-0     furrr_0.3.1          ps_1.7.5            
+ [34] crosstalk_1.2.0      labeling_0.4.3       fansi_1.0.6         
+ [37] timechange_0.3.0     abind_1.4-5          compiler_4.3.2      
+ [40] proxy_0.4-27         bit64_4.0.5          withr_3.0.0         
+ [43] backports_1.4.1      inline_0.3.19        shinystan_2.6.0     
+ [46] QuickJSR_1.1.3       pkgbuild_1.4.0       broom.mixed_0.2.9.4 
+ [49] MASS_7.3-60          gtools_3.9.4         loo_2.6.0           
+ [52] tools_4.3.2          httpuv_1.6.11        threejs_0.3.3       
+ [55] glue_1.6.2           callr_3.7.3          nlme_3.1-163        
+ [58] promises_1.2.1       gridtext_0.1.5       grid_4.3.2          
+ [61] checkmate_2.2.0      reshape2_1.4.4       generics_0.1.3      
+ [64] gtable_0.3.4         tzdb_0.4.0           class_7.3-22        
+ [67] hms_1.1.3            xml2_1.3.6           utf8_1.2.4          
+ [70] pillar_1.9.0         markdown_1.8         vroom_1.6.5         
+ [73] posterior_1.4.1      later_1.3.1          splines_4.3.2       
+ [76] lattice_0.21-9       survival_3.5-7       bit_4.0.5           
+ [79] tidyselect_1.2.0     miniUI_0.1.1.1       knitr_1.43          
+ [82] gridExtra_2.3        V8_4.3.0             groupdata2_2.0.2    
+ [85] stats4_4.3.2         xfun_0.40            matrixStats_1.0.0   
+ [88] DT_0.28              stringi_1.8.3        yaml_2.3.8          
+ [91] boot_1.3-28.1        evaluate_0.21        codetools_0.2-19    
+ [94] cli_3.6.1            RcppParallel_5.1.7   shinythemes_1.2.0   
+ [97] xtable_1.8-4         munsell_0.5.0        processx_3.8.1      
+[100] globals_0.16.2       parallel_4.3.2       rstantools_2.3.1    
+[103] ellipsis_0.3.2       prettyunits_1.2.0    dygraphs_1.1.1.6    
+[106] listenv_0.9.0        lme4_1.1-33          ggridges_0.5.4      
+[109] scales_1.2.1         xts_0.13.1           e1071_1.7-13        
+[112] crayon_1.5.2         rlang_1.1.1          shinyjs_2.1.0       </code></pre>
 </div>
 </div>
 </div>

@@ -567,7 +567,7 @@ Here, we briefly look at the `BLNN` package (Bayesian learning for neural networ
 
 ## Architecture
 
-* `ncov = 2`: 2 input variables
+* `ncov = 3`: 2 input variables
 * `nout = 6`: 6 output variables (for the `ward`)
 * `hlayer_size = 8`: size of hidden layer
 
@@ -588,7 +588,7 @@ airbnb_for_bnn <- airbnb_df |>
   mutate(room_bin = ifelse(room_type == "Entire home/apt", 1, 0)) |>
   select(ward, number_of_reviews, availability_365, room_bin) |>
   group_by(ward) |>
-  slice_sample(prop = 0.2) |>
+  slice_sample(prop = 0.3) |>
   ungroup()
 ```
 
@@ -623,7 +623,7 @@ nnetBasesline <- nnet::nnet(input_data,
 nnetPredictions <- predict(nnetBasesline)
 ```
 
-### Hamiltonian Monte Carlo
+## Hamiltonian Monte Carlo
 
 ```{r}
 #| message: false
@@ -665,7 +665,7 @@ print(round(end_time- start_time))
 HMCpred <- BLNN_Predict(ClassNet, input_data)
 ```
 
-## Examine Overall Error
+## Examine Error
 
 ```{r}
 HMCpredClass <- matrix(0, 

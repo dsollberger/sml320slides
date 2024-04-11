@@ -1,7 +1,9 @@
 bayesplot
 bayesrules
+BLNN
 ggtext
 janitor
+nnet
 patchwork
 StanHeaders
 rstan
@@ -17,5 +19,3 @@ dplyr
 stringr
 forcats
 lubridate
-BLNN
-nnet
